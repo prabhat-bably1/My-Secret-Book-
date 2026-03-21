@@ -1,57 +1,66 @@
 body {
-  font-family: Arial;
-  background: #0f172a;
-  color: white;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
   display: flex;
-  justify-content: center;
-  margin-top: 50px;
-}
-
-.container {
-  width: 300px;
-  text-align: center;
-}
-
-textarea {
-  width: 100%;
-  height: 100px;
-  margin: 10px 0;
-}
-
-button {
-  padding: 10px;
-  background: #22c55e;
-  border: none;
-  color: white;
-  cursor: pointer;
-}
-
-li {
-  background: #1e293b;
-  margin: 5px;
-  padding: 5px;
-}
-#lockScreen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #020617;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 
-#lockScreen input {
-  padding: 10px;
-  margin: 10px;
-}
-
-#lockScreen button {
-  padding: 10px;
-  background: green;
+/* Glass Card */
+.container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 15px;
+  width: 320px;
+  text-align: center;
   color: white;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+/* Title */
+h1 {
+  margin-bottom: 10px;
+}
+
+/* Textarea */
+textarea {
+  width: 100%;
+  height: 80px;
+  border-radius: 10px;
   border: none;
+  padding: 10px;
+  outline: none;
+}
+
+/* Button */
+button {
+  margin-top: 10px;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  background: #22c55e;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* List */
+li {
+  background: rgba(255,255,255,0.2);
+  margin-top: 8px;
+  padding: 8px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Delete Button */
+li button {
+  background: red;
+  width: auto;
+  padding: 5px;
 }
