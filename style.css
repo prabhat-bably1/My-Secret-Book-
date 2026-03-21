@@ -148,52 +148,14 @@ textarea {
 }
 .hero-bg {
   height: 100vh;
-  background: url("bg.jpg") no-repeat center center;
+
+  background-image: url("cozy-morning-view-stockcakewriter.jpg");
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-/* dark cinematic overlay */
-.overlay {
-  background: rgba(0, 0, 0, 0.55);
-  padding: 40px;
-  border-radius: 12px;
-  text-align: center;
-  color: white;
-  max-width: 90%;
-}
-
-/* text styling */
-.title {
-  font-size: 28px;
-  opacity: 0.9;
-}
-
-.subtitle {
-  font-size: 38px;
-  margin: 10px 0;
-  font-weight: bold;
-}
-
-.desc {
-  font-size: 16px;
-  margin: 15px 0;
-  line-height: 1.5;
-}
-
-/* button */
-.start-btn {
-  padding: 12px 25px;
-  background: #22c55e;
-  border: none;
-  border-radius: 8px;
-  color: white;
-  cursor: pointer;
-}
-
-.start-btn:hover {
-  background: #16a34a;
-}
+  
