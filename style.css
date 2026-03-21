@@ -2,27 +2,27 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: linear-gradient(135deg, #0f172a, #1e3a8a);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  color: white;
 }
 
-/* Glass Card */
-.container {
-  background: rgba(255, 255, 255, 0.1);
+/* Navbar */
+.navbar {
+  background: rgba(0,0,0,0.3);
+  padding: 15px;
+  text-align: center;
+  font-size: 20px;
   backdrop-filter: blur(10px);
+}
+
+/* Main Container */
+.container {
+  max-width: 400px;
+  margin: 40px auto;
+  background: rgba(255,255,255,0.1);
   padding: 20px;
   border-radius: 15px;
-  width: 320px;
-  text-align: center;
-  color: white;
+  backdrop-filter: blur(15px);
   box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-}
-
-/* Title */
-h1 {
-  margin-bottom: 10px;
 }
 
 /* Textarea */
@@ -32,6 +32,7 @@ textarea {
   border-radius: 10px;
   border: none;
   padding: 10px;
+  margin-top: 10px;
   outline: none;
 }
 
@@ -45,51 +46,35 @@ button {
   background: #22c55e;
   color: white;
   cursor: pointer;
-  font-size: 16px;
 }
 
 /* List */
 li {
   background: rgba(255,255,255,0.2);
-  margin-top: 8px;
-  padding: 8px;
-  border-radius: 8px;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
   display: flex;
   justify-content: space-between;
 }
 
-/* Delete Button */
-li button {
-  background: red;
-  width: auto;
-  padding: 5px;
+/* Lock Screen */
+#lockScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #020617;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-/* Mobile Responsive */
+
+/* Responsive */
 @media (max-width: 500px) {
   .container {
     width: 90%;
-    padding: 15px;
-  }
-
-  h1 {
-    font-size: 20px;
-  }
-
-  textarea {
-    height: 70px;
-  }
-
-  button {
-    font-size: 14px;
-    padding: 8px;
-  }
-
-  li {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  li button {
-    margin-top: 5px;
   }
 }
