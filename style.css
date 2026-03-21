@@ -180,23 +180,14 @@ textarea {
   background-size: cover;
  } 
  .login-bg {
-  position: relative;
   min-height: 100vh;
-  background: black;
-}
 
-/* image full control */
-.login-img {
-  width: 100%;
-  height: 100vh;
-  object-fit: contain;
-  display: block;
-}
-
-/* login box center */
+  background: url("business-team-members-standing-together-600nw-2509274179.jpg") no-repeat center center;
+  background-size: cover;
+ }
 .login-box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.6);
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
 }
