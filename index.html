@@ -21,8 +21,8 @@
     .navbar button {
       margin-left: 10px;
       padding: 8px;
-      border: none;
       border-radius: 5px;
+      border: none;
       cursor: pointer;
     }
 
@@ -44,20 +44,28 @@
     .lang-bar span {
       cursor: pointer;
       color: #22c55e;
-      margin: 0 5px;
-      font-weight: bold;
+      margin: 3px;
+      display: inline-block;
+    }
+
+    textarea {
+      width: 80%;
+      height: 80px;
+      border-radius: 10px;
+      padding: 10px;
     }
   </style>
 </head>
 
 <body>
 
-<!-- Navbar -->
+<!-- NAVBAR -->
 <div class="navbar">
   <h2>🔒 SecretBook</h2>
   <div>
     <button onclick="showPage('home')">Home</button>
     <button onclick="showPage('about')">About</button>
+    <button onclick="showPage('login')">Login</button>
   </div>
 </div>
 
@@ -73,20 +81,19 @@
   <h1 id="aboutTitle"></h1>
 
   <div class="lang-bar">
-
-  <span onclick="setLang('en')">English</span> |
-  <span onclick="setLang('hi')">Hindi</span> |
-  <span onclick="setLang('od')">Odia</span> |
-  <span onclick="setLang('ta')">Tamil</span> |
-  <span onclick="setLang('te')">Telugu</span> |
-  <span onclick="setLang('mr')">Marathi</span> |
-  <span onclick="setLang('bn')">Bengali</span> |
-  <span onclick="setLang('gu')">Gujarati</span> |
-  <span onclick="setLang('pa')">Punjabi</span> |
-  <span onclick="setLang('kn')">Kannada</span> |
-  <span onclick="setLang('ml')">Malayalam</span>
-
+    <span onclick="setLang('en')">English</span>
+    <span onclick="setLang('hi')">Hindi</span>
+    <span onclick="setLang('od')">Odia</span>
+    <span onclick="setLang('ta')">Tamil</span>
+    <span onclick="setLang('te')">Telugu</span>
+    <span onclick="setLang('mr')">Marathi</span>
+    <span onclick="setLang('bn')">Bengali</span>
+    <span onclick="setLang('gu')">Gujarati</span>
+    <span onclick="setLang('pa')">Punjabi</span>
+    <span onclick="setLang('kn')">Kannada</span>
+    <span onclick="setLang('ml')">Malayalam</span>
   </div>
+
   <p id="about1"></p>
   <p id="about2"></p>
   <p id="about3"></p>
@@ -94,77 +101,145 @@
 
 </div>
 
+<!-- LOGIN -->
+<div id="login" class="page">
+  <h2>Login 🔐</h2>
+  <input type="password" id="pass" placeholder="Enter password">
+  <button onclick="login()">Login</button>
+</div>
+
+<!-- APP -->
+<div id="app" class="page">
+  <h2>Your Secrets</h2>
+  <textarea id="secret"></textarea><br><br>
+  <button onclick="save()">Save</button>
+  <ul id="list"></ul>
+</div>
+
 <script>
 
 // Page switch
-function showPage(pageId) {
-  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-  document.getElementById(pageId).classList.add("active");
+function showPage(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
 }
 
-// Language function (100% working)
-function setLang(lang) {
-
-  let title = document.getElementById("aboutTitle");
-  let a1 = document.getElementById("about1");
-  let a2 = document.getElementById("about2");
-  let a3 = document.getElementById("about3");
-  let a4 = document.getElementById("about4");
-
-  // ENGLISH DEFAULT
-  title.textContent = "About My Secret Book";
-  a1.textContent = "My Secret Book is not just a website — it’s a personal space where your secrets stay safe and truly yours.";
-  a2.textContent = "Everyone has something they cannot say out loud.";
-  a3.textContent = "This website does not belong to me alone. Whoever trusts it, owns it.";
-  a4.textContent = "Simple, secure, and personal.";
-
-  // HINDI
-  if (lang === "hi") {
-    title.textContent = "मेरी सीक्रेट बुक के बारे में";
-    a1.textContent = "यह आपकी अपनी जगह है जहाँ आपके राज सुरक्षित रहते हैं।";
-    a2.textContent = "हर किसी के पास कुछ होता है जो वो नहीं कह पाता।";
-    a3.textContent = "यह वेबसाइट सभी की है।";
-    a4.textContent = "सुरक्षित और व्यक्तिगत।";
-  }
-
-  // ODIA
-  if (lang === "od") {
-    title.textContent = "ମୋ ସିକ୍ରେଟ ବୁକ ବିଷୟରେ";
-    a1.textContent = "ଏହା ତୁମର ନିଜସ୍ୱ ସ୍ଥାନ।";
-    a2.textContent = "ପ୍ରତ୍ୟେକଙ୍କ ପାଖରେ କିଛି ଅଛି।";
-    a3.textContent = "ଏହା ସମସ୍ତଙ୍କର।";
-    a4.textContent = "ସୁରକ୍ଷିତ।";
-  }
-
-  // TAMIL
-  if (lang === "ta") {
-    title.textContent = "என் ரகசிய புத்தகம் பற்றி";
-    a1.textContent = "இது உங்கள் ரகசியங்களுக்கான இடம்.";
-    a2.textContent = "ஒவ்வொருவருக்கும் சொல்ல முடியாத விஷயங்கள் உள்ளன.";
-    a3.textContent = "இந்த வலைத்தளம் அனைவருக்கும்.";
-    a4.textContent = "பாதுகாப்பானது.";
-  }
-
-  // TELUGU
-  if (lang === "te") {
-    title.textContent = "నా సీక్రెట్ బుక్ గురించి";
-    a1.textContent = "ఇది మీ రహస్యాల కోసం ఒక స్థలం.";
-    a2.textContent = "ప్రతి ఒక్కరికి చెప్పలేని విషయాలు ఉంటాయి.";
-    a3.textContent = "ఈ వెబ్‌సైట్ అందరిది.";
-    a4.textContent = "సురక్షితమైనది.";
-  }
-
-  // MARATHI
-  if (lang === "mr") {
-    title.textContent = "माझ्या सिक्रेट बुक बद्दल";
-    a1.textContent = "ही तुमच्या गुपितांसाठी जागा आहे.";
-    a2.textContent = "प्रत्येकाकडे काहीतरी असतं.";
-    a3.textContent = "ही वेबसाइट सगळ्यांची आहे.";
-    a4.textContent = "सुरक्षित.";
+// Login
+function login(){
+  if(document.getElementById("pass").value=="1234"){
+    showPage("app");
+  } else {
+    alert("Wrong Password");
   }
 }
 
-// Default load
+// Save secret
+function save(){
+  let val=document.getElementById("secret").value;
+  if(val==="") return;
+  let li=document.createElement("li");
+  li.textContent=val;
+  document.getElementById("list").appendChild(li);
+}
+
+// LANGUAGE SYSTEM
+function setLang(lang){
+
+  let t=document.getElementById("aboutTitle");
+  let a1=document.getElementById("about1");
+  let a2=document.getElementById("about2");
+  let a3=document.getElementById("about3");
+  let a4=document.getElementById("about4");
+
+  // DEFAULT ENGLISH
+  t.textContent="About My Secret Book";
+  a1.textContent="My Secret Book is your personal safe space.";
+  a2.textContent="Everyone has secrets they can't share.";
+  a3.textContent="This website belongs to everyone.";
+  a4.textContent="Simple and secure.";
+
+  if(lang=="hi"){
+    t.textContent="मेरी सीक्रेट बुक";
+    a1.textContent="यह आपकी अपनी जगह है।";
+    a2.textContent="हर किसी के पास कुछ होता है।";
+    a3.textContent="यह सभी की वेबसाइट है।";
+    a4.textContent="सुरक्षित।";
+  }
+
+  if(lang=="od"){
+    t.textContent="ମୋ ସିକ୍ରେଟ ବୁକ";
+    a1.textContent="ଏହା ତୁମର ସ୍ଥାନ।";
+    a2.textContent="ପ୍ରତ୍ୟେକଙ୍କ ପାଖରେ କିଛି ଅଛି।";
+    a3.textContent="ଏହା ସମସ୍ତଙ୍କର।";
+    a4.textContent="ସୁରକ୍ଷିତ।";
+  }
+
+  if(lang=="ta"){
+    t.textContent="ரகசிய புத்தகம்";
+    a1.textContent="இது உங்கள் இடம்.";
+    a2.textContent="ஒவ்வொருவருக்கும் ரகசியங்கள் உள்ளன.";
+    a3.textContent="இது அனைவருக்கும் சொந்தம்.";
+    a4.textContent="பாதுகாப்பானது.";
+  }
+
+  if(lang=="te"){
+    t.textContent="సీక్రెట్ బుక్";
+    a1.textContent="ఇది మీ స్థలం.";
+    a2.textContent="ప్రతి ఒక్కరికి రహస్యాలు ఉంటాయి.";
+    a3.textContent="ఇది అందరిదీ.";
+    a4.textContent="సురక్షితం.";
+  }
+
+  if(lang=="mr"){
+    t.textContent="सिक्रेट बुक";
+    a1.textContent="ही तुमची जागा आहे.";
+    a2.textContent="प्रत्येकाकडे काहीतरी असतं.";
+    a3.textContent="ही सर्वांची आहे.";
+    a4.textContent="सुरक्षित.";
+  }
+
+  if(lang=="bn"){
+    t.textContent="সিক্রেট বুক";
+    a1.textContent="এটি আপনার স্থান।";
+    a2.textContent="প্রত্যেকের গোপন কিছু থাকে।";
+    a3.textContent="এটি সবার।";
+    a4.textContent="নিরাপদ।";
+  }
+
+  if(lang=="gu"){
+    t.textContent="સિક્રેટ બુક";
+    a1.textContent="આ તમારી જગ્યા છે.";
+    a2.textContent="દરેક પાસે કંઈક હોય છે.";
+    a3.textContent="આ બધાની છે.";
+    a4.textContent="સુરક્ષિત.";
+  }
+
+  if(lang=="pa"){
+    t.textContent="ਸੀਕ੍ਰੇਟ ਬੁੱਕ";
+    a1.textContent="ਇਹ ਤੁਹਾਡੀ ਜਗ੍ਹਾ ਹੈ.";
+    a2.textContent="ਹਰ ਕਿਸੇ ਕੋਲ ਕੁਝ ਹੁੰਦਾ ਹੈ.";
+    a3.textContent="ਇਹ ਸਭ ਦੀ ਹੈ.";
+    a4.textContent="ਸੁਰੱਖਿਅਤ.";
+  }
+
+  if(lang=="kn"){
+    t.textContent="ಸೀಕ್ರೆಟ್ ಬುಕ್";
+    a1.textContent="ಇದು ನಿಮ್ಮ ಸ್ಥಳ.";
+    a2.textContent="ಪ್ರತಿ ಒಬ್ಬರಿಗೂ ರಹಸ್ಯಗಳಿವೆ.";
+    a3.textContent="ಇದು ಎಲ್ಲರದು.";
+    a4.textContent="ಸುರಕ್ಷಿತ.";
+  }
+
+  if(lang=="ml"){
+    t.textContent="സീക്രെറ്റ് ബുക്ക്";
+    a1.textContent="ഇത് നിങ്ങളുടെ സ്ഥലം.";
+    a2.textContent="ഓരോരുത്തർക്കും രഹസ്യങ്ങളുണ്ട്.";
+    a3.textContent="ഇത് എല്ലാവരുടേത്.";
+    a4.textContent="സുരക്ഷിതം.";
+  }
+}
+
+// default load
 setLang("en");
 
 </script>
