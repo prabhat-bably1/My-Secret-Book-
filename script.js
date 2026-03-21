@@ -56,6 +56,51 @@ function setLang(lang) {
     a2.textContent = "प्रत्येकाकडे काहीतरी असतं.";
     a3.textContent = "ही वेबसाइट सगळ्यांची आहे.";
     a4.textContent = "सुरक्षित.";
+}
+    // BENGALI
+if (lang === "bn") {
+  title.textContent = "আমার সিক্রেট বুক সম্পর্কে";
+  a1.textContent = "এটি আপনার গোপনীয়তার জন্য একটি জায়গা।";
+  a2.textContent = "প্রত্যেকের কিছু না কিছু থাকে।";
+  a3.textContent = "এই ওয়েবসাইট সবার।";
+  a4.textContent = "নিরাপদ।";
+}
+
+// GUJARATI
+if (lang === "gu") {
+  title.textContent = "મારા સિક્રેટ બુક વિશે";
+  a1.textContent = "આ તમારી ગુપ્ત વાતો માટેનું સ્થાન છે.";
+  a2.textContent = "દરેક પાસે કંઈક હોય છે.";
+  a3.textContent = "આ વેબસાઇટ બધાની છે.";
+  a4.textContent = "સુરક્ષિત.";
+}
+
+// PUNJABI
+if (lang === "pa") {
+  title.textContent = "ਮੇਰੇ ਸੀਕ੍ਰੇਟ ਬੁੱਕ ਬਾਰੇ";
+  a1.textContent = "ਇਹ ਤੁਹਾਡੇ ਰਾਜਾਂ ਲਈ ਜਗ੍ਹਾ ਹੈ।";
+  a2.textContent = "ਹਰ ਕਿਸੇ ਕੋਲ ਕੁਝ ਹੁੰਦਾ ਹੈ।";
+  a3.textContent = "ਇਹ ਵੈਬਸਾਈਟ ਸਭ ਦੀ ਹੈ।";
+  a4.textContent = "ਸੁਰੱਖਿਅਤ।";
+}
+
+// KANNADA
+if (lang === "kn") {
+  title.textContent = "ನನ್ನ ಸೀಕ್ರೆಟ್ ಬುಕ್ ಬಗ್ಗೆ";
+  a1.textContent = "ಇದು ನಿಮ್ಮ ರಹಸ್ಯಗಳಿಗಾಗಿ ಒಂದು ಸ್ಥಳ.";
+  a2.textContent = "ಪ್ರತಿ ಒಬ್ಬರಿಗೂ ಹೇಳಲಾಗದ ವಿಷಯಗಳಿವೆ.";
+  a3.textContent = "ಈ ವೆಬ್‌ಸೈಟ್ ಎಲ್ಲರದು.";
+  a4.textContent = "ಸುರಕ್ಷಿತ.";
+}
+
+// MALAYALAM
+if (lang === "ml") {
+  title.textContent = "എന്റെ സീക്രറ്റ് ബുക്ക് കുറിച്ച്";
+  a1.textContent = "ഇത് നിങ്ങളുടെ രഹസ്യങ്ങൾക്കായുള്ള സ്ഥലം.";
+  a2.textContent = "ഓരോരുത്തർക്കും പറയാൻ കഴിയാത്ത കാര്യങ്ങൾ ഉണ്ട്.";
+  a3.textContent = "ഈ വെബ്സൈറ്റ് എല്ലാവർക്കും.";
+  a4.textContent = "സുരക്ഷിതം.";
+}
   }
 
 }
