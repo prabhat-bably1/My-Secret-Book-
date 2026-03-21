@@ -2,52 +2,223 @@
 <html>
 <head>
   <title>My Secret Book</title>
-  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: linear-gradient(135deg, #0f172a, #1e3a8a);
+      color: white;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px;
+      background: rgba(0,0,0,0.3);
+    }
+
+    .navbar button, select {
+      margin-left: 10px;
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .page {
+      display: none;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .active {
+      display: block;
+    }
+
+    textarea {
+      width: 80%;
+      height: 80px;
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    li {
+      background: rgba(255,255,255,0.2);
+      margin: 10px;
+      padding: 10px;
+      border-radius: 10px;
+    }
+  </style>
+
 </head>
 <body>
 
 <!-- Navbar -->
 <div class="navbar">
-  <h2>🔒 MySecretBook</h2>
+  <h2>🔒 SecretBook</h2>
   <div>
     <button onclick="showPage('home')">Home</button>
     <button onclick="showPage('about')">About</button>
     <button onclick="showPage('login')">Login</button>
+
     <select onchange="changeLanguage(this.value)">
-  <option value="en">English</option>
-  <option value="hi">Hindi</option>
-  <option value="auto">🌍 Other</option>
+      <option value="en">English</option>
+      <option value="hi">Hindi</option>
+      <option value="auto">🌍 Other</option>
     </select>
   </div>
 </div>
 
 <!-- HOME -->
-<div id="home" class="page">
-  <h1>Welcome to My Secret Book 🔐</h1>
-  <p>Your private notes, सुरक्षित और hidden.</p>
+<div id="home" class="page active">
+  <h1 id="homeTitle">Welcome to Secret Book 🔐</h1>
+  <p id="homeDesc">Your private notes, safe and secure.</p>
 </div>
 
 <!-- ABOUT -->
 <div id="about" class="page">
-  <h1>About</h1>
-  <p>This app lets you store secrets safely with password protection.</p>
+  <h1 id="aboutTitle"></h1>
+
+  <p id="aboutText1"></p>
+  <p id="aboutText2"></p>
+  <p id="aboutText3"></p>
+  <p id="aboutText4"></p>
 </div>
 
 <!-- LOGIN -->
 <div id="login" class="page">
-  <h1>Login 🔐</h1>
+  <h1 id="loginTitle">Login 🔐</h1>
   <input type="password" id="passwordInput" placeholder="Enter password">
-  <button onclick="checkPassword()">Login</button>
+  <button id="loginBtn" onclick="checkPassword()">Login</button>
 </div>
 
 <!-- APP -->
 <div id="app" class="page">
   <h1>Your Secrets</h1>
-  <textarea id="secretInput" placeholder="Write your secret..."></textarea>
+
+  <textarea id="secretInput" placeholder="Write your secret..."></textarea><br>
+
+  <button onclick="startVoice()">🎤 Speak</button>
   <button onclick="saveSecret()">Save</button>
+
   <ul id="secretList"></ul>
 </div>
 
-<script src="script.js"></script>
+<script>
+
+let secrets = JSON.parse(localStorage.getItem("secrets")) || [];
+const password = "1234";
+
+// Page switch
+function showPage(pageId) {
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  document.getElementById(pageId).classList.add("active");
+
+  if(pageId === "about") startTyping();
+}
+
+// Login
+function checkPassword() {
+  let input = document.getElementById("passwordInput").value;
+
+  if (input === password) {
+    showPage("app");
+    displaySecrets();
+  } else {
+    alert("Wrong Password ❌");
+  }
+}
+
+// Save secret
+function saveSecret() {
+  let input = document.getElementById("secretInput");
+
+  if (input.value === "") return;
+
+  secrets.push(input.value);
+  localStorage.setItem("secrets", JSON.stringify(secrets));
+
+  input.value = "";
+  displaySecrets();
+}
+
+// Display
+function displaySecrets() {
+  let list = document.getElementById("secretList");
+  list.innerHTML = "";
+
+  secrets.forEach((s) => {
+    let li = document.createElement("li");
+    li.textContent = s;
+    list.appendChild(li);
+  });
+}
+
+// 🎤 Voice Input
+function startVoice() {
+  let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  recognition.lang = "en-IN";
+
+  recognition.onresult = function(event) {
+    document.getElementById("secretInput").value = event.results[0][0].transcript;
+  };
+
+  recognition.start();
+}
+
+// ✨ Typing Effect
+let textData = [];
+let index = 0;
+let charIndex = 0;
+
+function startTyping() {
+  textData = [
+    "My Secret Book is not just a website — it’s a personal space where your secrets stay safe and truly yours.",
+    "In today’s world, everyone has something they cannot say out loud.",
+    "This website does not belong to me alone. The moment you trust it, it becomes yours.",
+    "Simple, secure, and personal — just like a real diary, but smarter."
+  ];
+
+  document.getElementById("aboutTitle").textContent = "About My Secret Book";
+
+  index = 0;
+  charIndex = 0;
+  typeLine();
+}
+
+function typeLine() {
+  if (index >= textData.length) return;
+
+  let current = textData[index];
+  let element = document.getElementById("aboutText" + (index+1));
+
+  if (charIndex < current.length) {
+    element.textContent += current.charAt(charIndex);
+    charIndex++;
+    setTimeout(typeLine, 30);
+  } else {
+    index++;
+    charIndex = 0;
+    setTimeout(typeLine, 500);
+  }
+}
+
+// 🌍 Language
+function changeLanguage(lang) {
+  if (lang === "hi") {
+    document.getElementById("homeTitle").textContent = "Secret Book में आपका स्वागत है 🔐";
+    document.getElementById("homeDesc").textContent = "आपके निजी नोट्स, सुरक्षित और सिर्फ आपके।";
+  } 
+  else if (lang === "en") {
+    location.reload();
+  } 
+  else {
+    window.location.href =
+      "https://translate.google.com/translate?sl=auto&tl=auto&u=" + window.location.href;
+  }
+}
+
+</script>
+
 </body>
 </html>
