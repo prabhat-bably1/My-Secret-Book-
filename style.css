@@ -5,7 +5,6 @@ body {
   color: white;
 }
 
-/* Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -18,33 +17,26 @@ body {
   padding: 8px;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
 }
 
-/* Pages */
 .page {
   display: none;
   padding: 20px;
   text-align: center;
 }
 
-/* Active page */
 .active {
   display: block;
 }
 
-/* Textarea */
-textarea {
-  width: 80%;
-  height: 80px;
-  border-radius: 10px;
-  padding: 10px;
+.lang-bar {
+  margin: 15px 0;
+  font-size: 14px;
 }
 
-/* List */
-li {
-  background: rgba(255,255,255,0.2);
-  margin: 10px;
-  padding: 10px;
-  border-radius: 10px;
+.lang-bar span {
+  cursor: pointer;
+  color: #22c55e;
+  margin: 0 5px;
+  font-weight: bold;
 }
