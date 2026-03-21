@@ -175,19 +175,29 @@ textarea {
 
   z-index: -1;
 }
- .about-bg {
-  background: url("cozy-morning-read-stockcake.jpg") no-repeat center center;
-  background-size: cover;
- } 
- .login-bg {
+/* LOGIN BACKGROUND FIX */
+.login-bg {
   min-height: 100vh;
 
-  background: url("business-team-members-standing-together-600nw-2509274179.jpg") no-repeat center center;
+  background-image: url("business-team-members-standing-together-600nw-2509274179.jpg");
   background-size: cover;
- }
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* LOGIN BOX FIX */
 .login-box {
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
   padding: 20px;
   border-radius: 10px;
   color: white;
+}
+
+/* REMOVE TOP GAP (grey line fix) */
+body {
+  margin: 0;
 }
