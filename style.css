@@ -179,9 +179,11 @@ textarea {
   background: url("cozy-morning-read-stockcake.jpg") no-repeat center center;
   background-size: cover;
  } 
-.login-bg {
+ .login-bg {
   min-height: 100vh;
 
-  background: url("business-team-members-standing-together-600nw-2509274179.jpg") no-repeat center center;
-  background-size: cover;
-}
+  background: url("business-team-members-standing-together-600nw-2509274179.jpg") no-repeat;
+  
+  background-size: cover;        /* screen full */
+  background-position: center top; /* important fix */
+ }
