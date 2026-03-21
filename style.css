@@ -175,4 +175,7 @@ textarea {
 
   z-index: -1;
 }
-  
+ .about-bg {
+  background: url("cozy-morning-read-stockcake.jpg") no-repeat center center;
+  background-size: cover;
+ } 
