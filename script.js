@@ -52,3 +52,16 @@ function setLang(lang){
 
 // default load
 setLang("en");
+// Page याद रखे (refresh ke baad bhi)
+window.onload = function() {
+  let page = localStorage.getItem("page") || "home";
+  showPage(page);
+};
+
+// Page switch pe save karo
+function showPage(id){
+  localStorage.setItem("page", id);
+
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
