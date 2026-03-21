@@ -75,4 +75,6 @@ function setLang(lang) {
   }
 
 }
-setLang("en");
+window.onload = function() {
+  setLang("en");
+};
