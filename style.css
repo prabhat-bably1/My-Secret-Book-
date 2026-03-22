@@ -7,25 +7,47 @@ body {
 
 /* MENU BAR */
 .menu {
-    width: 100%;
-    background: url("open-book.png") no-repeat center;
-    background-size: cover;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
     padding: 20px 0;
 }
 
-/* MENU BUTTONS */
-.menu span {
-    margin: 0 20px;
-    padding: 10px 25px;
-    background: #e6d3a3;
-    border-radius: 10px;
+/* BOOK STYLE TABS */
+.tab {
+    background: linear-gradient(#e8d8b5, #d6c29a);
+    padding: 12px 30px;
     font-weight: bold;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2);
     cursor: pointer;
+    position: relative;
+}
+
+/* CURVE EFFECT */
+.tab::before,
+.tab::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 15px;
+    height: 15px;
+    background: inherit;
+}
+
+.tab::before {
+    left: -10px;
+    border-bottom-right-radius: 15px;
+}
+
+.tab::after {
+    right: -10px;
+    border-bottom-left-radius: 15px;
 }
 
 /* TITLE */
 .title {
-    margin-top: 40px;
+    margin-top: 30px;
     font-size: 32px;
     font-family: cursive;
     color: #5d4037;
