@@ -1,59 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>My Secret Book</title>
-<link rel="stylesheet" href="style.css">
-
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <title>My Secret Book</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- Top Left Menu -->
-<div class="nav">
-    <a href="#">Home</a>
-    <a href="#" onclick="showAbout()">About</a>
-    <a href="#" onclick="showLogin()">Login</a>
+<!-- NAVBAR -->
+<div class="navbar">
+  <h2>🔒 SecretBook</h2>
+  <div>
+    <button onclick="showPage('home')">Home</button>
+    <button onclick="showPage('about')">About</button>
+    <button onclick="showPage('login')">Login</button>
+  </div>
 </div>
 
-<!-- Title -->
-<h1 class="title">My Secret Book</h1>
+<!-- HOME -->
+<div id="home" class="page active">
 
-<!-- Book Image -->
-<div class="book"></div>
+  <div class="hero-bg">
 
-<!-- About Popup -->
-<div id="aboutBox" class="popup">
-    <p>This is my secret book website 🌟</p>
-    <select>
-        <option>Hindi</option>
-        <option>English</option>
-        <option>Punjabi</option>
-        <option>Bengali</option>
-        <option>Gujarati</option>
-        <option>Marathi</option>
-        <option>Tamil</option>
-        <option>Telugu</option>
-        <option>Kannada</option>
-        <option>Malayalam</option>
-        <option>Odia</option>
-        <option>Assamese</option>
-        <option>Urdu</option>
-        <option>Sanskrit</option>
-    </select>
-    <br><br>
-    <button onclick="closeBox()">Close</button>
+    <div class="overlay">
+
+      <h1 class="title">You are not just living...</h1>
+      <h2 class="subtitle">You are writing your story ✍️</h2>
+
+      <p class="desc">
+        Every emotion you hide, every thought you feel...  
+        deserves to be written somewhere.
+      </p>
+
+      <button onclick="showPage('about')" class="start-btn">
+        Start Writing
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+    <button onclick="showPage('about')" class="next-btn">
+      Next ➜
+    </button>
+
+  </div>
+
 </div>
 
-<!-- Login Popup -->
-<div id="loginBox" class="popup">
-    <h2>Login</h2>
-    <input type="text" placeholder="Username"><br>
-    <input type="password" placeholder="Password"><br>
-    <button>Login</button><br><br>
-    <button onclick="closeBox()">Close</button>
+<!-- ABOUT -->
+<div id="about" class="page about-bg">
+
+  <h1 id="aboutTitle"></h1>
+
+  <div class="lang-bar">
+    <span onclick="setLang('en')">English</span>
+    <span onclick="setLang('hi')">Hindi</span>
+    <span onclick="setLang('od')">Odia</span>
+    <span onclick="setLang('ta')">Tamil</span>
+    <span onclick="setLang('te')">Telugu</span>
+    <span onclick="setLang('mr')">Marathi</span>
+    <span onclick="setLang('bn')">Bengali</span>
+    <span onclick="setLang('gu')">Gujarati</span>
+    <span onclick="setLang('pa')">Punjabi</span>
+    <span onclick="setLang('kn')">Kannada</span>
+    <span onclick="setLang('ml')">Malayalam</span>
+  </div>
+
+  <p id="about1"></p>
+  <p id="about2"></p>
+  <p id="about3"></p>
+  <p id="about4"></p>
+
+</div>
+
+<!-- LOGIN -->
+<div id="login" class="page login-bg">
+
+  <div class="login-box">
+    <h2>Login</h2>
+    <input type="text" placeholder="Username"><br><br>
+    <input type="password" placeholder="Password"><br><br>
+    <button>Login</button>
+  </div>
+
+</div>
+
+<!-- APP -->
+<div id="app" class="page">
+  <h2>Your Secrets</h2>
+  <textarea id="secret"></textarea><br><br>
+  <button onclick="save()">Save</button>
+  <ul id="list"></ul>
 </div>
 
 <script src="script.js"></script>
