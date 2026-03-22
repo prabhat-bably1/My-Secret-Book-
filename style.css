@@ -1,8 +1,8 @@
 body {
   margin: 0;
   font-family: Arial;
-  background: #0f172a; /* simple dark background */
-  color: white;
+  background: #0f172a; /* simple rakho */
+}
 }
 .navbar {
   display: flex;
@@ -48,26 +48,16 @@ textarea {
   border-radius: 10px;
   padding: 10px;
 }
-.hero::before {
-  content: "";
-  position: absolute;
-  width: 4px;
-  height: 100%;
-  background: rgba(255,255,255,0.2);
-  left: 50%;
-  transform: translateX(-50%);
-}
+.hero {
+  height: 100vh;
+  position: relative;
 
-.hero::after {
-  content: "";
-  position: absolute;
-  width: 80%;
-  height: 90%;
-  top: 5%;
-  left: 10%;
-  background: transparent;
-  box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
-  border-radius: 10px;
+  background: url("book.png.jpg") no-repeat center;
+  background-size: contain;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .hero h1 {
   font-size: 40px;
