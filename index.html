@@ -1,45 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>My Secret Book</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>My Secret Book</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <!-- NAVBAR -->
-    <div class="navbar">
-        <span>Home</span>
-        <span>About</span>
-        <span>Login 📖</span>
-    </div>
+<!-- NAVBAR -->
+<div class="navbar">
+    <button>Home</button>
+    <button>About</button>
+    <button>Login 📖</button>
+</div>
 
-    <!-- MAIN -->
-    <div class="main">
+<!-- TITLE + HANGING BOOK (UNCHANGED) -->
+<div class="main">
+    <h1 class="title">
+        My Secret <br> Book
+    </h1>
 
-        <!-- TITLE -->
-        <div class="title">
-            My Secret<br>
-            <span class="book-text">Book</span>
+    <!-- Hanging Book -->
+    <img src="closed-book.png" class="hanging-book">
+</div>
+
+<!-- FLIP BOOK SECTION -->
+<div class="flip-container">
+
+    <div class="book-box" id="bookBox">
+
+        <!-- FRONT PAGE -->
+        <div class="page front">
+            <img src="closed-book.png" class="cover-img">
         </div>
 
-        <!-- WELCOME NOTE -->
-        <div class="welcome">
+        <!-- INSIDE PAGE -->
+        <div class="page back">
             <h2>Welcome to your Secret World ✨</h2>
             <p>
-                Start your journey here...  
-                Share your thoughts, jokes, shayari and feelings.  
-                This is your personal space — stay happy and spread happiness 💛
+                Start your journey here... <br>
+                Share your thoughts, jokes, shayari and feelings. <br><br>
+                This is your personal space — <br>
+                stay happy and spread happiness 💛
             </p>
         </div>
 
-        <!-- BOOK IMAGE -->
-        <img src="closed-book.png" class="book-img">
-
-        <!-- NEXT BUTTON -->
-        <button class="next-btn">Start Reading →</button>
-
     </div>
 
+    <!-- NEXT BUTTON -->
+    <button class="next-btn" onclick="flipBook()">Next ➜</button>
+
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
