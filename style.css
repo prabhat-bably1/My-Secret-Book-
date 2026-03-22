@@ -39,6 +39,8 @@ body {
     font-family: cursive;
     color: #5d4037;
     text-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+
+    margin-top: 20px; /* thoda aur upar control */
 }
 
 /* BOOK TEXT (jhulta effect) */
