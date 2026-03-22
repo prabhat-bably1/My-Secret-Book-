@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: Arial;
-  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  background: #0f172a; /* simple dark background */
   color: white;
 }
 .navbar {
@@ -49,11 +49,16 @@ textarea {
   padding: 10px;
 }
 .hero {
-  height: 80vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  /* 👇 BOOK STYLE BACKGROUND */
+  background: linear-gradient(to right, #1e293b 50%, #1e3a8a 50%);
+  position: relative;
+  overflow: hidden;
 }
 
 .hero h1 {
