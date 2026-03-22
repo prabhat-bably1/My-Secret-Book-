@@ -54,30 +54,42 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;   /* upar laane ke liye */
     align-items: center;
-    
-    transform: translateY(-50px); /* upar shift */
+    padding-top: 120px;            /* upar shift */
 }
 
-/* TITLE */
+/* TITLE BASE */
 .title {
-    font-size: 80px;
     font-family: cursive;
     color: #5d4037;
-
     text-align: center;
+}
 
+/* MY SECRET */
+.top {
+    display: block;
+    font-size: 70px;
     letter-spacing: 5px;
-    line-height: 1.2;
 
+    text-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+}
+
+/* BOOK (DROP EFFECT 🔥) */
+.bottom {
+    display: block;
+    font-size: 80px;
+    margin-top: 10px;
+
+    transform: translateY(30px);  /* niche gira hua feel */
+    
     text-shadow:
-        3px 3px 8px rgba(0,0,0,0.3),
+        3px 6px 10px rgba(0,0,0,0.4),
         0 0 15px rgba(93,64,55,0.3);
 }
 
 /* BOOK IMAGE */
 .book {
-    margin-top: 20px;
-    width: 200px;
+    margin-top: 40px;
+    width: 220px;
 }
