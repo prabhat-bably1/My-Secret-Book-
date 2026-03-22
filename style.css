@@ -1,77 +1,69 @@
+/* BODY */
 body {
     margin: 0;
-    font-family: Arial;
-    background: #f5efe6;
-    text-align: center;
-}
-
-/* MENU */
-.menu {
     display: flex;
-    justify-content: center;
-    gap: 15px;
-    padding: 30px 0;
+    font-family: Arial, sans-serif;
+    background: #f5efe6;
 }
 
-/* REAL BOOK TABS */
-.tab {
-    position: relative;
-    padding: 12px 30px;
-    background: linear-gradient(to bottom, #f0e0b8, #d2b98b);
-    border-radius: 10px 10px 0 0;
+/* SIDEBAR */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: #cbb89d;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+}
+
+/* LOGO */
+.logo {
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+/* NAV LINKS */
+.sidebar a {
+    width: 70%;
+    text-align: center;
+    margin: 10px 0;
+    padding: 12px;
+    background: #fff;
+    border-radius: 25px;
+    text-decoration: none;
+    color: #333;
     font-weight: bold;
-    cursor: pointer;
-    
-    /* 3D SHADOW */
-    box-shadow: 
-        0 4px 0 #b89b6b,
-        0 6px 10px rgba(0,0,0,0.2);
-
-    transition: all 0.2s ease;
+    transition: 0.3s;
 }
 
-/* SIDE FOLDS */
-.tab::before,
-.tab::after {
-    content: "";
-    position: absolute;
-    bottom: -2px;
-    width: 12px;
-    height: 12px;
-    background: #c9ad7a;
+/* HOVER EFFECT */
+.sidebar a:hover {
+    background: #8d6e63;
+    color: white;
+    transform: scale(1.05);
 }
 
-.tab::before {
-    left: -10px;
-    border-bottom-right-radius: 10px;
+/* MAIN */
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.tab::after {
-    right: -10px;
-    border-bottom-left-radius: 10px;
-}
-
-/* HOVER EFFECT 🔥 */
-.tab:hover {
-    transform: translateY(-5px);
-    box-shadow: 
-        0 6px 0 #b89b6b,
-        0 10px 15px rgba(0,0,0,0.3);
-}
-
-/* ACTIVE TAB */
-.tab:active {
-    transform: translateY(2px);
-    box-shadow: 
-        0 2px 0 #b89b6b,
-        0 4px 6px rgba(0,0,0,0.2);
-}
-
-/* TITLE */
+/* BIG TITLE 🔥 */
 .title {
-    margin-top: 40px;
-    font-size: 36px;
+    font-size: 50px;
     font-family: cursive;
     color: #5d4037;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+/* SUBTITLE */
+.subtitle {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #6d4c41;
 }
