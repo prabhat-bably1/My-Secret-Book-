@@ -49,34 +49,35 @@ body {
     border-left: 15px solid #d2b98b;
 }
 
-/* TITLE CENTER BIG */
-.title {
-    position: fixed;   /* CHANGE */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scaleX(1.5); /* aur lamba */
+/* MAIN CENTER */
+.main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    transform: translateY(-50px); /* upar shift */
+}
 
-    font-size: 90px;   /* aur bada */
+/* TITLE */
+.title {
+    font-size: 80px;
     font-family: cursive;
     color: #5d4037;
 
-    letter-spacing: 8px;
+    text-align: center;
+
+    letter-spacing: 5px;
+    line-height: 1.2;
 
     text-shadow:
-        3px 3px 10px rgba(0,0,0,0.3),
-        0 0 20px rgba(93,64,55,0.4);
-}
-.book {
-    position: fixed;
-    right: 50px;     /* right side me */
-    bottom: 50px;    /* niche side */
-    width: 300px;
-    opacity: 0.9;
-}
-.book {
-    transition: 0.3s;
+        3px 3px 8px rgba(0,0,0,0.3),
+        0 0 15px rgba(93,64,55,0.3);
 }
 
-.book:hover {
-    transform: scale(1.05);
+/* BOOK IMAGE */
+.book {
+    margin-top: 20px;
+    width: 200px;
 }
