@@ -1,24 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Secret Book</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Secret Book</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    background-color: #f5efe6;
+}
+
+/* LEFT NAVBAR */
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    background-color: #d8c3a5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #333;
+    margin: 15px 0;
+    padding: 10px 20px;
+    background: #eaddc7;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background: #c8a97e;
+    color: white;
+}
+
+/* MAIN CONTENT */
+.main {
+    flex: 1;
+    text-align: center;
+    padding: 20px;
+}
+
+/* TITLE */
+.title {
+    font-size: 28px;
+    margin-bottom: 10px;
+    font-family: cursive;
+}
+
+/* BOOK IMAGE */
+.book img {
+    width: 80%;
+    max-width: 400px;
+}
+
+/* NEXT BUTTON */
+.next-btn {
+    margin-top: 20px;
+}
+
+.next-btn button {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 20px;
+    background-color: #8d6e63;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.next-btn button:hover {
+    background-color: #5d4037;
+}
+</style>
 </head>
+
 <body>
 
-  <!-- TOP MENU -->
-  <div class="menu">
-    <span>Home</span>
-    <span>About</span>
-    <span>Login</span>
-  </div>
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Login</a>
+</div>
 
-  <!-- HERO SECTION -->
-  <div class="hero">
-    <h1>My Secret Book</h1>
-  </div>
+<!-- MAIN -->
+<div class="main">
 
-  <script src="script.js"></script>
+    <!-- TITLE (book ke upar attach feel) -->
+    <div class="title">My Secret Book</div>
+
+    <!-- BOOK -->
+    <div class="book">
+        <img src="book.png" alt="Book">
+    </div>
+
+    <!-- NEXT BUTTON -->
+    <div class="next-btn">
+        <button>Next ➜</button>
+    </div>
+
+</div>
+
 </body>
 </html>
