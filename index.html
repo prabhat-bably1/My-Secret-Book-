@@ -4,7 +4,11 @@
 <meta charset="UTF-8">
 <title>My Secret Book</title>
 <link rel="stylesheet" href="style.css">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
 <!-- Top Left Menu -->
@@ -14,39 +18,13 @@
     <a href="#" onclick="showLogin()">Login</a>
 </div>
 
+<!-- Title -->
 <h1 class="title">My Secret Book</h1>
 
-<!-- Book Wrapper -->
-<div class="book-wrapper">
-    <div class="book" id="book">
+<!-- Book Image -->
+<div class="book"></div>
 
-        <!-- Page 1 -->
-        <div class="page">
-            <div class="front">Welcome 📖</div>
-            <div class="back">This is Page 2</div>
-        </div>
-
-        <!-- Page 2 -->
-        <div class="page">
-            <div class="front">This is Page 3</div>
-            <div class="back">This is Page 4</div>
-        </div>
-
-        <!-- Page 3 -->
-        <div class="page">
-            <div class="front">This is Page 5</div>
-            <div class="back">The End ❤️</div>
-        </div>
-
-    </div>
-</div>
-
-<div class="controls">
-    <button onclick="prevPage()">⬅ Prev</button>
-    <button onclick="nextPage()">Next ➡</button>
-</div>
-
-<!-- About -->
+<!-- About Popup -->
 <div id="aboutBox" class="popup">
     <p>This is my secret book website 🌟</p>
     <select>
@@ -65,15 +43,16 @@
         <option>Urdu</option>
         <option>Sanskrit</option>
     </select>
+    <br><br>
     <button onclick="closeBox()">Close</button>
 </div>
 
-<!-- Login -->
+<!-- Login Popup -->
 <div id="loginBox" class="popup">
     <h2>Login</h2>
     <input type="text" placeholder="Username"><br>
     <input type="password" placeholder="Password"><br>
-    <button>Login</button>
+    <button>Login</button><br><br>
     <button onclick="closeBox()">Close</button>
 </div>
 
