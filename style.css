@@ -228,3 +228,7 @@ body {
   border-radius: 0;    /* no rounded corners */
   box-shadow: none;    /* remove shadow */
 }
+.main {
+  position: relative;
+  z-index: 2;
+}
