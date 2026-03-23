@@ -23,48 +23,23 @@
 </h1>
 
 </div>
-<div class="flip-book">
+<!-- BOOK IMAGE -->
+<div class="book-section">
+    <img src="closed-book.png" class="book-img">
 
-    <div class="page left">
-        📖
-    </div>
-
-    <div class="page right" id="page2">
-        Click Next →
-    </div>
-
+    <button class="next-btn" onclick="openPage()">Next ➜</button>
 </div>
 
-<button onclick="nextPage()" class="next-btn">Next ➜</button>
-
-<!-- FLIP BOOK SECTION -->
-<div class="flip-container">
-
-    <div class="book-box" id="bookBox">
-
-        <!-- FRONT PAGE -->
-        <div class="page front">
-            <img src="closed-book.png" class="cover-img">
-        </div>
-
-        <!-- INSIDE PAGE -->
-        <div class="page back">
-            <h2>Welcome to your Secret World ✨</h2>
-            <p>
-                Start your journey here... <br>
-                Share your thoughts, jokes, shayari and feelings. <br><br>
-                This is your personal space — <br>
-                stay happy and spread happiness 💛
-            </p>
-        </div>
-
-    </div>
-
-    <!-- NEXT BUTTON -->
-    <button class="next-btn" onclick="flipBook()">Next ➜</button>
-
+<!-- HIDDEN PAGE -->
+<div id="page" class="hidden-page">
+    <h2>Welcome to your Secret World ✨</h2>
+    <p>
+        Start your journey here... <br>
+        Share your thoughts, jokes, shayari and feelings 💛 <br><br>
+        This is your personal space — <br>
+        stay happy and spread happiness ✨
+    </p>
 </div>
-
 <script src="script.js"></script>
 </body>
 </html>
