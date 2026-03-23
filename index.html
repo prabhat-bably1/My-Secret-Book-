@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Secret Book</title>
 <link rel="stylesheet" href="style.css">
 </head>
@@ -10,47 +11,47 @@
 
 <!-- NAVBAR -->
 <div class="navbar">
-    <button>Home</button>
-    <button>About</button>
-    <button>Login 📖</button>
+  <button>Home</button>
+  <button>About</button>
+  <button>Login 🔐</button>
 </div>
 
-<!-- TITLE + HANGING BOOK (UNCHANGED) -->
+<!-- TITLE -->
 <div class="main">
-    <h1 class="title">
+  <h1 class="title">
     My Secret <br>
     <span class="book-text">Book</span>
-</h1>
-
+  </h1>
 </div>
-<!-- BOOK IMAGE -->
+
+<!-- FULL SCREEN BOOK -->
 <div class="book-container">
+  <div class="book" id="book">
 
-    <div class="book" id="book">
-
-        <!-- COVER -->
-        <div class="cover">
-            <img src="closed-book.png">
-        </div>
-
-        <!-- PAGE -->
-        <div class="page">
-            <div class="page-content">
-                <h2>Welcome to your Secret World ✨</h2>
-                <p>
-                    Start your journey here...<br>
-                    Share your thoughts, jokes, shayari and feelings 💛<br><br>
-                    This is your personal space —<br>
-                    stay happy and spread happiness ✨
-                </p>
-            </div>
-        </div>
-
+    <!-- COVER -->
+    <div class="cover">
+      <img src="closed-book.png" alt="book">
     </div>
 
-    <button class="next-btn" onclick="openBook()">Next ➜</button>
+    <!-- INSIDE PAGE -->
+    <div class="page">
+      <div class="page-content">
+        <h2>Welcome to your Secret World ✨</h2>
+        <p>
+          Start your journey here... <br>
+          Share your thoughts, jokes, shayari and feelings 💛 <br><br>
+          This is your personal space <br>
+          stay happy and spread happiness ✨
+        </p>
+      </div>
+    </div>
 
+  </div>
 </div>
+
+<!-- BUTTON -->
+<button class="next-btn" onclick="openBook()">Next ➜</button>
+
 <script src="script.js"></script>
 </body>
 </html>
