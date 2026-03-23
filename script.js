@@ -1,3 +1,3 @@
-function openPage() {
-    document.getElementById("page").style.display = "block";
+function openBook() {
+    document.getElementById("book").classList.toggle("open");
 }
