@@ -36,3 +36,26 @@ body {
   padding: 20px;
   font-size: 18px;
 }
+.about-box {
+  margin-left: 260px;
+  margin-top: 80px;
+  max-width: 600px;
+}
+
+.about-title {
+  font-size: 35px;
+  font-family: cursive;
+  color: #5d4037;
+}
+
+#greet {
+  margin-top: 10px;
+  font-weight: normal;
+}
+
+#about-text {
+  margin-top: 20px;
+  line-height: 1.8;
+  font-size: 17px;
+  color: #4e342e;
+}
