@@ -1,3 +1,4 @@
-function openBook() {
-  document.getElementById("book").classList.toggle("open");
+function flipBook() {
+  const book = document.getElementById("book");
+  book.classList.toggle("flipped");
 }
