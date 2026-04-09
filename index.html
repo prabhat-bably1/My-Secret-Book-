@@ -5,59 +5,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Secret Book</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
     }
 
     :root{
-      --bg1:#f7efe7;
-      --bg2:#eadbc8;
-      --text:#7c1f19;
-      --gold:#d7a34e;
-      --gold2:#f2d49d;
-      --btn1:#8c251d;
-      --btn2:#651510;
-      --paper1:#f7eddc;
-      --paper2:#e8d7bc;
-      --paperBorder:#a47039;
+      --bg1:#f8f0e6;
+      --bg2:#ead9c4;
+      --maroon:#7c1f19;
+      --maroon-dark:#5b120d;
+      --gold:#d2a157;
+      --gold-light:#f4ddb1;
+      --paper1:#f8efde;
+      --paper2:#ead8bf;
+      --paper-border:#a36f37;
+      --text:#4a2d1a;
     }
 
     body{
       min-height:100vh;
       font-family: Georgia, "Times New Roman", serif;
       background:
-        radial-gradient(circle at top, rgba(255,255,255,.55), transparent 28%),
-        linear-gradient(180deg,var(--bg1) 0%, #f0e2d0 45%, var(--bg2) 100%);
+        radial-gradient(circle at top, rgba(255,255,255,.55), transparent 24%),
+        linear-gradient(180deg,var(--bg1) 0%, #f1e4d3 45%, var(--bg2) 100%);
+      color:var(--text);
       overflow-x:hidden;
-      color:#4b2b1a;
     }
 
     .page{
       width:100%;
       min-height:100vh;
-      padding: 8px 14px 50px;
+      padding:0 10px 40px;
     }
 
-    /* ================= NAVBAR IMAGE ================= */
+    /* ================= TOP NAVBAR ================= */
     .nav-section{
-      width:min(1400px, 100%);
-      margin:0 auto;
-      position:relative;
+      width:100%;
       display:flex;
       justify-content:center;
       align-items:flex-start;
+      margin-top:0;
+      padding-top:0;
     }
 
     .nav-image-wrap{
-      width:min(100%, 1450px);
+      width:min(1500px, 100%);
       position:relative;
+      line-height:0;
     }
 
     .nav-image{
       width:100%;
       display:block;
+      margin-top:0;
       user-select:none;
       pointer-events:none;
     }
@@ -65,30 +67,31 @@
     .nav-overlay{
       position:absolute;
       left:50%;
-      top:48%;
+      top:49%;
       transform:translate(-50%,-50%);
       width:100%;
       display:flex;
       justify-content:center;
+      align-items:center;
       gap:18px;
       flex-wrap:wrap;
-      padding:0 22px;
+      padding:0 20px;
+      z-index:3;
     }
 
     .nav-overlay a,
     .more-btn{
       text-decoration:none;
-      color:#f8e9c9;
+      color:#fff1d2;
       padding:10px 18px;
       border-radius:999px;
-      border:1.5px solid rgba(244,214,160,0.55);
-      background:rgba(95,20,15,0.18);
-      backdrop-filter: blur(1px);
+      border:1.6px solid rgba(244,216,169,.65);
+      background:rgba(97,17,12,.16);
       font-size:1rem;
-      letter-spacing:.5px;
+      letter-spacing:.4px;
       box-shadow:
-        inset 0 0 8px rgba(255,255,255,0.06),
-        0 4px 10px rgba(0,0,0,0.10);
+        inset 0 0 8px rgba(255,255,255,.08),
+        0 4px 10px rgba(0,0,0,.10);
       transition:.25s ease;
       cursor:pointer;
       font-family:inherit;
@@ -97,7 +100,7 @@
     .nav-overlay a:hover,
     .more-btn:hover{
       transform:translateY(-2px);
-      background:rgba(255,225,180,0.12);
+      background:rgba(255,225,180,.14);
     }
 
     .dropdown{
@@ -109,13 +112,13 @@
       top:calc(100% + 10px);
       left:50%;
       transform:translateX(-50%);
-      min-width:170px;
+      min-width:180px;
       background:linear-gradient(180deg,#7a211b 0%, #54110c 100%);
       border:2px solid var(--gold);
       border-radius:16px;
       padding:8px;
       display:none;
-      z-index:30;
+      z-index:20;
       box-shadow:0 12px 22px rgba(0,0,0,.18);
     }
 
@@ -129,10 +132,10 @@
       text-align:center;
     }
 
-    /* ================= TITLE ================= */
+    /* ================= HERO ================= */
     .hero{
       max-width:1200px;
-      margin: 28px auto 0;
+      margin:8px auto 0;
       display:flex;
       flex-direction:column;
       align-items:center;
@@ -142,41 +145,40 @@
     .title-box{
       position:relative;
       display:inline-block;
-      margin-top:10px;
-      margin-bottom:72px;
+      margin-top:6px;
+      margin-bottom:24px;
     }
 
     .title-main{
-      font-size:clamp(2.7rem, 7vw, 5.8rem);
-      color:var(--text);
+      font-size:clamp(3rem, 7vw, 6.6rem);
+      color:var(--maroon);
       font-weight:700;
-      line-height:.95;
-      letter-spacing:1px;
+      line-height:.94;
+      letter-spacing:1.5px;
       text-shadow:
-        0 2px 0 #fff5e6,
-        0 7px 18px rgba(124,31,25,.16);
+        0 2px 0 #fff7ea,
+        0 8px 20px rgba(124,31,25,.16);
     }
 
     .secret-part{
       position:relative;
       display:inline-block;
-      padding-right:6px;
+      padding-right:8px;
     }
 
-    /* T ke niche hanging Book */
     .hanging-book-word{
       position:absolute;
       left:76%;
       top:100%;
-      margin-top:4px;
+      margin-top:3px;
       transform:translateX(-50%);
-      font-size:clamp(2.05rem, 5vw, 4rem);
-      color:#8d281f;
+      font-size:clamp(2.3rem, 5.3vw, 4.5rem);
+      color:#8c281f;
       font-weight:700;
       line-height:1;
       text-shadow:
         0 2px 0 #fff0dc,
-        0 6px 16px rgba(0,0,0,.14);
+        0 6px 16px rgba(0,0,0,.16);
       transform-origin:top center;
       animation:swing 3.2s ease-in-out infinite;
       white-space:nowrap;
@@ -185,11 +187,11 @@
     .hanging-book-word::before{
       content:"";
       position:absolute;
-      top:-24px;
+      top:-26px;
       left:50%;
       transform:translateX(-50%);
       width:2px;
-      height:24px;
+      height:26px;
       background:linear-gradient(180deg,#b9874c,#6f451f);
       box-shadow:0 0 3px rgba(0,0,0,.15);
     }
@@ -201,12 +203,53 @@
       75%{ transform:translateX(-50%) rotate(-2deg); }
     }
 
-    /* ================= BOOK AREA ================= */
-    .scene{
-      width:min(420px, 94vw);
-      perspective:2200px;
+    /* decorative line */
+    .title-line-wrap{
+      width:min(700px, 92vw);
+      margin:18px auto 8px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:14px;
+    }
+
+    .title-line{
+      flex:1;
+      height:2px;
+      background:linear-gradient(90deg, transparent, #b27a39, #f0d5aa, #b27a39, transparent);
       position:relative;
-      margin-top:8px;
+    }
+
+    .title-line::before{
+      content:"✦";
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      color:#8f5d1f;
+      font-size:1rem;
+    }
+
+    .title-line.left::before{
+      right:18px;
+    }
+
+    .title-line.right::before{
+      left:18px;
+    }
+
+    .title-center-ornament{
+      color:#8a5b20;
+      font-size:1.15rem;
+      letter-spacing:4px;
+      text-shadow:0 1px 0 #fff7e8;
+    }
+
+    /* ================= BOOK FLIP ================= */
+    .scene{
+      width:min(500px, 95vw);
+      perspective:2400px;
+      position:relative;
+      margin-top:10px;
     }
 
     .book-glow{
@@ -214,33 +257,34 @@
       left:50%;
       bottom:105px;
       transform:translateX(-50%);
-      width:340px;
-      height:110px;
+      width:400px;
+      height:130px;
       background:radial-gradient(circle, rgba(255,220,160,.30), transparent 70%);
-      filter:blur(10px);
+      filter:blur(12px);
       pointer-events:none;
       z-index:0;
     }
 
     .flip-card{
       width:100%;
-      height:650px;
+      height:760px;
       position:relative;
       transform-style:preserve-3d;
-      transition:transform 1.5s cubic-bezier(.2,.8,.14,1);
-      filter:drop-shadow(0 20px 28px rgba(0,0,0,.22));
+      transition:transform 1.35s cubic-bezier(.2,.75,.12,1);
+      filter:drop-shadow(0 22px 30px rgba(0,0,0,.22));
       z-index:2;
+      transform-origin:left center;
     }
 
     .flip-card.open{
-      transform:rotateY(180deg);
+      transform:rotateY(-180deg);
     }
 
     .face{
       position:absolute;
       inset:0;
       backface-visibility:hidden;
-      border-radius:26px;
+      border-radius:28px;
       overflow:hidden;
     }
 
@@ -263,11 +307,11 @@
 
     .front-book-wrap img{
       width:100%;
-      max-width:390px;
+      max-width:460px;
       height:auto;
       object-fit:contain;
       animation:floatBook 3.8s ease-in-out infinite;
-      filter:drop-shadow(0 14px 24px rgba(0,0,0,.24));
+      filter:drop-shadow(0 16px 28px rgba(0,0,0,.24));
       user-select:none;
       pointer-events:none;
     }
@@ -281,7 +325,7 @@
       width:100%;
       display:flex;
       justify-content:center;
-      padding-bottom:18px;
+      padding-bottom:22px;
     }
 
     .back{
@@ -289,10 +333,10 @@
       background:
         radial-gradient(circle at top left, rgba(255,255,255,.55), transparent 25%),
         linear-gradient(180deg,var(--paper1) 0%, var(--paper2) 100%);
-      border:5px solid var(--paperBorder);
+      border:5px solid var(--paper-border);
       box-shadow:
         inset 0 0 0 2px rgba(255,255,255,.35),
-        inset 0 0 26px rgba(130,92,43,.10);
+        inset 0 0 28px rgba(130,92,43,.10);
       padding:18px;
     }
 
@@ -302,7 +346,7 @@
       border-radius:18px;
       border:2px solid rgba(145,100,55,.28);
       background:
-        linear-gradient(180deg, rgba(255,255,255,.34), rgba(255,255,255,.10)),
+        linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,.10)),
         repeating-linear-gradient(
           to bottom,
           rgba(160,120,60,.10) 0px,
@@ -311,14 +355,14 @@
           transparent 31px
         );
       box-shadow:inset 0 0 18px rgba(140,95,40,.08);
-      padding:24px 16px;
+      padding:26px 18px;
       overflow-y:auto;
       text-align:center;
       scrollbar-width:thin;
     }
 
     .note-page h2{
-      font-size:clamp(1.45rem, 4vw, 2.1rem);
+      font-size:clamp(1.5rem, 4vw, 2.2rem);
       color:#6f1d16;
       margin-bottom:12px;
     }
@@ -350,7 +394,7 @@
     }
 
     .welcome-title{
-      font-size:1.3rem;
+      font-size:1.35rem;
       color:#6e2018;
       font-weight:700;
       margin:8px 0;
@@ -359,9 +403,9 @@
     .letter{
       text-align:left;
       white-space:pre-line;
-      line-height:1.85;
+      line-height:1.88;
       color:#4a2d1a;
-      font-size:.98rem;
+      font-size:1rem;
       margin-top:10px;
     }
 
@@ -370,19 +414,20 @@
       border:none;
       outline:none;
       cursor:pointer;
-      padding:14px 30px;
+      padding:16px 38px;
       border-radius:999px;
-      font-size:1rem;
+      font-size:1.08rem;
       font-weight:700;
       letter-spacing:.5px;
       color:#fff3dc;
-      background:linear-gradient(180deg,var(--btn1) 0%, var(--btn2) 100%);
+      background:linear-gradient(180deg,#8b2a20 0%, #651510 100%);
       border:2px solid var(--gold);
       box-shadow:
         0 10px 18px rgba(0,0,0,.16),
         inset 0 2px 8px rgba(255,255,255,.12);
       transition:.28s ease;
       font-family:inherit;
+      min-width:150px;
     }
 
     .btn:hover{
@@ -398,31 +443,22 @@
     @media (max-width: 900px){
       .nav-overlay{
         gap:12px;
-        top:48%;
       }
 
       .nav-overlay a,
       .more-btn{
-        padding:8px 15px;
-        font-size:.94rem;
+        padding:8px 14px;
+        font-size:.92rem;
       }
 
       .hero{
-        margin-top:10px;
+        margin-top:2px;
       }
     }
 
     @media (max-width: 600px){
       .page{
-        padding:6px 8px 40px;
-      }
-
-      .nav-section{
-        width:100%;
-      }
-
-      .nav-image-wrap{
-        width:100%;
+        padding:0 8px 34px;
       }
 
       .nav-overlay{
@@ -433,33 +469,42 @@
 
       .nav-overlay a,
       .more-btn{
-        padding:8px 13px;
-        font-size:.88rem;
+        padding:8px 12px;
+        font-size:.86rem;
       }
 
       .title-box{
-        margin-bottom:64px;
+        margin-bottom:20px;
       }
 
       .hanging-book-word{
         left:77%;
-        font-size:clamp(1.9rem, 5vw, 3rem);
+        font-size:clamp(2rem, 5vw, 3.4rem);
       }
 
       .scene{
-        width:min(390px, 95vw);
+        width:min(460px, 96vw);
       }
 
       .flip-card{
-        height:620px;
+        height:720px;
+      }
+
+      .front-book-wrap img{
+        max-width:420px;
       }
 
       .note-page{
-        padding:18px 12px;
+        padding:20px 14px;
       }
 
       .letter{
-        font-size:.94rem;
+        font-size:.95rem;
+      }
+
+      .btn{
+        min-width:140px;
+        padding:15px 32px;
       }
     }
 
@@ -471,24 +516,33 @@
       .nav-overlay a,
       .more-btn{
         padding:7px 10px;
-        font-size:.82rem;
+        font-size:.8rem;
       }
 
       .title-main{
-        font-size:clamp(2.3rem, 7vw, 3.3rem);
+        font-size:clamp(2.5rem, 7vw, 4rem);
       }
 
       .hanging-book-word{
         left:78%;
-        margin-top:2px;
+        margin-top:1px;
+      }
+
+      .scene{
+        width:96vw;
       }
 
       .flip-card{
-        height:600px;
+        height:690px;
+      }
+
+      .front-book-wrap img{
+        max-width:390px;
       }
 
       .btn{
-        min-width:110px;
+        min-width:132px;
+        font-size:1rem;
       }
     }
   </style>
@@ -524,6 +578,12 @@
           <span class="secret-part">
             <span class="hanging-book-word">Book</span>
           </span>
+        </div>
+
+        <div class="title-line-wrap">
+          <div class="title-line left"></div>
+          <div class="title-center-ornament">✦ ❦ ✦</div>
+          <div class="title-line right"></div>
         </div>
       </div>
 
