@@ -1,58 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Secret Book</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Secret Book</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
+  <div class="page">
+    <div class="bg-overlay"></div>
+    <div class="paper-texture"></div>
+    <div class="sparkles" id="sparkles"></div>
+    <div class="petals" id="petals"></div>
 
-<!-- NAVBAR -->
-<div class="navbar">
-    <a href="/My-Secret-Book/">Home</a>
-    <a href="/My-Secret-Book/about.html">About</a>
-    <a href="/My-Secret-Book/login.html">Login 🔐</a>
-</div>
+    <div class="vines vine-left-top"></div>
+    <div class="vines vine-right-top"></div>
+    <div class="vines vine-left-bottom"></div>
+    <div class="vines vine-right-bottom"></div>
 
-<!-- TITLE -->
-<div class="main">
-  <h1 class="title">
-    My Secret <br>
-    <span class="book-text">Book</span>
-  </h1>
-</div>
+    <div class="rose rose-left-top"></div>
+    <div class="rose rose-left-bottom"></div>
+    <div class="rose rose-right-mid"></div>
+    <div class="rose rose-right-bottom"></div>
 
-<!-- FULL SCREEN BOOK -->
-<div class="book-container">
-  <div class="book" id="book">
+    <header class="topbar-wrap">
+      <div class="ribbon left-ribbon"></div>
+      <div class="ribbon right-ribbon"></div>
 
-    <!-- COVER -->
-    <div class="cover">
-      <img src="closed-book.png" alt="book">
-    </div>
+      <div class="topbar">
+        <div class="nav nav-left">
+          <a href="#">Home</a>
+          <span>+</span>
+          <a href="#">About</a>
+        </div>
 
-    <!-- INSIDE PAGE -->
-    <div class="page">
-      <div class="page-content">
-        <h2>Welcome to your Secret World ✨</h2>
-        <p>
-          Start your journey here... <br>
-          Share your thoughts, jokes, shayari and feelings 💛 <br><br>
-          This is your personal space <br>
-          stay happy and spread happiness ✨
-        </p>
-      </div>
-    </div>
+        <div class="book-icon-wrap">
+          <div class="book-icon">
+            <div class="book-page left"></div>
+            <div class="book-page right"></div>
+            <div class="book-spine"></div>
+            <div class="bookmark"></div>
+          </div>
+        </div>
 
-  </div>
-</div>
+        <div class="nav nav-right">
+          <a href="#">Login</a>
+          <span>+</span>
+          <a href="#">More</a>
+          <span class="arrow">▼</span>
+        </div>
+      </div>
+    </header>
 
-<!-- BUTTON -->
-<button class="next-btn" onclick="openBook()">Next ➜</button>
+    <main class="hero">
+      <h1 class="title">My Secret Book</h1>
 
-<script src="script.js"></script>
+      <div class="title-line">
+        <span></span>
+        <div class="title-heart">❦</div>
+        <span></span>
+      </div>
+
+      <div class="book-stage">
+        <div class="ground-glow"></div>
+        <div class="shadow-floor"></div>
+
+        <div class="magic-book">
+          <div class="gold-corner tl"></div>
+          <div class="gold-corner tr"></div>
+          <div class="gold-corner bl"></div>
+          <div class="gold-corner br"></div>
+
+          <div class="book-strap-horizontal"></div>
+          <div class="book-strap-vertical"></div>
+
+          <div class="buckle buckle-left"></div>
+          <div class="buckle buckle-right"></div>
+          <div class="buckle buckle-top"></div>
+          <div class="buckle buckle-bottom"></div>
+
+          <div class="book-inner"></div>
+
+          <div class="book-heading">
+            <div class="small">TOME OF</div>
+            <div class="big">ARCANE</div>
+            <div class="big">SECRETS</div>
+          </div>
+
+          <div class="book-circle">
+            <div class="star">✶</div>
+          </div>
+
+          <div class="book-symbol symbol-1">☾</div>
+          <div class="book-symbol symbol-2">✦</div>
+          <div class="book-symbol symbol-3">✧</div>
+          <div class="book-symbol symbol-4">✧</div>
+        </div>
+      </div>
+
+      <button class="next-btn">Next ➜</button>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
-
