@@ -1,27 +1,655 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Secret Book</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --gold1: #f2d59a;
+      --gold2: #c79646;
+      --gold3: #8c5b23;
+      --maroon1: #7b1d18;
+      --maroon2: #56110e;
+      --cream1: #f7efe6;
+      --cream2: #ead9c7;
+      --paper1: #f6eddc;
+      --paper2: #ebdcc3;
+      --text-dark: #4a2816;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Georgia", "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,0.45), transparent 28%),
+        linear-gradient(180deg, #f8f1e9 0%, #f2e4d3 48%, #ead7c3 100%);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    .page {
+      width: 100%;
+      min-height: 100vh;
+      padding: 26px 16px 60px;
+      position: relative;
+    }
+
+    /* ================= NAVBAR ================= */
+    .nav-wrapper {
+      width: min(1180px, 96%);
+      margin: 0 auto;
+      position: relative;
+      z-index: 50;
+    }
+
+    .ribbon-nav {
+      position: relative;
+      min-height: 112px;
+      background:
+        linear-gradient(180deg, #8b2720 0%, #631712 45%, #7d221b 100%);
+      border: 4px solid var(--gold2);
+      border-radius: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 16px 28px rgba(0,0,0,0.18),
+        inset 0 2px 8px rgba(255,255,255,0.18),
+        inset 0 -3px 9px rgba(0,0,0,0.2);
+      overflow: visible;
+      padding: 18px 22px;
+    }
+
+    .ribbon-nav::before,
+    .ribbon-nav::after {
+      content: "";
+      position: absolute;
+      top: 18px;
+      width: 88px;
+      height: 74px;
+      background: linear-gradient(180deg, #661610 0%, #892720 100%);
+      border: 4px solid var(--gold2);
+      box-shadow: 0 10px 18px rgba(0,0,0,0.15);
+      z-index: -1;
+    }
+
+    .ribbon-nav::before {
+      left: -30px;
+      border-right: none;
+      border-radius: 28px 0 0 30px;
+      transform: skewY(-7deg);
+    }
+
+    .ribbon-nav::after {
+      right: -30px;
+      border-left: none;
+      border-radius: 0 28px 30px 0;
+      transform: skewY(7deg);
+    }
+
+    .ribbon-tail-left,
+    .ribbon-tail-right {
+      position: absolute;
+      bottom: -46px;
+      width: 74px;
+      height: 82px;
+      background: linear-gradient(180deg, #7c2019 0%, #4e0f0a 100%);
+      border: 4px solid var(--gold2);
+      box-shadow: 0 10px 18px rgba(0,0,0,0.18);
+      z-index: -2;
+    }
+
+    .ribbon-tail-left {
+      left: 16px;
+      border-top: none;
+      border-radius: 0 0 26px 34px;
+      clip-path: polygon(0 0, 100% 0, 86% 100%, 15% 86%);
+      transform: rotate(4deg);
+    }
+
+    .ribbon-tail-right {
+      right: 16px;
+      border-top: none;
+      border-radius: 0 0 34px 26px;
+      clip-path: polygon(0 0, 100% 0, 85% 87%, 12% 100%);
+      transform: rotate(-4deg);
+    }
+
+    .menu {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .menu li {
+      position: relative;
+    }
+
+    .menu a,
+    .drop-btn {
+      text-decoration: none;
+      color: #fff0cc;
+      background: rgba(255,255,255,0.06);
+      border: 1.5px solid rgba(255,227,173,0.4);
+      border-radius: 999px;
+      padding: 11px 20px;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      display: inline-block;
+      cursor: pointer;
+      transition: 0.3s ease;
+      font-family: inherit;
+    }
+
+    .menu a:hover,
+    .drop-btn:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 225, 170, 0.14);
+      box-shadow: 0 10px 18px rgba(0,0,0,0.14);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 12px);
+      right: 0;
+      min-width: 180px;
+      background: linear-gradient(180deg, #6f1a14 0%, #4f0f0b 100%);
+      border: 2px solid var(--gold2);
+      border-radius: 16px;
+      padding: 10px;
+      box-shadow: 0 14px 22px rgba(0,0,0,0.2);
+      display: none;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      margin: 6px 0;
+      border-radius: 12px;
+      text-align: left;
+      padding: 10px 12px;
+    }
+
+    .dropdown.open .dropdown-menu {
+      display: block;
+    }
+
+    /* ================= HERO ================= */
+    .hero {
+      width: 100%;
+      max-width: 1200px;
+      margin: 110px auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .title-wrap {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 26px;
+    }
+
+    .title-line {
+      font-size: clamp(2.8rem, 7vw, 6rem);
+      font-weight: 700;
+      line-height: 0.96;
+      color: #6f1d16;
+      text-shadow:
+        0 2px 0 #fff8eb,
+        0 8px 20px rgba(111,29,22,0.16);
+      letter-spacing: 1px;
+    }
+
+    .secret-word {
+      position: relative;
+      display: inline-block;
+      padding-right: 6px;
+    }
+
+    /* Book word t ke niche hanging */
+    .book-word {
+      position: absolute;
+      left: 73%;
+      top: 100%;
+      margin-top: 4px;
+      transform-origin: top center;
+      font-size: clamp(2.1rem, 5.5vw, 4.2rem);
+      font-weight: 700;
+      color: #8a281f;
+      text-shadow:
+        0 2px 0 #fff0db,
+        0 8px 18px rgba(0,0,0,0.14);
+      animation: swing 3.5s ease-in-out infinite;
+      white-space: nowrap;
+    }
+
+    .book-word::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: -28px;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 26px;
+      background: linear-gradient(180deg, #bc8c51, #6f4520);
+      box-shadow: 0 0 3px rgba(0,0,0,0.15);
+    }
+
+    @keyframes swing {
+      0%, 100% { transform: translateX(-50%) rotate(2deg); }
+      25% { transform: translateX(-50%) rotate(-4deg); }
+      50% { transform: translateX(-50%) rotate(3deg); }
+      75% { transform: translateX(-50%) rotate(-2deg); }
+    }
+
+    .stage {
+      width: min(430px, 94vw);
+      margin-top: 72px;
+      perspective: 2000px;
+      position: relative;
+    }
+
+    .glow {
+      position: absolute;
+      width: 360px;
+      height: 120px;
+      left: 50%;
+      bottom: 70px;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, rgba(255,220,160,0.28), transparent 68%);
+      filter: blur(10px);
+      pointer-events: none;
+    }
+
+    .book-flip {
+      width: 100%;
+      height: 600px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 1.5s cubic-bezier(.2,.8,.12,1);
+      filter: drop-shadow(0 22px 30px rgba(0,0,0,0.22));
+    }
+
+    .book-flip.open {
+      transform: rotateY(180deg);
+    }
+
+    .face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      border-radius: 26px;
+      overflow: hidden;
+    }
+
+    /* FRONT SIDE */
+    .front {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      background: transparent;
+    }
+
+    .book-image-wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+    }
+
+    .front img {
+      width: 100%;
+      max-width: 390px;
+      height: auto;
+      object-fit: contain;
+      animation: floatBook 3.8s ease-in-out infinite;
+      user-select: none;
+      pointer-events: none;
+      filter: drop-shadow(0 14px 24px rgba(0,0,0,0.25));
+    }
+
+    @keyframes floatBook {
+      0%, 100% { transform: translateY(0px) rotate(-1deg); }
+      50% { transform: translateY(-10px) rotate(1deg); }
+    }
+
+    .front-controls {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding-bottom: 10px;
+    }
+
+    /* BACK SIDE */
+    .back {
+      transform: rotateY(180deg);
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.55), transparent 26%),
+        linear-gradient(180deg, var(--paper1) 0%, var(--paper2) 100%);
+      border: 5px solid #a16e37;
+      box-shadow:
+        inset 0 0 0 2px rgba(255,255,255,0.35),
+        inset 0 0 30px rgba(120,85,38,0.08);
+      padding: 20px;
+    }
+
+    .note-page {
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      border: 2px solid rgba(145,100,55,0.28);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.34), rgba(255,255,255,0.09)),
+        repeating-linear-gradient(
+          to bottom,
+          rgba(160,120,60,0.10) 0px,
+          rgba(160,120,60,0.10) 1px,
+          transparent 1px,
+          transparent 31px
+        );
+      box-shadow: inset 0 0 18px rgba(140,95,40,0.08);
+      padding: 26px 18px 26px;
+      overflow-y: auto;
+      text-align: center;
+    }
+
+    .note-page h2 {
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      color: #6d1f18;
+      margin-bottom: 14px;
+    }
+
+    .intro {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #6a422c;
+      margin-bottom: 14px;
+    }
+
+    .quote {
+      font-style: italic;
+      color: #7d3128;
+      line-height: 1.8;
+      margin: 12px 0 18px;
+    }
+
+    .spark {
+      font-size: 1.05rem;
+      letter-spacing: 5px;
+      color: #8b5d1d;
+      margin: 10px 0;
+    }
+
+    .await {
+      color: #6b4427;
+      margin-bottom: 10px;
+    }
+
+    .welcome-note-title {
+      font-size: 1.35rem;
+      color: #6d1f18;
+      font-weight: 700;
+      margin: 8px 0;
+    }
+
+    .letter {
+      text-align: left;
+      white-space: pre-line;
+      line-height: 1.9;
+      color: #4b2d1b;
+      font-size: 0.98rem;
+      margin-top: 8px;
+    }
+
+    .btn {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 14px 30px;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: .6px;
+      color: #fff3dd;
+      background: linear-gradient(180deg, #8b2a20 0%, #671913 100%);
+      border: 2px solid var(--gold2);
+      box-shadow:
+        0 10px 20px rgba(0,0,0,0.18),
+        inset 0 2px 8px rgba(255,255,255,0.12);
+      transition: 0.28s ease;
+      font-family: inherit;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.02);
+    }
+
+    .btn.secondary {
+      background: linear-gradient(180deg, #7f5a27 0%, #624319 100%);
+      margin-top: 18px;
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 768px) {
+      .hero {
+        margin-top: 86px;
+      }
+
+      .stage {
+        margin-top: 66px;
+      }
+
+      .book-flip {
+        height: 590px;
+      }
+
+      .menu {
+        gap: 10px;
+      }
+
+      .menu a,
+      .drop-btn {
+        font-size: 0.92rem;
+        padding: 9px 14px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        padding-top: 18px;
+      }
+
+      .nav-wrapper {
+        width: 95%;
+      }
+
+      .ribbon-nav::before,
+      .ribbon-nav::after,
+      .ribbon-tail-left,
+      .ribbon-tail-right {
+        display: none;
+      }
+
+      .ribbon-nav {
+        min-height: 100px;
+        border-radius: 20px;
+      }
+
+      .title-line {
+        line-height: 1;
+      }
+
+      .book-word {
+        left: 72%;
+      }
+
+      .stage {
+        width: 95vw;
+        margin-top: 62px;
+      }
+
+      .book-flip {
+        height: 575px;
+      }
+
+      .note-page {
+        padding: 20px 14px;
+      }
+
+      .letter {
+        font-size: 0.94rem;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 220px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="page">
 
-  <div class="navbar">
-    <div class="nav-left">
-      <a href="#">Home</a>
-      <a href="#">About</a>
+    <!-- NAVBAR -->
+    <div class="nav-wrapper">
+      <nav class="ribbon-nav">
+        <div class="ribbon-tail-left"></div>
+        <div class="ribbon-tail-right"></div>
+
+        <ul class="menu">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Login</a></li>
+
+          <li class="dropdown" id="moreDropdown">
+            <button class="drop-btn" id="moreBtn">More</button>
+            <div class="dropdown-menu">
+              <a href="#">Shayari</a>
+              <a href="#">Jokes</a>
+              <a href="#">Feelings</a>
+              <a href="#">Diary</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
     </div>
 
-    <div class="logo">
-      📖
-    </div>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="title-wrap">
+        <div class="title-line">
+          My Secret
+          <span class="secret-word">
+            <span class="book-word">Book</span>
+          </span>
+        </div>
+      </div>
 
-    <div class="nav-right">
-      <a href="#">Login</a>
-      <a href="#">More ▼</a>
-    </div>
+      <div class="stage">
+        <div class="glow"></div>
+
+        <div class="book-flip" id="bookFlip">
+
+          <!-- FRONT -->
+          <div class="face front">
+            <div class="book-image-wrap">
+              <img src="book.png" alt="Closed Secret Book">
+            </div>
+
+            <div class="front-controls">
+              <button class="btn" id="nextBtn">Next</button>
+            </div>
+          </div>
+
+          <!-- BACK -->
+          <div class="face back">
+            <div class="note-page">
+              <h2>Welcome to your Secret World ✨</h2>
+
+              <div class="intro">
+                Start your journey here<br>
+                Share your thoughts, jokes, shayari and feelings 💛<br>
+                This is your personal space<br>
+                stay happy and spread happiness ✨
+              </div>
+
+              <div class="quote">
+                “Every page holds a secret,<br>
+                every word a mystery...”
+              </div>
+
+              <div class="spark">✦ ✦ ✦</div>
+              <div class="await">The secrets await...</div>
+
+              <div class="spark">✦</div>
+              <div class="welcome-note-title">Welcome Note</div>
+              <div class="spark">✦</div>
+
+              <div class="letter">Pyare dost,
+
+Is raz ki kitaab mein aapka dil se swaagat hai.
+
+Yahan har ek safhe par chupi hui hai ek gehri baat,
+ek raaz jo sirf khaas logon ke liye hai — aap ke liye.
+
+Aap is kitaab ko khole hain, yani aap khaas hain.
+Har raaz jo yahan milega, woh sirf aapke dil ke liye hai.
+
+Is safar mein aapka swaagat hai — jahan alfaaz jaadugaree karte hain,
+aur har ek lamha ek naya rahasya kholta hai.
+
+Aage barhiye, kyunki yeh kitaab sirf aapki hai...
+
+— My Secret Book</div>
+
+              <button class="btn secondary" id="backBtn">Back</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
   </div>
 
+  <script>
+    const bookFlip = document.getElementById("bookFlip");
+    const nextBtn = document.getElementById("nextBtn");
+    const backBtn = document.getElementById("backBtn");
+    const moreBtn = document.getElementById("moreBtn");
+    const moreDropdown = document.getElementById("moreDropdown");
+
+    nextBtn.addEventListener("click", function () {
+      bookFlip.classList.add("open");
+    });
+
+    backBtn.addEventListener("click", function () {
+      bookFlip.classList.remove("open");
+    });
+
+    moreBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      moreDropdown.classList.toggle("open");
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!moreDropdown.contains(e.target)) {
+        moreDropdown.classList.remove("open");
+      }
+    });
+  </script>
 </body>
 </html>
