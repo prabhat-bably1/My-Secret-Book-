@@ -1,74 +1,108 @@
 body {
   margin: 0;
   font-family: 'Georgia', serif;
+  overflow: hidden;
 }
 
 /* NAVBAR */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
   position: absolute;
   width: 100%;
-  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 50px;
   color: gold;
+  z-index: 10;
 }
 
-.nav-left a,
-.nav-right a {
-  margin: 0 15px;
-  text-decoration: none;
+.navbar a {
   color: gold;
-  font-size: 18px;
+  text-decoration: none;
+  margin: 0 15px;
   font-weight: bold;
 }
 
-.book-logo img {
-  width: 80px;
+.logo {
+  font-size: 40px;
 }
 
-/* HERO BACKGROUND */
+/* HERO */
 .hero {
   height: 100vh;
   background: url('your-image.jpg') no-repeat center/cover;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  text-align: center;
   position: relative;
 }
 
-/* DARK GLOW OVERLAY */
+/* OVERLAY */
 .overlay {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.3);
+  background: radial-gradient(circle, rgba(0,0,0,0.2), rgba(0,0,0,0.7));
 }
 
-/* TITLE */
-.hero h1 {
-  font-size: 60px;
-  color: #f5deb3;
-  text-shadow: 0 0 20px gold;
+/* CONTENT */
+.content {
+  text-align: center;
   z-index: 2;
+  animation: fadeIn 2s ease;
+}
+
+.content h1 {
+  font-size: 70px;
+  color: #f5deb3;
+  text-shadow: 0 0 30px gold;
+}
+
+.content p {
+  color: #fff;
+  font-size: 20px;
 }
 
 /* BUTTON */
-.hero button {
+button {
   margin-top: 20px;
   padding: 12px 30px;
-  background: #5a2d0c;
-  color: white;
+  border-radius: 30px;
   border: none;
-  border-radius: 20px;
-  font-size: 16px;
+  background: linear-gradient(45deg, #5a2d0c, #8b4513);
+  color: white;
   cursor: pointer;
-  z-index: 2;
+  transition: 0.3s;
 }
 
-.hero button:hover {
-  background: #8b4513;
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px gold;
+}
+
+/* PARTICLES */
+.particles::before,
+.particles::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(white 2px, transparent 2px);
+  background-size: 50px 50px;
+  animation: move 20s linear infinite;
+  opacity: 0.4;
+}
+
+.particles::after {
+  animation-direction: reverse;
+}
+
+/* ANIMATIONS */
+@keyframes move {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
