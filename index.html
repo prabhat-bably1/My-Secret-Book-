@@ -17,8 +17,8 @@
       --maroon-dark:#5d130f;
       --gold:#c99648;
       --gold-light:#f0d9af;
-      --paper:#fffaf2;
-      --paper-2:#f7efdf;
+      --paper:#fffdf9;
+      --paper-soft:#fbf4e8;
       --paper-edge:#d4b58c;
       --ink:#4a2d1a;
     }
@@ -102,32 +102,17 @@
       background:rgba(255,225,180,.18);
     }
 
-    /* natural ribbon positions */
-    .nav-btn.home{
-  left:10%;
-  top:33.7%;
-}
+    /* ye values tum already adjust kar chuke ho */
+    .nav-btn.home{ left:10%; top:33.7%; }
+    .nav-btn.about{ left:30%; top:33.7%; }
+    .nav-btn.login{ left:71.2%; top:34%; }
+    .nav-btn.more{ left:91%; top:34%; }
 
-.nav-btn.about{
-  left:30%;
-  top:33.7%;
-}
-
-.nav-btn.login{
-  left:71.2%;
-  top:34%;
-}
-
-.nav-btn.more{
-  left:91%;
-  top:34%;
-}
-
-    /* ================= HERO ================= */
+    /* ================= HERO TITLE ================= */
     .hero{
-  width:100%;
-  max-width:1200px;
-  margin:30px auto 0;
+      width:100%;
+      max-width:1200px;
+      margin:-6px auto 0;
       padding:0 14px;
       position:relative;
       z-index:5;
@@ -138,12 +123,12 @@
       position:relative;
       display:inline-block;
       margin-top:0;
-      margin-bottom:18px;
+      margin-bottom:16px;
     }
 
     .title-main{
-      font-size:clamp(3.2rem, 7.2vw, 7rem);
-      line-height:.90;
+      font-size:clamp(3.15rem, 7vw, 6.8rem);
+      line-height:.9;
       font-weight:700;
       color:var(--maroon);
       letter-spacing:1.6px;
@@ -154,7 +139,7 @@
       position:relative;
     }
 
-    .secret-word{
+    .secret-wrap{
       position:relative;
       display:inline-block;
     }
@@ -169,8 +154,8 @@
       left:50%;
       top:100%;
       transform:translateX(-50%);
-      margin-top:2px;
-      font-size:clamp(2.2rem, 5vw, 4.4rem);
+      margin-top:3px;
+      font-size:clamp(2.15rem, 4.8vw, 4.3rem);
       line-height:1;
       font-weight:700;
       color:#8a281f;
@@ -201,7 +186,7 @@
       75%{ transform:translateX(-50%) rotate(-2deg); }
     }
 
-    /* divider */
+    /* premium divider */
     .ornament{
       width:min(820px, 94vw);
       margin:18px auto 0;
@@ -229,13 +214,8 @@
       text-shadow:0 1px 0 #fff6e6;
     }
 
-    .orn-line.left::after{
-      right:18px;
-    }
-
-    .orn-line.right::after{
-      left:18px;
-    }
+    .orn-line.left::after{ right:18px; }
+    .orn-line.right::after{ left:18px; }
 
     .orn-center{
       display:flex;
@@ -247,17 +227,17 @@
       white-space:nowrap;
     }
 
-    /* ================= BOOK STAGE ================= */
+    /* ================= BOOK AREA ================= */
     .scene{
-      width:min(650px, 99vw);
-      margin:60px auto 0;
+      width:min(640px, 96vw);
+      margin:28px auto 0;
       position:relative;
       z-index:6;
     }
 
     .book-stage{
       width:100%;
-      min-height:860px;
+      min-height:920px;
       position:relative;
       z-index:7;
     }
@@ -268,32 +248,21 @@
       position:absolute;
       left:0;
       top:0;
-      transition:opacity .55s ease, transform 1s cubic-bezier(.2,.75,.12,1);
       transform-origin:left center;
     }
 
+    /* closed book */
     .closed-view{
       opacity:1;
-      transform:perspective(1800px) rotateY(0deg);
       pointer-events:auto;
+      transition:opacity .5s ease, transform 1s cubic-bezier(.2,.75,.12,1);
+      transform:perspective(1900px) rotateY(0deg);
     }
 
     .closed-view.hide{
       opacity:0;
-      transform:perspective(1800px) rotateY(-88deg);
       pointer-events:none;
-    }
-
-    .open-view{
-      opacity:0;
-      transform:perspective(1800px) rotateY(88deg);
-      pointer-events:none;
-    }
-
-    .open-view.show{
-      opacity:1;
-      transform:perspective(1800px) rotateY(0deg);
-      pointer-events:auto;
+      transform:perspective(1900px) rotateY(-92deg);
     }
 
     .closed-book-wrap{
@@ -352,12 +321,31 @@
       margin-top:22px;
     }
 
-    /* ================= OPEN BOOK ================= */
-    .open-book{
+    /* ================= OPENING PAGE FLIP ================= */
+    .open-view{
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .5s ease;
+    }
+
+    .open-view.show{
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .open-book-shell{
       width:100%;
       max-width:620px;
-      min-height:760px;
+      min-height:800px;
       margin:0 auto;
+      position:relative;
+      perspective:2200px;
+    }
+
+    /* base book */
+    .open-book-base{
+      width:100%;
+      min-height:800px;
       position:relative;
       border-radius:22px;
       border:4px solid #a67843;
@@ -376,7 +364,7 @@
       overflow:hidden;
     }
 
-    .open-book::before{
+    .open-book-base::before{
       content:"";
       position:absolute;
       left:50%;
@@ -396,30 +384,74 @@
       z-index:2;
     }
 
-    .pages{
+    .book-pages{
       display:grid;
       grid-template-columns:1fr 1fr;
-      min-height:760px;
+      min-height:800px;
       position:relative;
       z-index:3;
     }
 
-    .page-left,
-    .page-right{
+    .left-page,
+    .right-page{
       padding:30px 22px;
       background:
-        linear-gradient(180deg, rgba(255,255,255,.93), rgba(255,249,239,.97));
+        linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,249,239,.98));
     }
 
-    .page-left{
+    .left-page{
       border-right:1px solid rgba(160,120,70,.18);
       text-align:center;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-start;
     }
 
-    .page-right{
+    .right-page{
       border-left:1px solid rgba(160,120,70,.10);
       text-align:left;
       overflow-y:auto;
+    }
+
+    /* flipping front page */
+    .flip-page{
+      position:absolute;
+      top:18px;
+      left:50%;
+      width:calc(50% - 22px);
+      height:calc(100% - 36px);
+      transform-origin:left center;
+      transform-style:preserve-3d;
+      z-index:8;
+      animation:pageFlip 1s ease forwards;
+      pointer-events:none;
+    }
+
+    .flip-page-face,
+    .flip-page-back{
+      position:absolute;
+      inset:0;
+      backface-visibility:hidden;
+      -webkit-backface-visibility:hidden;
+      border-radius:10px;
+      overflow:hidden;
+      border:1px solid rgba(170,130,80,.16);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.97), rgba(255,250,242,.98));
+      box-shadow:0 4px 12px rgba(0,0,0,.06);
+    }
+
+    .flip-page-back{
+      transform:rotateY(180deg);
+    }
+
+    @keyframes pageFlip{
+      0%{
+        transform:rotateY(0deg);
+      }
+      100%{
+        transform:rotateY(-180deg);
+      }
     }
 
     .page-title{
@@ -489,28 +521,8 @@
         font-size:.82rem;
       }
 
-      .nav-btn.home{
-        left:13.2%;
-        top:38.8%;
-      }
-
-      .nav-btn.about{
-        left:38.2%;
-        top:50.3%;
-      }
-
-      .nav-btn.login{
-        left:61.6%;
-        top:50.3%;
-      }
-
-      .nav-btn.more{
-        left:82.8%;
-        top:38.8%;
-      }
-
       .hero{
-        margin-top:-8px;
+        margin-top:-4px;
       }
 
       .title-main{
@@ -523,11 +535,11 @@
 
       .scene{
         width:min(520px, 96vw);
-        margin-top:24px;
+        margin-top:22px;
       }
 
       .book-stage{
-        min-height:930px;
+        min-height:1060px;
       }
 
       .closed-book-wrap img{
@@ -540,31 +552,36 @@
         font-size:1rem;
       }
 
-      .open-book{
-        min-height:820px;
+      .open-book-shell,
+      .open-book-base{
+        min-height:920px;
       }
 
-      .open-book::before{
+      .open-book-base::before{
         display:none;
       }
 
-      .pages{
+      .book-pages{
         grid-template-columns:1fr;
         min-height:auto;
       }
 
-      .page-left{
+      .left-page{
         border-right:none;
         border-bottom:1px solid rgba(160,120,70,.18);
       }
 
-      .page-right{
+      .right-page{
         border-left:none;
       }
 
-      .page-left,
-      .page-right{
+      .left-page,
+      .right-page{
         padding:24px 16px;
+      }
+
+      .flip-page{
+        display:none;
       }
 
       .page-title{
@@ -583,12 +600,8 @@
         font-size:.76rem;
       }
 
-      .hero{
-        margin-top:-6px;
-      }
-
       .title-main{
-        font-size:clamp(2.6rem, 7vw, 4rem);
+        font-size:clamp(2.55rem, 7vw, 4rem);
       }
 
       .hanging-book{
@@ -629,11 +642,11 @@
       </div>
     </div>
 
-    <!-- HERO -->
+    <!-- TITLE -->
     <section class="hero">
       <div class="title-box">
         <div class="title-main">
-          My <span class="secret-word">Secre<span class="t-anchor">t<span class="hanging-book">Book</span></span></span>
+          My <span class="secret-wrap">Secre<span class="t-anchor">t<span class="hanging-book">Book</span></span></span>
         </div>
 
         <div class="ornament">
@@ -648,7 +661,7 @@
     <div class="scene">
       <div class="book-stage">
 
-        <!-- CLOSED BOOK -->
+        <!-- CLOSED -->
         <div class="closed-view" id="closedView">
           <div class="closed-book-wrap">
             <img src="book.png" alt="Closed Secret Book">
@@ -659,34 +672,41 @@
           </div>
         </div>
 
-        <!-- OPEN BOOK -->
+        <!-- OPEN -->
         <div class="open-view" id="openView">
-          <div class="open-book">
-            <div class="pages">
-              <div class="page-left">
-                <div class="page-title">Welcome to your Secret World ✨</div>
+          <div class="open-book-shell">
+            <div class="open-book-base">
 
-                <div class="page-intro">
-                  Start your journey here<br>
-                  Share your thoughts, jokes, shayari and feelings 💛<br>
-                  This is your personal space<br>
-                  stay happy and spread happiness ✨
-                </div>
-
-                <div class="page-quote">
-                  “Every page holds a secret,<br>
-                  every word a mystery...”
-                </div>
-
-                <div class="spark">✦ ✦ ✦</div>
-                <div class="await">The secrets await...</div>
-                <div class="spark">✦</div>
-                <div class="welcome-title">Welcome Note</div>
-                <div class="spark">✦</div>
+              <div class="flip-page" id="flipPage">
+                <div class="flip-page-face"></div>
+                <div class="flip-page-back"></div>
               </div>
 
-              <div class="page-right">
-                <div class="letter">Pyare dost,
+              <div class="book-pages">
+                <div class="left-page">
+                  <div class="page-title">Welcome to your Secret World ✨</div>
+
+                  <div class="page-intro">
+                    Start your journey here<br>
+                    Share your thoughts, jokes, shayari and feelings 💛<br>
+                    This is your personal space<br>
+                    stay happy and spread happiness ✨
+                  </div>
+
+                  <div class="page-quote">
+                    “Every page holds a secret,<br>
+                    every word a mystery...”
+                  </div>
+
+                  <div class="spark">✦ ✦ ✦</div>
+                  <div class="await">The secrets await...</div>
+                  <div class="spark">✦</div>
+                  <div class="welcome-title">Welcome Note</div>
+                  <div class="spark">✦</div>
+                </div>
+
+                <div class="right-page">
+                  <div class="letter">Pyare dost,
 
 Is raz ki kitaab mein aapka dil se swaagat hai.
 
@@ -703,8 +723,10 @@ Aage barhiye, kyunki yeh kitaab sirf aapki hai...
 
 — My Secret Book</div>
 
-                <button class="btn secondary" id="backBtn" type="button">Back</button>
+                  <button class="btn secondary" id="backBtn" type="button">Back</button>
+                </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -719,11 +741,17 @@ Aage barhiye, kyunki yeh kitaab sirf aapki hai...
     const backBtn = document.getElementById("backBtn");
     const closedView = document.getElementById("closedView");
     const openView = document.getElementById("openView");
+    const flipPage = document.getElementById("flipPage");
 
     nextBtn.addEventListener("click", function () {
       closedView.classList.add("hide");
       setTimeout(function () {
         openView.classList.add("show");
+        if (flipPage) {
+          flipPage.style.animation = "none";
+          flipPage.offsetHeight;
+          flipPage.style.animation = "pageFlip 1s ease forwards";
+        }
       }, 180);
     });
 
