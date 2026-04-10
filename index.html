@@ -1,753 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Secret Book</title>
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Secret Book</title>
 
-    :root{
-      --page-bg:#efe2d0;
-      --maroon:#7d1f19;
-      --maroon-dark:#5a120d;
-      --gold:#c99648;
-      --gold-light:#f2dbb2;
-      --paper:#fffaf2;
-      --paper-edge:#ead7bc;
-      --paper-border:#b48a57;
-      --text:#4c2d19;
-    }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
 
-    html,body{
-      width:100%;
-      min-height:100%;
-      overflow-x:hidden;
-      background:var(--page-bg);
-    }
-
-    body{
-      font-family: Georgia, "Times New Roman", serif;
-      color:var(--text);
-    }
-
-    .page{
-      width:100%;
-      min-height:100vh;
-      background:var(--page-bg);
-      padding:0 0 50px;
-    }
-
-    /* ================= NAVBAR ================= */
-.nav-section{
-  width:100%;
-  margin:0;
-  padding:0;
-  line-height:0;
-  background:var(--page-bg);
-  position:relative;
-  z-index:20;
+:root{
+  --bg:#efe2d0;
+  --maroon:#7d1f19;
+  --gold:#c99648;
 }
 
-.nav-image-wrap{
+body{
+  font-family: Georgia, serif;
+  background:var(--bg);
+  color:#4c2d19;
+}
+
+/* ================= NAVBAR ================= */
+.nav-section{
   width:100%;
   position:relative;
-  overflow:hidden;
-  margin:0;
-  padding:0;
 }
 
 .nav-image{
   width:100%;
   display:block;
-  margin:0;
-  padding:0;
-  user-select:none;
-  pointer-events:none;
 }
 
-.nav-buttons{
-  position:absolute;
-  inset:0;
-  z-index:25;
-  pointer-events:none;
-}
-
+/* buttons */
 .nav-btn{
   position:absolute;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  text-decoration:none;
-  color:#fff3dc;
-  padding:9px 18px;
-  min-width:74px;
+  transform:translate(-50%,-50%);
+  padding:10px 20px;
   border-radius:999px;
-  border:1.5px solid rgba(245,219,175,.82);
-  background:rgba(75, 12, 8, 0.16);
-  box-shadow:
-    inset 0 0 8px rgba(255,255,255,.08),
-    0 3px 8px rgba(0,0,0,.10);
-  font-size:.95rem;
-  letter-spacing:.4px;
-  font-family:inherit;
-  white-space:nowrap;
-  line-height:1;
-  backdrop-filter:blur(1px);
-  transition:.22s ease;
-  pointer-events:auto;
+  border:1.5px solid #e9cfa6;
+  background:rgba(70,12,8,0.2);
+  color:#fff4de;
+  font-size:.9rem;
 }
 
-.nav-btn:hover{
-  transform:translate(-50%, -50%) translateY(-2px);
-  background:rgba(255,225,180,.18);
+/* exact positions */
+.home{ left:13.5%; top:40%; }
+.about{ left:38%; top:52%; }
+.login{ left:62%; top:52%; }
+.more{ left:83%; top:40%; }
+
+/* ================= TITLE ================= */
+.hero{
+  text-align:center;
+  margin-top:5px;
 }
 
-/* LEFT TOP */
-.nav-btn.home{
-  left:14%;
-  top:41%;
-  transform:translate(-50%, -50%);
+.title{
+  font-size:clamp(3rem,7vw,6rem);
+  color:var(--maroon);
+  text-shadow:0 5px 15px rgba(0,0,0,.15);
 }
 
-/* LEFT LOWER - book ke side */
-.nav-btn.about{
-  left:38%;
-  top:51%;
-  transform:translate(-50%, -50%);
+.book-word{
+  display:block;
+  margin-top:-10px;
+  font-size:clamp(2rem,5vw,4rem);
+  animation:swing 3s infinite;
 }
 
-/* RIGHT LOWER - book ke side */
-.nav-btn.login{
-  left:61%;
-  top:51%;
-  transform:translate(-50%, -50%);
+@keyframes swing{
+  0%,100%{transform:rotate(2deg);}
+  50%{transform:rotate(-3deg);}
 }
 
-/* RIGHT TOP */
-.nav-btn.more{
-  left:82%;
-  top:41%;
-  transform:translate(-50%, -50%);
+/* divider */
+.divider{
+  margin:15px auto;
+  width:80%;
+  height:2px;
+  background:linear-gradient(to right,transparent,gold,transparent);
 }
 
-@media (max-width: 900px){
-  .nav-btn{
-    padding:8px 15px;
-    min-width:68px;
-    font-size:.88rem;
-  }
-
-  .nav-btn.home{
-    left:14%;
-    top:41%;
-    transform:translate(-50%, -50%);
-  }
-
-  .nav-btn.about{
-    left:38%;
-    top:51%;
-    transform:translate(-50%, -50%);
-  }
-
-  .nav-btn.login{
-    left:61%;
-    top:51%;
-    transform:translate(-50%, -50%);
-  }
-
-  .nav-btn.more{
-    left:82%;
-    top:41%;
-    transform:translate(-50%, -50%);
-  }
+/* ================= BOOK ================= */
+.scene{
+  margin-top:40px;
+  text-align:center;
 }
 
-@media (max-width: 600px){
-  .nav-btn{
-    padding:7px 12px;
-    min-width:60px;
-    font-size:.80rem;
-  }
-
-  .nav-btn.home{
-    left:14%;
-    top:41%;
-    transform:translate(-50%, -50%);
-  }
-
-  .nav-btn.about{
-    left:38%;
-    top:51%;
-    transform:translate(-50%, -50%);
-  }
-
-  .nav-btn.login{
-    left:61%;
-    top:51%;
-    transform:translate(-50%, -50%);
-  }
-
-  .nav-btn.more{
-    left:82%;
-    top:41%;
-    transform:translate(-50%, -50%);
-  }
+.book-img{
+  width:90%;
+  max-width:520px;
 }
 
-@media (max-width: 420px){
-  .nav-btn{
-    padding:6px 10px;
-    min-width:56px;
-    font-size:.74rem;
-  }
-
-  .nav-btn.home{
-    left:14%;
-    top:41%;
-    transform:translate(-50%, -50%);
-  }
-
-  .nav-btn.about{
-    left:38%;
-    top:51%;
-    transform:translate(-50%, -50%);
-  }
-
-  .nav-btn.login{
-    left:61%;
-    top:51%;
-    transform:translate(-50%, -50%);
-  }
-
-  .nav-btn.more{
-    left:82%;
-    top:41%;
-    transform:translate(-50%, -50%);
-  }
+/* ================= BUTTON ================= */
+.btn{
+  margin-top:25px;
+  padding:18px 45px;
+  font-size:1.1rem;
+  border-radius:50px;
+  border:2px solid var(--gold);
+  background:linear-gradient(#8b2a20,#5a120d);
+  color:#fff;
 }
 
-    /* ================= HERO ================= */
-    .hero{
-      max-width:1200px;
-      margin:8px auto 0;
-      padding:0 14px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      text-align:center;
-    }
+/* ================= OPEN BOOK ================= */
+.open{
+  display:none;
+  margin-top:30px;
+  justify-content:center;
+}
 
-    .title-box{
-      position:relative;
-      display:inline-block;
-      margin-top:10px;
-      margin-bottom:28px;
-    }
+.open.active{ display:flex; }
 
-    .title-main{
-      font-size:clamp(3.2rem, 7vw, 7rem);
-      color:var(--maroon);
-      font-weight:700;
-      line-height:.92;
-      letter-spacing:1.6px;
-      text-shadow:
-        0 2px 0 #fff7ea,
-        0 7px 18px rgba(125,31,25,.14),
-        0 0 18px rgba(201,150,72,.08);
-      position:relative;
-    }
+.page{
+  width:90%;
+  max-width:500px;
+  background:#fffdf7;
+  border:3px solid #c79a5a;
+  padding:25px;
+  border-radius:10px;
+}
 
-    .secret-part{
-      position:relative;
-      display:inline-block;
-      padding-right:10px;
-    }
+.page h2{
+  text-align:center;
+  margin-bottom:10px;
+}
 
-    .hanging-book-word{
-      position:absolute;
-      left:76%;
-      top:100%;
-      margin-top:4px;
-      transform:translateX(-50%);
-      font-size:clamp(2.3rem, 5.2vw, 4.7rem);
-      color:#8a281f;
-      font-weight:700;
-      line-height:1;
-      text-shadow:
-        0 2px 0 #fff0dc,
-        0 6px 16px rgba(0,0,0,.16);
-      transform-origin:top center;
-      animation:swing 3.2s ease-in-out infinite;
-      white-space:nowrap;
-    }
+.page p{
+  line-height:1.8;
+  font-size:14px;
+}
 
-    .hanging-book-word::before{
-      content:"";
-      position:absolute;
-      top:-28px;
-      left:50%;
-      transform:translateX(-50%);
-      width:2px;
-      height:28px;
-      background:linear-gradient(180deg,#b9874c,#6f451f);
-    }
+.back-btn{
+  margin-top:15px;
+}
 
-    @keyframes swing{
-      0%,100%{ transform:translateX(-50%) rotate(2deg); }
-      25%{ transform:translateX(-50%) rotate(-4deg); }
-      50%{ transform:translateX(-50%) rotate(3deg); }
-      75%{ transform:translateX(-50%) rotate(-2deg); }
-    }
-
-    .title-line-wrap{
-      width:min(780px, 94vw);
-      margin:22px auto 0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:16px;
-    }
-
-    .title-line{
-      flex:1;
-      height:2px;
-      background:linear-gradient(90deg, transparent, #b27a39, #f1dab3, #b27a39, transparent);
-      position:relative;
-    }
-
-    .title-line.left::before,
-    .title-line.right::before{
-      content:"❦";
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      color:#9a6a2c;
-      font-size:1rem;
-    }
-
-    .title-line.left::before{ right:24px; }
-    .title-line.right::before{ left:24px; }
-
-    .title-center-ornament{
-      color:#9a6a2c;
-      font-size:1.18rem;
-      letter-spacing:5px;
-      padding:0 4px;
-    }
-
-    /* ================= BOOK AREA ================= */
-    .scene{
-      width:min(560px, 96vw);
-      position:relative;
-      margin-top:10px;
-    }
-
-    .book-stage{
-      position:relative;
-      width:100%;
-      min-height:760px;
-    }
-
-    /* CLOSED BOOK */
-    .closed-view{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:flex-start;
-      transition:opacity .5s ease, transform .6s ease;
-    }
-
-    .closed-view.hide{
-      opacity:0;
-      transform:scale(.96);
-      pointer-events:none;
-      position:absolute;
-      inset:0;
-    }
-
-    .closed-book-wrap{
-      width:100%;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding-top:8px;
-    }
-
-    .closed-book-wrap img{
-      width:100%;
-      max-width:500px;
-      height:auto;
-      display:block;
-      filter:drop-shadow(0 18px 28px rgba(0,0,0,.18));
-    }
-
-    /* OPEN BOOK */
-    .open-view{
-      position:absolute;
-      inset:0;
-      display:flex;
-      justify-content:center;
-      align-items:flex-start;
-      opacity:0;
-      pointer-events:none;
-      transform:perspective(1800px) rotateY(-90deg);
-      transform-origin:left center;
-      transition:transform 1s cubic-bezier(.2,.75,.12,1), opacity .45s ease;
-    }
-
-    .open-view.show{
-      opacity:1;
-      pointer-events:auto;
-      transform:perspective(1800px) rotateY(0deg);
-    }
-
-    .open-book{
-      width:min(100%, 540px);
-      min-height:700px;
-      background:
-        linear-gradient(90deg,
-          #d6b892 0%,
-          #efdfc7 3%,
-          #fffaf3 10%,
-          #fffdf9 50%,
-          #fffaf3 90%,
-          #efdfc7 97%,
-          #d6b892 100%);
-      border:4px solid #a97a45;
-      border-radius:20px;
-      box-shadow:
-        0 20px 30px rgba(0,0,0,.16),
-        inset 0 0 0 2px rgba(255,255,255,.35);
-      position:relative;
-      overflow:hidden;
-      margin-top:8px;
-    }
-
-    .open-book::before{
-      content:"";
-      position:absolute;
-      top:0;
-      bottom:0;
-      left:50%;
-      width:14px;
-      transform:translateX(-50%);
-      background:linear-gradient(90deg,
-        rgba(120,80,40,.25),
-        rgba(255,255,255,.35),
-        rgba(120,80,40,.22));
-      box-shadow:
-        inset 0 0 8px rgba(0,0,0,.15),
-        0 0 8px rgba(0,0,0,.05);
-    }
-
-    .pages{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      min-height:700px;
-      position:relative;
-      z-index:2;
-    }
-
-    .page-left,
-    .page-right{
-      padding:28px 20px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,250,240,.96));
-    }
-
-    .page-left{
-      border-right:1px solid rgba(160,120,70,.18);
-    }
-
-    .page-right{
-      border-left:1px solid rgba(160,120,70,.10);
-      text-align:left;
-      overflow-y:auto;
-    }
-
-    .page-title{
-      color:#6f1d16;
-      font-size:1.9rem;
-      margin-bottom:14px;
-      text-align:center;
-    }
-
-    .page-intro{
-      color:#6b432d;
-      line-height:1.8;
-      text-align:center;
-      margin-bottom:18px;
-      font-size:.98rem;
-    }
-
-    .page-quote{
-      color:#7a352a;
-      font-style:italic;
-      line-height:1.8;
-      text-align:center;
-      margin:14px 0 20px;
-    }
-
-    .spark{
-      color:#8b5d1d;
-      letter-spacing:5px;
-      text-align:center;
-      margin:8px 0;
-    }
-
-    .await{
-      text-align:center;
-      color:#6b4427;
-      margin-bottom:14px;
-    }
-
-    .welcome-title{
-      text-align:center;
-      color:#6d2018;
-      font-size:1.35rem;
-      margin:8px 0 14px;
-      font-weight:700;
-    }
-
-    .letter{
-      white-space:pre-line;
-      line-height:1.9;
-      font-size:.98rem;
-      color:#4a2d1a;
-    }
-
-    /* ================= BUTTONS ================= */
-    .controls{
-      display:flex;
-      justify-content:center;
-      padding-top:22px;
-    }
-
-    .btn{
-      border:none;
-      outline:none;
-      cursor:pointer;
-      padding:17px 42px;
-      border-radius:999px;
-      font-size:1.08rem;
-      font-weight:700;
-      color:#fff3dc;
-      background:linear-gradient(180deg,#8b2a20 0%, #651510 100%);
-      border:2px solid var(--gold);
-      box-shadow:
-        0 10px 18px rgba(0,0,0,.14),
-        inset 0 2px 8px rgba(255,255,255,.12);
-      font-family:inherit;
-      min-width:165px;
-    }
-
-    .btn.secondary{
-      background:linear-gradient(180deg,#86602a 0%, #654318 100%);
-      margin-top:20px;
-      display:block;
-      margin-left:auto;
-      margin-right:auto;
-    }
-
-    /* ================= RESPONSIVE ================= */
-    @media (max-width: 900px){
-      .nav-btn{
-        font-size:.9rem;
-        padding:8px 14px;
-      }
-    }
-
-    @media (max-width: 600px){
-      .nav-btn{
-        font-size:.86rem;
-        padding:7px 12px;
-      }
-
-      .nav-btn.home{ left:11%; }
-      .nav-btn.about{ left:40%; }
-      .nav-btn.login{ left:60%; }
-      .nav-btn.more{ right:10%; }
-
-      .hanging-book-word{
-        left:77%;
-        font-size:clamp(2rem, 5vw, 3.5rem);
-      }
-
-      .closed-book-wrap img{
-        max-width:430px;
-      }
-
-      .open-book{
-        min-height:760px;
-      }
-
-      .pages{
-        grid-template-columns:1fr;
-        min-height:auto;
-      }
-
-      .open-book::before{
-        display:none;
-      }
-
-      .page-left{
-        border-right:none;
-        border-bottom:1px solid rgba(160,120,70,.18);
-      }
-    }
-
-    @media (max-width: 420px){
-      .nav-btn{
-        font-size:.8rem;
-        padding:7px 10px;
-      }
-
-      .title-main{
-        font-size:clamp(2.6rem, 7vw, 4.1rem);
-      }
-
-      .hanging-book-word{
-        left:78%;
-      }
-
-      .closed-book-wrap img{
-        max-width:390px;
-      }
-
-      .btn{
-        min-width:135px;
-        padding:15px 30px;
-      }
-
-      .page-left,
-      .page-right{
-        padding:22px 14px;
-      }
-    }
-  </style>
+</style>
 </head>
+
 <body>
-  <div class="page">
-    <div class="nav-section">
-      <div class="nav-image-wrap">
-        <img src="navigationbar.png" alt="Vintage Navigation Bar" class="nav-image">
 
-        <div class="nav-buttons">
-          <a href="#" class="nav-btn home">Home</a>
-          <a href="#" class="nav-btn about">About</a>
-          <a href="#" class="nav-btn login">Login</a>
-          <a href="#" class="nav-btn more">More</a>
-        </div>
-      </div>
-    </div>
+<!-- NAVBAR -->
+<div class="nav-section">
+  <img src="navigationbar.png" class="nav-image">
 
-    <section class="hero">
-      <div class="title-box">
-        <div class="title-main">
-          My Secret
-          <span class="secret-part">
-            <span class="hanging-book-word">Book</span>
-          </span>
-        </div>
+  <a class="nav-btn home">Home</a>
+  <a class="nav-btn about">About</a>
+  <a class="nav-btn login">Login</a>
+  <a class="nav-btn more">More</a>
+</div>
 
-        <div class="title-line-wrap">
-          <div class="title-line left"></div>
-          <div class="title-center-ornament">❦ ✦ ❦</div>
-          <div class="title-line right"></div>
-        </div>
-      </div>
-
-      <div class="scene">
-        <div class="book-stage">
-          <!-- CLOSED BOOK -->
-          <div class="closed-view" id="closedView">
-            <div class="closed-book-wrap">
-              <img src="book.png" alt="Closed Secret Book">
-            </div>
-
-            <div class="controls">
-              <button class="btn" id="nextBtn" type="button">Next</button>
-            </div>
-          </div>
-
-          <!-- OPEN BOOK -->
-          <div class="open-view" id="openView">
-            <div class="open-book">
-              <div class="pages">
-                <div class="page-left">
-                  <div class="page-title">Welcome to your Secret World ✨</div>
-
-                  <div class="page-intro">
-                    Start your journey here<br>
-                    Share your thoughts, jokes, shayari and feelings 💛<br>
-                    This is your personal space<br>
-                    stay happy and spread happiness ✨
-                  </div>
-
-                  <div class="page-quote">
-                    “Every page holds a secret,<br>
-                    every word a mystery...”
-                  </div>
-
-                  <div class="spark">✦ ✦ ✦</div>
-                  <div class="await">The secrets await...</div>
-                  <div class="spark">✦</div>
-                  <div class="welcome-title">Welcome Note</div>
-                  <div class="spark">✦</div>
-                </div>
-
-                <div class="page-right">
-                  <div class="letter">Pyare dost,
-
-Is raz ki kitaab mein aapka dil se swaagat hai.
-
-Yahan har ek safhe par chupi hui hai ek gehri baat,
-ek raaz jo sirf khaas logon ke liye hai — aap ke liye.
-
-Aap is kitaab ko khole hain, yani aap khaas hain.
-Har raaz jo yahan milega, woh sirf aapke dil ke liye hai.
-
-Is safar mein aapka swaagat hai — jahan alfaaz jaadugaree karte hain,
-aur har ek lamha ek naya rahasya kholta hai.
-
-Aage barhiye, kyunki yeh kitaab sirf aapki hai...
-
-— My Secret Book</div>
-
-                  <button class="btn secondary" id="backBtn" type="button">Back</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<!-- TITLE -->
+<div class="hero">
+  <div class="title">
+    My Secret
+    <span class="book-word">Book</span>
   </div>
 
-  <script>
-    const nextBtn = document.getElementById("nextBtn");
-    const backBtn = document.getElementById("backBtn");
-    const closedView = document.getElementById("closedView");
-    const openView = document.getElementById("openView");
+  <div class="divider"></div>
+</div>
 
-    nextBtn.addEventListener("click", function () {
-      closedView.classList.add("hide");
-      setTimeout(() => {
-        openView.classList.add("show");
-      }, 180);
-    });
+<!-- BOOK -->
+<div class="scene" id="closed">
+  <img src="book.png" class="book-img">
 
-    backBtn.addEventListener("click", function () {
-      openView.classList.remove("show");
-      setTimeout(() => {
-        closedView.classList.remove("hide");
-      }, 350);
-    });
-  </script>
+  <br>
+  <button class="btn" onclick="openBook()">Next</button>
+</div>
+
+<!-- OPEN BOOK -->
+<div class="open" id="open">
+  <div class="page">
+    <h2>Welcome ✨</h2>
+
+    <p>
+      Pyare dost,<br><br>
+      Is secret book me aapka swagat hai.<br>
+      Yeh aapki personal duniya hai jahan aap apne thoughts likh sakte ho.<br><br>
+      Har page ek naya secret hai...<br>
+      Har word ek feeling hai...<br><br>
+      Welcome to your world 💛
+    </p>
+
+    <button class="btn back-btn" onclick="closeBook()">Back</button>
+  </div>
+</div>
+
+<script>
+function openBook(){
+  document.getElementById("closed").style.display="none";
+  document.getElementById("open").classList.add("active");
+}
+
+function closeBook(){
+  document.getElementById("closed").style.display="block";
+  document.getElementById("open").classList.remove("active");
+}
+</script>
+
 </body>
 </html>
