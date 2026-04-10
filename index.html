@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Secret Book</title>
 
-  <!-- Stylish title font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
@@ -18,10 +17,9 @@
     }
 
     :root{
-      --page-bg:#efe3d2;
-      --maroon:#7f2019;
-      --gold:#d7a24a;
-      --gold-soft:#f3d9a6;
+      --page-bg:#e9decd;
+      --gold:#d8a64c;
+      --gold-soft:#f3dbab;
       --ink:#4a2d1a;
       --paper:#fffdf9;
       --paper-soft:#fbf5ea;
@@ -55,12 +53,14 @@
       position:relative;
       line-height:0;
       z-index:20;
+      background:var(--page-bg);
     }
 
     .nav-image-wrap{
       width:100%;
       position:relative;
       overflow:hidden;
+      background:var(--page-bg);
     }
 
     .nav-image{
@@ -107,53 +107,56 @@
       background:rgba(255,225,180,.18);
     }
 
-    .nav-btn.home{ left:10%; top:33.7%; }
-    .nav-btn.about{ left:30%; top:33.7%; }
-    .nav-btn.login{ left:71.2%; top:34%; }
-    .nav-btn.more{ left:91%; top:34%; }
+    .nav-btn.home{ left:13.2%; top:38.8%; }
+    .nav-btn.about{ left:38.2%; top:50.3%; }
+    .nav-btn.login{ left:61.6%; top:50.3%; }
+    .nav-btn.more{ left:82.8%; top:38.8%; }
 
     /* ================= TITLE ================= */
     .hero{
-  width:100%;
-  max-width:1200px;
-  margin:-42px auto 0;
-  padding:0 14px;
-  position:relative;
-  z-index:5;
-  text-align:center;
-}
+      width:100%;
+      max-width:1200px;
+      margin:-42px auto 0;
+      padding:0 14px;
+      position:relative;
+      z-index:5;
+      text-align:center;
+      background:var(--page-bg);
+    }
 
-.title-box{
-  position:relative;
-  display:inline-block;
-  margin-top:0;
-  margin-bottom:18px;
-  padding-top:18px;
-}
+    .title-box{
+      position:relative;
+      display:inline-block;
+      margin-top:0;
+      margin-bottom:18px;
+      padding-top:18px;
+      overflow:visible;
+    }
 
-.title-main{
-  position:relative;
-  display:inline-block;
-  font-family:"Great Vibes", cursive;
-  font-size:clamp(3.9rem, 8.3vw, 7.4rem);
-  line-height:1.12;
-  color:var(--gold);
-  letter-spacing:1px;
-  text-shadow:
-    0 1px 0 #fff7dd,
-    0 0 8px rgba(255, 210, 120, .25),
-    0 0 20px rgba(215,162,74,.18),
-    0 5px 14px rgba(70,35,10,.18);
-  padding:12px 10px 0;
-  overflow:visible;
-}
+    .title-main{
+      position:relative;
+      display:inline-block;
+      font-family:"Great Vibes", cursive;
+      font-size:clamp(3.9rem, 8.3vw, 7.4rem);
+      line-height:1.12;
+      color:var(--gold);
+      letter-spacing:1px;
+      text-shadow:
+        0 1px 0 #fff7dd,
+        0 0 8px rgba(255, 210, 120, .25),
+        0 0 20px rgba(215,162,74,.18),
+        0 5px 14px rgba(70,35,10,.18);
+      padding:12px 10px 0;
+      overflow:visible;
+    }
+
     .title-main::before{
       content:"";
       position:absolute;
-      inset:auto 8% 8% 8%;
-      height:55%;
+      inset:auto 8% 10% 8%;
+      height:58%;
       background:
-        radial-gradient(circle, rgba(255,230,170,.22), transparent 70%);
+        radial-gradient(circle, rgba(255,230,170,.18), transparent 70%);
       filter:blur(10px);
       z-index:-1;
     }
@@ -207,7 +210,7 @@
       75%{ transform:translateX(-50%) rotate(-2deg); }
     }
 
-    /* Divider */
+    /* divider */
     .ornament{
       width:min(880px, 95vw);
       margin:18px auto 0;
@@ -254,6 +257,7 @@
       margin:34px auto 0;
       position:relative;
       z-index:6;
+      background:var(--page-bg);
     }
 
     .book-stage{
@@ -433,7 +437,6 @@
       overflow-y:auto;
     }
 
-    /* flipping page */
     .flip-page{
       position:absolute;
       top:20px;
@@ -523,12 +526,75 @@
       color:#4a2d1a;
     }
 
-    /* ================= RESPONSIVE ================= */
+    /* ================= RESPONSIVE COMPLETE REPLACE ================= */
     @media (max-width: 900px){
       .nav-btn{
         padding:8px 15px;
         min-width:68px;
         font-size:.88rem;
+      }
+
+      .hero{
+        margin:-30px auto 0;
+      }
+
+      .title-box{
+        padding-top:14px;
+      }
+
+      .title-main{
+        font-size:clamp(3.5rem, 8vw, 6rem);
+        line-height:1.1;
+        padding:10px 8px 0;
+      }
+
+      .hanging-book{
+        font-size:clamp(2.2rem, 4.8vw, 4rem);
+        margin-top:-8px;
+      }
+
+      .ornament{
+        width:min(820px, 94vw);
+        margin:14px auto 0;
+      }
+
+      .scene{
+        width:min(600px, 96vw);
+        margin:28px auto 0;
+      }
+
+      .book-stage{
+        min-height:980px;
+      }
+
+      .closed-book-wrap img{
+        max-width:520px;
+      }
+
+      .btn{
+        min-width:180px;
+        padding:17px 42px;
+        font-size:1.04rem;
+      }
+
+      .open-book-shell,
+      .open-book-base{
+        max-width:600px;
+        min-height:860px;
+      }
+
+      .book-pages{
+        min-height:860px;
+      }
+
+      .page-title{
+        font-size:1.8rem;
+      }
+
+      .page-intro,
+      .page-quote,
+      .letter{
+        font-size:1rem;
       }
     }
 
@@ -539,16 +605,46 @@
         font-size:.82rem;
       }
 
+      .nav-btn.home{ left:13.2%; top:38.8%; }
+      .nav-btn.about{ left:38.2%; top:50.3%; }
+      .nav-btn.login{ left:61.6%; top:50.3%; }
+      .nav-btn.more{ left:82.8%; top:38.8%; }
+
       .hero{
-        margin-top:-8px;
+        margin:-24px auto 0;
+        padding:0 10px;
+      }
+
+      .title-box{
+        padding-top:14px;
+        margin-bottom:16px;
       }
 
       .title-main{
-        font-size:clamp(3.2rem, 9vw, 5.2rem);
+        font-size:clamp(3rem, 8.6vw, 4.8rem);
+        line-height:1.1;
+        padding:10px 8px 0;
       }
 
       .hanging-book{
         font-size:clamp(2rem, 5vw, 3.5rem);
+        margin-top:-8px;
+      }
+
+      .hanging-book::before{
+        height:24px;
+        top:-24px;
+      }
+
+      .ornament{
+        width:95vw;
+        margin:12px auto 0;
+        gap:10px;
+      }
+
+      .orn-center{
+        font-size:1rem;
+        gap:8px;
       }
 
       .scene{
@@ -560,14 +656,27 @@
         min-height:1120px;
       }
 
+      .closed-book-wrap{
+        padding-top:8px;
+      }
+
       .closed-book-wrap img{
-        max-width:480px;
+        max-width:470px;
+      }
+
+      .controls{
+        padding-top:24px;
       }
 
       .btn{
         min-width:165px;
         padding:16px 38px;
         font-size:1rem;
+      }
+
+      .btn.secondary{
+        min-width:150px;
+        margin-top:20px;
       }
 
       .open-book-shell,
@@ -606,8 +715,23 @@
         font-size:1.65rem;
       }
 
+      .page-intro{
+        font-size:.98rem;
+        line-height:1.85;
+      }
+
+      .page-quote{
+        font-size:.96rem;
+        line-height:1.85;
+      }
+
+      .welcome-title{
+        font-size:1.28rem;
+      }
+
       .letter{
         font-size:.98rem;
+        line-height:1.9;
       }
     }
 
@@ -618,12 +742,51 @@
         font-size:.76rem;
       }
 
+      .nav-btn.home{ left:13.2%; top:38.8%; }
+      .nav-btn.about{ left:38.2%; top:50.3%; }
+      .nav-btn.login{ left:61.6%; top:50.3%; }
+      .nav-btn.more{ left:82.8%; top:38.8%; }
+
+      .hero{
+        margin:-18px auto 0;
+        padding:0 8px;
+      }
+
+      .title-box{
+        padding-top:12px;
+        margin-bottom:14px;
+      }
+
       .title-main{
-        font-size:clamp(2.8rem, 9vw, 4.5rem);
+        font-size:clamp(2.7rem, 8.4vw, 4.1rem);
+        line-height:1.08;
+        padding:8px 6px 0;
       }
 
       .hanging-book{
         font-size:clamp(1.9rem, 5vw, 3rem);
+        margin-top:-6px;
+      }
+
+      .hanging-book::before{
+        height:22px;
+        top:-22px;
+      }
+
+      .ornament{
+        width:96vw;
+        margin:10px auto 0;
+        gap:8px;
+      }
+
+      .orn-center{
+        font-size:.92rem;
+        gap:6px;
+      }
+
+      .orn-line.left::after,
+      .orn-line.right::after{
+        font-size:.86rem;
       }
 
       .scene{
@@ -631,14 +794,59 @@
         margin-top:20px;
       }
 
+      .book-stage{
+        min-height:1040px;
+      }
+
       .closed-book-wrap img{
-        max-width:430px;
+        max-width:425px;
+      }
+
+      .controls{
+        padding-top:22px;
       }
 
       .btn{
         min-width:150px;
         padding:15px 30px;
         font-size:.96rem;
+      }
+
+      .btn.secondary{
+        min-width:140px;
+      }
+
+      .open-book-shell,
+      .open-book-base{
+        min-height:900px;
+      }
+
+      .left-page,
+      .right-page{
+        padding:20px 14px;
+      }
+
+      .page-title{
+        font-size:1.48rem;
+      }
+
+      .page-intro{
+        font-size:.94rem;
+        line-height:1.8;
+      }
+
+      .page-quote{
+        font-size:.92rem;
+        line-height:1.8;
+      }
+
+      .welcome-title{
+        font-size:1.2rem;
+      }
+
+      .letter{
+        font-size:.94rem;
+        line-height:1.82;
       }
     }
   </style>
@@ -679,7 +887,6 @@
     <div class="scene">
       <div class="book-stage">
 
-        <!-- CLOSED BOOK -->
         <div class="closed-view" id="closedView">
           <div class="closed-book-wrap">
             <img src="book.png" alt="Closed Secret Book">
@@ -690,7 +897,6 @@
           </div>
         </div>
 
-        <!-- OPEN BOOK -->
         <div class="open-view" id="openView">
           <div class="open-book-shell">
             <div class="open-book-base">
