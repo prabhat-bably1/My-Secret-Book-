@@ -13,148 +13,136 @@
     *{
       margin:0;
       padding:0;
-      background: #e6d3b3;
+      box-sizing:border-box;
     }
 
     :root{
-      --bg:#e6d3b3;
-      --gold:#c8922e;
-      --gold-soft:#f5dfb3;
-      --ink:#4b2d1a;
-      --paper:#fffdf8;
-      --paper-soft:#fbf5ea;
-      --paper-border:#cda97b;
-      --btn1:#9d3024;
-      --btn2:#5e120d;
+      --cream:#e8d9c2;
+      --cream-soft:#efe4d2;
+      --gold:#cf9a35;
+      --gold-soft:#f3ddb0;
+      --brown:#4a2d1a;
+      --paper:#fffdfa;
+      --paper-edge:#d6b991;
+      --btn1:#a02f24;
+      --btn2:#62130e;
+      --rose1:#cc4b6a;
+      --rose2:#d96a82;
+      --rose3:#f1a5b7;
     }
 
     html,body{
       width:100%;
       min-height:100%;
       overflow-x:hidden;
-      background:var(--bg);
+      background:var(--cream);
     }
 
     body{
       font-family: Georgia, "Times New Roman", serif;
-      background:var(--bg);
-      color:var(--ink);
+      color:var(--brown);
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,0.22), transparent 28%),
+        linear-gradient(180deg, var(--cream-soft) 0%, var(--cream) 100%);
     }
 
     .page{
       width:100%;
       min-height:100vh;
-      background:var(--bg);
-      padding-bottom:60px;
-    }
-
-    /* ================= NAVBAR ================= */
-    .nav-section{
-      width:100%;
       position:relative;
-      z-index:10;
-      background:var(--bg);
+      overflow:hidden;
+      padding:24px 14px 60px;
     }
 
-    .nav-shell {
-  height: 350px;   /* FIXED HEIGHT */
-  overflow: hidden; /* extra white cut */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #e6d3b3; /* cream */
+    /* petals */
+    .petals{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:1;
+      overflow:hidden;
     }
 
-    .nav-shell img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-
-  margin-top: -40px;   /* upar ka white cut */
-  margin-bottom: -40px; /* niche ka white cut */
+    .petal{
+      position:absolute;
+      top:-80px;
+      width:18px;
+      height:26px;
+      border-radius:70% 30% 70% 30%;
+      opacity:.85;
+      filter:drop-shadow(0 4px 8px rgba(0,0,0,.12));
+      animation-name:fall;
+      animation-timing-function:linear;
+      animation-iteration-count:infinite;
     }
 
-    .nav-buttons{
+    .petal::before{
+      content:"";
       position:absolute;
       inset:0;
-      z-index:3;
-      pointer-events:none;
+      border-radius:inherit;
+      background:linear-gradient(180deg,var(--rose3),var(--rose1));
+      transform:rotate(18deg);
     }
 
-    .nav-btn{
-      position:absolute;
-      transform:translate(-50%, -50%);
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width:78px;
-      padding:10px 18px;
-      border-radius:999px;
-      text-decoration:none;
-      color:#d4af37;
-      border:1px solid rgba(212,175,55,0.55);
-      background:rgba(35, 15, 8, 0.20);
-      box-shadow:
-        inset 0 0 8px rgba(255,255,255,.05),
-        0 3px 8px rgba(0,0,0,.08);
-      white-space:nowrap;
-      font-size:.96rem;
-      line-height:1;
-      letter-spacing:.2px;
-      pointer-events:auto;
-      transition:.2s ease;
-      text-shadow:
-        0 0 5px rgba(255,215,0,0.35),
-        0 0 10px rgba(255,215,0,0.18);
+    .petal:nth-child(1){left:5%;animation-duration:13s;animation-delay:-2s;transform:scale(.9);}
+    .petal:nth-child(2){left:12%;animation-duration:16s;animation-delay:-7s;transform:scale(1.1);}
+    .petal:nth-child(3){left:20%;animation-duration:12s;animation-delay:-4s;transform:scale(.8);}
+    .petal:nth-child(4){left:28%;animation-duration:18s;animation-delay:-10s;transform:scale(1);}
+    .petal:nth-child(5){left:36%;animation-duration:14s;animation-delay:-1s;transform:scale(1.15);}
+    .petal:nth-child(6){left:44%;animation-duration:17s;animation-delay:-8s;transform:scale(.95);}
+    .petal:nth-child(7){left:52%;animation-duration:15s;animation-delay:-5s;transform:scale(1.05);}
+    .petal:nth-child(8){left:60%;animation-duration:19s;animation-delay:-11s;transform:scale(.85);}
+    .petal:nth-child(9){left:68%;animation-duration:13s;animation-delay:-3s;transform:scale(1.12);}
+    .petal:nth-child(10){left:76%;animation-duration:16s;animation-delay:-9s;transform:scale(.92);}
+    .petal:nth-child(11){left:84%;animation-duration:14s;animation-delay:-6s;transform:scale(1.08);}
+    .petal:nth-child(12){left:92%;animation-duration:18s;animation-delay:-12s;transform:scale(.88);}
+
+    @keyframes fall{
+      0%{
+        transform:translateY(-80px) translateX(0) rotate(0deg);
+      }
+      25%{
+        transform:translateY(25vh) translateX(18px) rotate(80deg);
+      }
+      50%{
+        transform:translateY(50vh) translateX(-16px) rotate(160deg);
+      }
+      75%{
+        transform:translateY(75vh) translateX(22px) rotate(240deg);
+      }
+      100%{
+        transform:translateY(110vh) translateX(-12px) rotate(320deg);
+      }
     }
 
-    .nav-btn:hover{
-      transform:translate(-50%, -50%) translateY(-2px);
-      color:#fff3c7;
-      border-color:#ffd700;
-      box-shadow:0 0 10px rgba(255,215,0,0.35);
-    }
-
-    .nav-btn.home{ left:12%; top:65%; }
-    .nav-btn.about{ left:25%; top:68%; }
-    .nav-btn.login{ left:75%; top:68%; }
-    .nav-btn.more{ left:86%; top:68%; }
-
-    /* ================= TITLE ================= */
-    .hero{
-      width:100%;
-      max-width:1200px;
-      margin:-18px auto 0;
-      padding:0 12px;
+    .content{
+      position:relative;
+      z-index:2;
+      max-width:1100px;
+      margin:0 auto;
       text-align:center;
-      position:relative;
-      z-index:5;
-      background:var(--bg);
     }
 
-    .title-box{
-      display:inline-block;
-      position:relative;
-      padding-top:0;
-      margin-bottom:14px;
-      overflow:visible;
+    /* title */
+    .title-wrap{
+      margin-top:14px;
+      margin-bottom:26px;
     }
 
-    .title-main{
+    .title{
       position:relative;
       display:inline-block;
       font-family:"Great Vibes", cursive;
-      font-size:clamp(3.5rem, 8.4vw, 6.8rem);
-      line-height:1.05;
+      font-size:clamp(3.4rem, 9vw, 7rem);
+      line-height:1.04;
       color:var(--gold);
-      letter-spacing:.5px;
-      padding:4px 8px 0;
-      overflow:visible;
       text-shadow:
-        0 2px 0 #fff3c4,
-        0 0 10px rgba(255, 215, 120, .55),
-        0 0 25px rgba(215,162,74,.35),
-        0 6px 18px rgba(70,35,10,.28);
+        0 1px 0 #fff6da,
+        0 0 10px rgba(255,223,140,.45),
+        0 0 22px rgba(207,154,53,.25),
+        0 6px 18px rgba(90,55,20,.18);
+      padding:8px 8px 0;
     }
 
     .secret-wrap{
@@ -167,27 +155,26 @@
       display:inline-block;
     }
 
-    .hanging-book{
+    .book-hang{
       position:absolute;
       left:46%;
       top:100%;
       transform:translateX(-50%);
       margin-top:-8px;
       font-family:"Great Vibes", cursive;
-      font-size:clamp(2.2rem, 5vw, 4.2rem);
-      line-height:1;
+      font-size:clamp(2.2rem, 5.4vw, 4.4rem);
       color:var(--gold);
       white-space:nowrap;
-      text-shadow:
-        0 2px 0 #fff3c4,
-        0 0 8px rgba(255, 215, 120, .45),
-        0 0 18px rgba(215,162,74,.30),
-        0 4px 12px rgba(70,35,10,.22);
       transform-origin:top center;
-      animation:swing 3.2s ease-in-out infinite;
+      text-shadow:
+        0 1px 0 #fff6da,
+        0 0 8px rgba(255,223,140,.4),
+        0 0 18px rgba(207,154,53,.22),
+        0 5px 14px rgba(90,55,20,.16);
+      animation:swing 3.4s ease-in-out infinite;
     }
 
-    .hanging-book::before{
+    .book-hang::before{
       content:"";
       position:absolute;
       left:50%;
@@ -195,20 +182,20 @@
       transform:translateX(-50%);
       width:2px;
       height:24px;
-      background:linear-gradient(180deg,#e4bd74,#8a5b20);
-      box-shadow:0 0 4px rgba(0,0,0,.14);
+      background:linear-gradient(180deg,#ddb76f,#94601f);
+      box-shadow:0 0 4px rgba(0,0,0,.12);
     }
 
     @keyframes swing{
-      0%,100%{ transform:translateX(-50%) rotate(2deg); }
-      25%{ transform:translateX(-50%) rotate(-4deg); }
-      50%{ transform:translateX(-50%) rotate(3deg); }
-      75%{ transform:translateX(-50%) rotate(-2deg); }
+      0%,100%{transform:translateX(-50%) rotate(2deg);}
+      25%{transform:translateX(-50%) rotate(-4deg);}
+      50%{transform:translateX(-50%) rotate(3deg);}
+      75%{transform:translateX(-50%) rotate(-2deg);}
     }
 
     .ornament{
-      width:min(860px, 95vw);
-      margin:12px auto 0;
+      width:min(860px,95vw);
+      margin:14px auto 0;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -218,7 +205,7 @@
     .orn-line{
       flex:1;
       height:2px;
-      background:linear-gradient(90deg, transparent, #c8922e, #fff0c9, #c8922e, transparent);
+      background:linear-gradient(90deg, transparent, var(--gold), #fff1c9, var(--gold), transparent);
       box-shadow:0 0 10px rgba(200,150,60,.18);
       position:relative;
     }
@@ -229,51 +216,48 @@
       position:absolute;
       top:50%;
       transform:translateY(-50%);
-      color:#a26d28;
+      color:#ab7428;
       font-size:1rem;
     }
 
-    .orn-line.left::after{ right:20px; }
-    .orn-line.right::after{ left:20px; }
+    .orn-line.left::after{right:18px;}
+    .orn-line.right::after{left:18px;}
 
     .orn-center{
       display:flex;
-      gap:8px;
       align-items:center;
-      color:#a26d28;
+      gap:8px;
+      color:#ab7428;
       font-size:1rem;
       white-space:nowrap;
     }
 
-    /* ================= BOOK FRONT ================= */
+    /* front book */
     .scene{
-      width:min(690px, 96vw);
-      margin:26px auto 0;
+      width:min(700px,96vw);
+      margin:34px auto 0;
       position:relative;
-      z-index:6;
-      background:var(--bg);
     }
 
     .book-stage{
-      width:100%;
-      min-height:980px;
       position:relative;
+      min-height:970px;
+      width:100%;
     }
 
     .closed-view,
     .open-view{
       position:absolute;
-      left:0;
-      top:0;
+      inset:0 auto auto 0;
       width:100%;
     }
 
     .closed-view{
       opacity:1;
       pointer-events:auto;
-      transition:opacity .45s ease, transform .95s cubic-bezier(.2,.75,.12,1);
       transform-origin:left center;
       transform:perspective(1800px) rotateY(0deg);
+      transition:opacity .45s ease, transform .95s cubic-bezier(.2,.75,.12,1);
     }
 
     .closed-view.hide{
@@ -282,17 +266,16 @@
       transform:perspective(1800px) rotateY(-88deg);
     }
 
-    .closed-book-wrap{
-      width:100%;
+    .front-book{
       display:flex;
       justify-content:center;
       align-items:center;
       padding-top:8px;
     }
 
-    .closed-book-wrap img{
+    .front-book img{
       width:100%;
-      max-width:585px;
+      max-width:590px;
       height:auto;
       display:block;
       filter:drop-shadow(0 22px 30px rgba(0,0,0,.18));
@@ -310,15 +293,15 @@
       border:none;
       outline:none;
       cursor:pointer;
-      min-width:190px;
+      min-width:195px;
       padding:18px 48px;
       border-radius:999px;
       color:#fff4e2;
       font-family:"Cinzel", serif;
-      font-size:1.08rem;
+      font-size:1.06rem;
       font-weight:700;
       letter-spacing:.4px;
-      background:linear-gradient(180deg,var(--btn1) 0%, #751a13 55%, var(--btn2) 100%);
+      background:linear-gradient(180deg,var(--btn1) 0%, #761b13 55%, var(--btn2) 100%);
       border:2px solid var(--gold);
       box-shadow:
         0 12px 20px rgba(0,0,0,.16),
@@ -337,7 +320,7 @@
       margin-top:22px;
     }
 
-    /* ================= OPEN BOOK ================= */
+    /* open book */
     .open-view{
       opacity:0;
       pointer-events:none;
@@ -351,7 +334,7 @@
 
     .open-shell{
       width:100%;
-      max-width:640px;
+      max-width:650px;
       min-height:860px;
       margin:0 auto;
       position:relative;
@@ -457,8 +440,8 @@
     }
 
     @keyframes pageFlip{
-      0%{ transform:rotateY(0deg); }
-      100%{ transform:rotateY(-180deg); }
+      0%{transform:rotateY(0deg);}
+      100%{transform:rotateY(-180deg);}
     }
 
     .page-title{
@@ -514,94 +497,41 @@
       color:#4a2d1a;
     }
 
-    /* ================= RESPONSIVE ================= */
     @media (max-width: 900px){
-      .nav-shell{
-        height:220px;
-      }
-
-      .nav-image{
-        transform:translateY(34px);
-      }
-
-      .nav-btn{
-        padding:8px 15px;
-        min-width:68px;
-        font-size:.88rem;
-      }
-
       .hero{
-        margin:-2px auto 0;
-      }
-
-      .title-box{
-        padding-top:10px;
+        margin:0 auto 0;
       }
 
       .title-main{
-        font-size:clamp(3.2rem, 8vw, 5.6rem);
-        line-height:1.08;
-        padding:8px 8px 0;
+        font-size:clamp(3rem,8vw,5.6rem);
       }
 
       .hanging-book{
-        font-size:clamp(2rem, 4.8vw, 3.8rem);
-        margin-top:-8px;
+        font-size:clamp(2rem,4.8vw,3.8rem);
       }
 
-      .scene{
-        width:min(610px, 96vw);
-        margin:24px auto 0;
-      }
-
-      .closed-book-wrap img{
+      .front-book img{
         max-width:530px;
       }
     }
 
     @media (max-width: 600px){
-      .nav-shell{
-        height:205px;
-      }
-
-      .nav-image{
-        transform:translateY(30px);
-      }
-
-      .nav-btn{
-        padding:8px 13px;
-        min-width:62px;
-        font-size:.82rem;
-      }
-
-      .nav-btn.home{ left:14%; top:68%; }
-      .nav-btn.about{ left:38%; top:68%; }
-      .nav-btn.login{ left:62%; top:68%; }
-      .nav-btn.more{ left:86%; top:68%; }
-
       .hero{
-        margin:0 auto 0;
         padding:0 10px;
       }
 
-      .title-box{
-        padding-top:8px;
-        margin-bottom:16px;
-      }
-
       .title-main{
-        font-size:clamp(3rem, 8.2vw, 4.8rem);
-        line-height:1.06;
-        padding:8px 6px 0;
+        font-size:clamp(2.8rem,8vw,4.8rem);
+        line-height:1.04;
       }
 
       .hanging-book{
-        font-size:clamp(1.95rem, 5vw, 3.4rem);
+        font-size:clamp(1.95rem,5vw,3.4rem);
         margin-top:-6px;
       }
 
       .scene{
-        width:min(540px, 96vw);
+        width:min(540px,96vw);
         margin-top:22px;
       }
 
@@ -609,7 +539,7 @@
         min-height:1120px;
       }
 
-      .closed-book-wrap img{
+      .front-book img{
         max-width:470px;
       }
 
@@ -663,39 +593,12 @@
     }
 
     @media (max-width: 420px){
-      .nav-shell{
-        height:190px;
-      }
-
-      .nav-image{
-        transform:translateY(28px);
-      }
-
-      .nav-btn{
-        padding:7px 11px;
-        min-width:58px;
-        font-size:.76rem;
-      }
-
-      .hero{
-        margin:0 auto 0;
-        padding:0 8px;
-      }
-
-      .title-box{
-        padding-top:6px;
-        margin-bottom:14px;
-      }
-
       .title-main{
-        font-size:clamp(2.7rem, 8vw, 4.1rem);
-        line-height:1.04;
-        padding:6px 4px 0;
+        font-size:clamp(2.5rem,8vw,4.1rem);
       }
 
       .hanging-book{
-        font-size:clamp(1.85rem, 5vw, 2.9rem);
-        margin-top:-5px;
+        font-size:clamp(1.8rem,5vw,2.9rem);
       }
 
       .scene{
@@ -707,7 +610,7 @@
         min-height:1040px;
       }
 
-      .closed-book-wrap img{
+      .front-book img{
         max-width:425px;
       }
 
@@ -752,22 +655,10 @@
 <body>
   <div class="page">
 
-    <div class="nav-section">
-      <div class="nav-shell">
-        <img src="navigationbar.png" alt="Vintage Navigation Bar" class="nav-image">
-        <div class="nav-buttons">
-          <a href="#" class="nav-btn home">Home</a>
-          <a href="#" class="nav-btn about">About</a>
-          <a href="#" class="nav-btn login">Login</a>
-          <a href="#" class="nav-btn more">More</a>
-        </div>
-      </div>
-    </div>
-
-    <section class="hero">
-      <div class="title-box">
-        <div class="title-main">
-          My <span class="secret-wrap">Secre<span class="t-anchor">t<span class="hanging-book">Book</span></span></span>
+    <div class="content">
+      <div class="title-wrap">
+        <div class="title">
+          My <span class="secret-wrap">Secre<span class="t-anchor">t<span class="book-hang">Book</span></span></span>
         </div>
 
         <div class="ornament">
@@ -776,55 +667,54 @@
           <div class="orn-line right"></div>
         </div>
       </div>
-    </section>
 
-    <div class="scene">
-      <div class="book-stage">
+      <div class="scene">
+        <div class="book-stage">
 
-        <div class="closed-view" id="closedView">
-          <div class="closed-book-wrap">
-            <img src="book.png" alt="Closed Secret Book">
+          <div class="closed-view" id="closedView">
+            <div class="front-book">
+              <img src="book.png" alt="Closed Secret Book">
+            </div>
+
+            <div class="controls">
+              <button class="btn" id="nextBtn" type="button">Next</button>
+            </div>
           </div>
 
-          <div class="controls">
-            <button class="btn" id="nextBtn" type="button">Next</button>
-          </div>
-        </div>
+          <div class="open-view" id="openView">
+            <div class="open-shell">
+              <div class="open-book">
 
-        <div class="open-view" id="openView">
-          <div class="open-shell">
-            <div class="open-book">
-
-              <div class="flip-page" id="flipPage">
-                <div class="flip-page-face"></div>
-                <div class="flip-page-back"></div>
-              </div>
-
-              <div class="pages">
-                <div class="page-left">
-                  <div class="page-title">Welcome to your Secret World ✨</div>
-
-                  <div class="page-intro">
-                    Start your journey here<br>
-                    Share your thoughts, jokes, shayari and feelings 💛<br>
-                    This is your personal space<br>
-                    stay happy and spread happiness ✨
-                  </div>
-
-                  <div class="page-quote">
-                    “Every page holds a secret,<br>
-                    every word a mystery...”
-                  </div>
-
-                  <div class="spark">✦ ✦ ✦</div>
-                  <div class="await">The secrets await...</div>
-                  <div class="spark">✦</div>
-                  <div class="welcome-title">Welcome Note</div>
-                  <div class="spark">✦</div>
+                <div class="flip-page" id="flipPage">
+                  <div class="flip-page-face"></div>
+                  <div class="flip-page-back"></div>
                 </div>
 
-                <div class="page-right">
-                  <div class="letter">Pyare dost,
+                <div class="pages">
+                  <div class="page-left">
+                    <div class="page-title">Welcome to your Secret World ✨</div>
+
+                    <div class="page-intro">
+                      Start your journey here<br>
+                      Share your thoughts, jokes, shayari and feelings 💛<br>
+                      This is your personal space<br>
+                      stay happy and spread happiness ✨
+                    </div>
+
+                    <div class="page-quote">
+                      “Every page holds a secret,<br>
+                      every word a mystery...”
+                    </div>
+
+                    <div class="spark">✦ ✦ ✦</div>
+                    <div class="await">The secrets await...</div>
+                    <div class="spark">✦</div>
+                    <div class="welcome-title">Welcome Note</div>
+                    <div class="spark">✦</div>
+                  </div>
+
+                  <div class="page-right">
+                    <div class="letter">Pyare dost,
 
 Is raz ki kitaab mein aapka dil se swaagat hai.
 
@@ -841,15 +731,31 @@ Aage barhiye, kyunki yeh kitaab sirf aapki hai...
 
 — My Secret Book</div>
 
-                  <button class="btn secondary" id="backBtn" type="button">Back</button>
+                    <button class="btn secondary" id="backBtn" type="button">Back</button>
+                  </div>
                 </div>
-              </div>
 
+              </div>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
+    </div>
+
+    <div class="petals">
+      <span class="petal"></span>
+      <span class="petal"></span>
+      <span class="petal"></span>
+      <span class="petal"></span>
+      <span class="petal"></span>
+      <span class="petal"></span>
+      <span class="petal"></span>
+      <span class="petal"></span>
+      <span class="petal"></span>
+      <span class="petal"></span>
+      <span class="petal"></span>
+      <span class="petal"></span>
     </div>
 
   </div>
@@ -880,5 +786,58 @@ Aage barhiye, kyunki yeh kitaab sirf aapki hai...
       }, 350);
     });
   </script>
+
+  <style>
+    .petals{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:1;
+      overflow:hidden;
+    }
+
+    .petal{
+      position:absolute;
+      top:-80px;
+      width:18px;
+      height:26px;
+      border-radius:70% 30% 70% 30%;
+      opacity:.82;
+      filter:drop-shadow(0 4px 8px rgba(0,0,0,.10));
+      animation-name:fall;
+      animation-timing-function:linear;
+      animation-iteration-count:infinite;
+    }
+
+    .petal::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      background:linear-gradient(180deg,#f1a5b7,#cc4b6a);
+      transform:rotate(18deg);
+    }
+
+    .petal:nth-child(1){left:6%;animation-duration:13s;animation-delay:-2s;transform:scale(.9);}
+    .petal:nth-child(2){left:14%;animation-duration:16s;animation-delay:-7s;transform:scale(1.1);}
+    .petal:nth-child(3){left:22%;animation-duration:12s;animation-delay:-4s;transform:scale(.8);}
+    .petal:nth-child(4){left:30%;animation-duration:18s;animation-delay:-10s;transform:scale(1);}
+    .petal:nth-child(5){left:38%;animation-duration:14s;animation-delay:-1s;transform:scale(1.15);}
+    .petal:nth-child(6){left:46%;animation-duration:17s;animation-delay:-8s;transform:scale(.95);}
+    .petal:nth-child(7){left:54%;animation-duration:15s;animation-delay:-5s;transform:scale(1.05);}
+    .petal:nth-child(8){left:62%;animation-duration:19s;animation-delay:-11s;transform:scale(.85);}
+    .petal:nth-child(9){left:70%;animation-duration:13s;animation-delay:-3s;transform:scale(1.12);}
+    .petal:nth-child(10){left:78%;animation-duration:16s;animation-delay:-9s;transform:scale(.92);}
+    .petal:nth-child(11){left:86%;animation-duration:14s;animation-delay:-6s;transform:scale(1.08);}
+    .petal:nth-child(12){left:94%;animation-duration:18s;animation-delay:-12s;transform:scale(.88);}
+
+    @keyframes fall{
+      0%{transform:translateY(-80px) translateX(0) rotate(0deg);}
+      25%{transform:translateY(25vh) translateX(18px) rotate(80deg);}
+      50%{transform:translateY(50vh) translateX(-16px) rotate(160deg);}
+      75%{transform:translateY(75vh) translateX(22px) rotate(240deg);}
+      100%{transform:translateY(110vh) translateX(-12px) rotate(320deg);}
+    }
+  </style>
 </body>
 </html>
