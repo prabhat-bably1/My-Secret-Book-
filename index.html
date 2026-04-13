@@ -679,68 +679,53 @@
     }
 
     @media (max-width: 600px){
-    nav.ribbon-nav{
-    min-height:68px;
-    padding:0 16px;
-    gap:10px;
-    margin:8px auto 20px;
-  }
+    .nav.ribbon-nav{
+  height:62px;
+  padding:0 14px;
+  margin:8px auto 12px;
+}
 
-  .ribbon-fold{
-    width:42px;
-    height:30px;
-  }
+.ribbon-tail{
+  width:24px;
+  height:22px;
+}
 
-  .ribbon-fold.left{
-    left:-12px;
-  }
+.ribbon-tail.left{
+  left:-10px;
+}
 
-  .ribbon-fold.right{
-    right:-12px;
-  }
+.ribbon-tail.right{
+  right:-10px;
+}
 
-  .tassel-left{
-    left:16px;
-    bottom:-28px;
-  }
+.ribbon-tassel{
+  width:13px;
+  height:28px;
+  bottom:-28px;
+}
 
-  .tassel-right{
-    right:16px;
-    bottom:-28px;
-  }
-  .ribbon-tassel{
-    width:14px;
-    height:34px;
-  }
+.ribbon-tassel.left{
+  left:10px;
+}
 
-  .ribbon-tassel::before{
-    height:10px;
-  }
+.ribbon-tassel.right{
+  right:10px;
+}
 
-  .ribbon-tassel::after{
-    top:9px;
-    width:14px;
-    height:20px;
-  }
-  .nav-left,
-  .nav-right{
-    gap:10px;
-  }
+.nav-left,
+.nav-right{
+  gap:12px;
+}
 
-  .nav-btn{
-    padding:8px 4px;
-    font-size:.72rem;
-    letter-spacing:.5px;
-  }
+.nav-btn{
+  font-size:.72rem;
+  padding:6px 4px;
+  letter-spacing:.5px;
+}
 
-  .top-orn{
-    top:-14px;
-    font-size:1.3rem;
-  }
-  .bottom-orn{
-    bottom:-14px;
-    font-size:.82rem;
-        }
+.nav-btn.active{
+  padding:6px 10px;
+}
 
       .title{
         font-size:clamp(2.8rem,8vw,4.8rem);
@@ -815,64 +800,54 @@
     }
 
     @media (max-width: 420px){
-  .nav.ribbon-nav{
-    width:96vw;
-    min-height:62px;
-    padding:0 10px;
-  }
+.nav.ribbon-nav{
+  width:96vw;
+  height:56px;
+  padding:0 10px;
+}
 
-  .nav-left,
-  .nav-right{
-    gap:8px;
-  }
+.ribbon-tail{
+  width:20px;
+  height:18px;
+}
 
-  .nav-btn{
-    padding:7px 2px;
-    font-size:.66rem;
-    letter-spacing:.3px;
-  }
+.ribbon-tail.left{
+  left:-8px;
+}
 
-  .ribbon-fold{
-    width:34px;
-    height:24px;
-  }
+.ribbon-tail.right{
+  right:-8px;
+}
 
-  .ribbon-fold.left{
-    left:-10px;
-  }
+.ribbon-tassel{
+  width:11px;
+  height:22px;
+  bottom:-22px;
+}
 
-  .ribbon-fold.right{
-    right:-10px;
-  }
+.ribbon-tassel.left{
+  left:8px;
+}
 
-  .tassel-left{
-    left:12px;
-    bottom:-24px;
-  }
+.ribbon-tassel.right{
+  right:8px;
+}
 
-  .tassel-right{
-    right:12px;
-    bottom:-24px;
-  }
+.nav-left,
+.nav-right{
+  gap:8px;
+}
 
-  .ribbon-tassel{
-    width:12px;
-  }
+.nav-btn{
+  font-size:.64rem;
+  padding:5px 2px;
+  letter-spacing:.3px;
+}
 
-  .ribbon-tassel::after{
-    width:12px;
-    height:18px;
-  }
+.nav-btn.active{
+  padding:5px 8px;
+}
 
-  .top-orn{
-    top:-12px;
-    font-size:1.05rem;
-  }
-
-  .bottom-orn{
-    bottom:-12px;
-    font-size:.74rem;
-  }
       .title{
         font-size:clamp(2.5rem,8vw,4.1rem);
       }
