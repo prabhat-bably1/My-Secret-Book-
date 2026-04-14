@@ -944,6 +944,12 @@ const savedToken = localStorage.getItem("token");
 if (!savedUser && !savedToken) {
   window.location.href = "login.html";
 }
+    const savedUser = localStorage.getItem("loggedInUser");
+const savedToken = localStorage.getItem("token");
+
+if (!savedUser && !savedToken) {
+  window.location.href = "login.html";
+}
     const secretText = document.getElementById("secretText");
     const wordPreview = document.getElementById("wordPreview");
     const saveTextBtn = document.getElementById("saveTextBtn");
@@ -989,7 +995,20 @@ if (!savedUser && !savedToken) {
     const petalsSetting = document.getElementById("petalsSetting");
     const defaultTabSetting = document.getElementById("defaultTabSetting");
     const privacySwitch = document.querySelector(".privacy-switch");
+    const moreProfileBtn = document.getElementById("moreProfileBtn");
 
+    if (moreProfileBtn) {
+  moreProfileBtn.addEventListener("click", function(e) {
+    const savedUser = localStorage.getItem("loggedInUser");
+    const savedToken = localStorage.getItem("token");
+
+    if (!savedUser && !savedToken) {
+      e.preventDefault();
+      window.location.href = "login.html";
+    }
+  });
+    }
+    
     let currentImageData = "";
 
     function getFormattedDate() {
