@@ -344,6 +344,52 @@
       font-size:.92rem;
     }
 
+    .field-label{
+      display:block;
+      margin:10px 0 6px;
+      font-size:.85rem;
+      font-weight:600;
+      color:#7a3520;
+    }
+
+    .profile-input,
+    .profile-textarea,
+    .profile-select{
+      width:100%;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(208,154,54,.24);
+      background:#fffdf8;
+      outline:none;
+      font-family:"Poppins",sans-serif;
+      color:#4b2d1a;
+    }
+
+    .profile-textarea{
+      min-height:110px;
+      resize:vertical;
+      line-height:1.7;
+    }
+
+    .settings-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-top:10px;
+      flex-wrap:wrap;
+    }
+
+    .settings-row span{
+      color:#6d2418;
+      font-size:.9rem;
+      font-weight:500;
+    }
+
+    .settings-row .profile-select{
+      max-width:170px;
+    }
+
     .profile-actions{
       display:grid;
       gap:10px;
@@ -735,13 +781,13 @@
         <a href="about.html">About</a>
       </div>
       <div class="nav-group">
-        <a href="login.html" class="active">Login</a>
+        <a href="login.html">Login</a>
         <div class="more-menu">
           <a href="#">More</a>
           <div class="more-dropdown">
             <a href="#profile-area">Profile</a>
             <a href="#saved-area">Saved</a>
-            <a href="#">Logout</a>
+            <a href="#" id="moreLogoutBtn">Logout</a>
           </div>
         </div>
       </div>
@@ -762,14 +808,27 @@
 
     <div class="profile-layout" id="profile-area">
       <aside class="profile-card">
-        <div class="avatar">P</div>
-        <div class="profile-name">Prabhat</div>
-        <div class="profile-id">Prabhat@mysecretbook</div>
-        <div class="status-badge">Private Profile</div>
+        <div class="avatar" id="avatarBox">P</div>
+        <div class="profile-name" id="profileNameText">Prabhat</div>
+        <div class="profile-id" id="profileIdText">Prabhat@mysecretbook</div>
+        <div class="status-badge" id="statusBadge">Private Profile</div>
 
         <div class="profile-box">
           <h4>About Me</h4>
-          <p>Dil ki baatein, secret thoughts, shayari aur personal emotions ko ek beautiful jagah par sambhal kar rakhne wala user profile.</p>
+          <p id="aboutMeText">Dil ki baatein, secret thoughts, shayari aur personal emotions ko ek beautiful jagah par sambhal kar rakhne wala user profile.</p>
+        </div>
+
+        <div class="profile-box" id="editProfilePanel" style="display:none;">
+          <h4>Edit Profile Details</h4>
+
+          <label class="field-label">Name</label>
+          <input class="profile-input" id="editNameInput" type="text" placeholder="Enter your name">
+
+          <label class="field-label">Profile ID</label>
+          <input class="profile-input" id="editIdInput" type="text" placeholder="Enter profile id">
+
+          <label class="field-label">About Me</label>
+          <textarea class="profile-textarea" id="editAboutInput" placeholder="Write about yourself..."></textarea>
         </div>
 
         <div class="profile-box">
@@ -777,9 +836,42 @@
           <p>Real name based identity, safe space, clean profile aur personal expression.</p>
         </div>
 
+        <div class="profile-box" id="privacyPanel" style="display:none;">
+          <h4>Privacy Settings</h4>
+          <div class="settings-row">
+            <span>Profile Visibility</span>
+            <select class="profile-select" id="privacySelect">
+               <option value="private">Private</option>
+              <option value="public">Public</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="profile-box" id="settingsPanel" style="display:none;">
+          <h4>Settings</h4>
+          <div class="settings-row">
+            <span>Petals Animation</span>
+            <select class="profile-select" id="petalsSetting">
+              <option value="on">On</option>
+              <option value="off">Off</option>
+            </select>
+          </div>
+
+          <div class="settings-row">
+            <span>Default Saved Tab</span>
+            <select class="profile-select" id="defaultTabSetting">
+              <option value="word">Word</option>
+              <option value="image">Images</option>
+            </select>
+          </div>
+        </div>
+
         <div class="profile-actions">
-          <button class="small-btn" type="button">Edit Profile</button>
-          <button class="small-btn" type="button">Change Privacy</button>
+          <button class="small-btn" id="editProfileBtn" type="button">Edit Profile</button>
+          <button class="small-btn" id="saveProfileBtn" type="button">Save Profile</button>
+          <button class="small-btn" id="settingsBtn" type="button">Settings</button>
+          <button class="small-btn" id="privacyBtn" type="button">Change Privacy</button>
+          <button class="small-btn" id="logoutBtn" type="button">Logout</button>
         </div>
 
         <div class="stats">
@@ -814,7 +906,7 @@
               <input class="file-input" id="imageInput" type="file" accept="image/*">
 
               <div class="image-preview" id="imagePreview">Image preview yahan dikhega.</div>
-              
+
               <div class="book-actions">
                 <button class="action-btn" id="saveImageBtn" type="button">Save Image</button>
                 <button class="action-btn" id="clearImageBtn" type="button">Clear Image</button>
@@ -866,6 +958,32 @@
     const wordPanel = document.getElementById("wordPanel");
     const imagePanel = document.getElementById("imagePanel");
 
+    const profileNameText = document.getElementById("profileNameText");
+    const profileIdText = document.getElementById("profileIdText");
+    const aboutMeText = document.getElementById("aboutMeText");
+    const statusBadge = document.getElementById("statusBadge");
+    const avatarBox = document.getElementById("avatarBox");
+
+    const editProfilePanel = document.getElementById("editProfilePanel");
+    const privacyPanel = document.getElementById("privacyPanel");
+    const settingsPanel = document.getElementById("settingsPanel");
+
+    const editNameInput = document.getElementById("editNameInput");
+    const editIdInput = document.getElementById("editIdInput");
+    const editAboutInput = document.getElementById("editAboutInput");
+
+    const editProfileBtn = document.getElementById("editProfileBtn");
+    const saveProfileBtn = document.getElementById("saveProfileBtn");
+    const settingsBtn = document.getElementById("settingsBtn");
+    const privacyBtn = document.getElementById("privacyBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
+    const moreLogoutBtn = document.getElementById("moreLogoutBtn");
+
+    const privacySelect = document.getElementById("privacySelect");
+    const petalsSetting = document.getElementById("petalsSetting");
+    const defaultTabSetting = document.getElementById("defaultTabSetting");
+    const privacySwitch = document.querySelector(".privacy-switch");
+
     let currentImageData = "";
 
     function getFormattedDate() {
@@ -876,6 +994,62 @@
       const div = document.createElement("div");
       div.textContent = text;
       return div.innerHTML;
+    }
+
+    function getDefaultProfile() {
+      return {
+        name: "Prabhat",
+        profileId: "Prabhat@mysecretbook",
+        about: "Dil ki baatein, secret thoughts, shayari aur personal emotions ko ek beautiful jagah par sambhal kar rakhne wala user profile.",
+        privacy: "private",
+        petals: "on",
+        defaultTab: "word"
+      };
+    }
+
+    function getProfileData() {
+      return JSON.parse(localStorage.getItem("msb_profile_data") || "null") || getDefaultProfile();
+    }
+
+    function saveProfileData(data) {
+      localStorage.setItem("msb_profile_data", JSON.stringify(data));
+    }
+
+    function applyProfileUI() {
+      const data = getProfileData();
+
+      profileNameText.textContent = data.name || "Prabhat";
+      profileIdText.textContent = data.profileId || "Prabhat@mysecretbook";
+      aboutMeText.textContent = data.about || "";
+      statusBadge.textContent = data.privacy === "public" ? "Public Profile" : "Private Profile";
+      privacySwitch.textContent = data.privacy === "public" ? "Visible: Public" : "Visible: Private";
+
+      privacySelect.value = data.privacy || "private";
+      petalsSetting.value = data.petals || "on";
+      defaultTabSetting.value = data.defaultTab || "word";
+
+      editNameInput.value = data.name || "";
+      editIdInput.value = data.profileId || "";
+      editAboutInput.value = data.about || "";
+
+      const firstLetter = (data.name || "P").trim().charAt(0).toUpperCase() || "P";
+      avatarBox.textContent = firstLetter;
+
+      document.querySelector(".petals").style.display = (data.petals === "off") ? "none" : "block";
+    }
+
+    function togglePanel(panel) {
+      const isOpen = panel.style.display === "block";
+      editProfilePanel.style.display = "none";
+      privacyPanel.style.display = "none";
+      settingsPanel.style.display = "none";
+      panel.style.display = isOpen ? "none" : "block";
+    }
+
+    function doLogout() {
+      localStorage.removeItem("loggedInUser");
+      localStorage.removeItem("token");
+      window.location.href = "login.html";
     }
 
     function loadWords() {
@@ -1083,12 +1257,94 @@
       wordPanel.classList.remove("active");
     }
 
-    wordTab.addEventListener("click", showWords);
-    imageTab.addEventListener("click", showImages);
+    wordTab.addEventListener("click", () => {
+      showWords();
+      const data = getProfileData();
+      data.defaultTab = "word";
+      saveProfileData(data);
+    });
 
+    imageTab.addEventListener("click", () => {
+      showImages();
+      const data = getProfileData();
+      data.defaultTab = "image";
+      saveProfileData(data);
+    });
+
+    editProfileBtn.addEventListener("click", () => {
+      togglePanel(editProfilePanel);
+    });
+
+    privacyBtn.addEventListener("click", () => {
+      togglePanel(privacyPanel);
+    });
+
+    settingsBtn.addEventListener("click", () => {
+      togglePanel(settingsPanel);
+    });
+
+    saveProfileBtn.addEventListener("click", () => {
+      const data = getProfileData();
+
+      data.name = editNameInput.value.trim() || "Prabhat";
+      data.profileId = editIdInput.value.trim() || "Prabhat@mysecretbook";
+      data.about = editAboutInput.value.trim() || "No about text added yet.";
+      data.privacy = privacySelect.value;
+      data.petals = petalsSetting.value;
+      data.defaultTab = defaultTabSetting.value;
+
+      saveProfileData(data);
+      applyProfileUI();
+
+      editProfilePanel.style.display = "none";
+      privacyPanel.style.display = "none";
+      settingsPanel.style.display = "none";
+
+      alert("Profile updated successfully.");
+    });
+
+    privacySelect.addEventListener("change", () => {
+      const data = getProfileData();
+      data.privacy = privacySelect.value;
+      saveProfileData(data);
+      applyProfileUI();
+    });
+
+    petalsSetting.addEventListener("change", () => {
+      const data = getProfileData();
+      data.petals = petalsSetting.value;
+      saveProfileData(data);
+      applyProfileUI();
+    });
+
+    defaultTabSetting.addEventListener("change", () => {
+      const data = getProfileData();
+      data.defaultTab = defaultTabSetting.value;
+      saveProfileData(data);
+    });
+
+    logoutBtn.addEventListener("click", doLogout);
+    moreLogoutBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      doLogout();
+    });
+
+    applyProfileUI();
     loadWords();
     loadImages();
+
+    const data = getProfileData();
+    if (data.defaultTab === "image") {
+      showImages();
+    } else {
+      showWords();
+    }
   </script>
 </body>
 </html>
-           
+
+
+
+
+
+ 
