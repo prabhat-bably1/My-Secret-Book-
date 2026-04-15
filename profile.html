@@ -938,17 +938,10 @@
   </div>
 
   <script>
-    const savedUser = localStorage.getItem("loggedInUser");
-const savedToken = localStorage.getItem("token");
+    const user = localStorage.getItem("loggedInUser");
 
-if (!savedUser && !savedToken) {
-  window.location.href = "login.html";
-}
-    const savedUser = localStorage.getItem("loggedInUser");
-const savedToken = localStorage.getItem("token");
-
-if (!savedUser && !savedToken) {
-  window.location.href = "login.html";
+if (!user) {
+  window.location.replace("login.html");
 }
     const secretText = document.getElementById("secretText");
     const wordPreview = document.getElementById("wordPreview");
@@ -1071,13 +1064,10 @@ if (!savedUser && !savedToken) {
       panel.style.display = isOpen ? "none" : "block";
     }
 
-    function doLogout() {
+function doLogout() {
   localStorage.removeItem("loggedInUser");
-  localStorage.removeItem("token");
-  sessionStorage.removeItem("loggedInUser");
-  sessionStorage.removeItem("token");
   window.location.replace("login.html");
-    }
+}
 
     function loadWords() {
       const words = JSON.parse(localStorage.getItem("msb_words") || "[]");
