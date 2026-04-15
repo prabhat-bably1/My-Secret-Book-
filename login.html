@@ -149,6 +149,7 @@
       display:flex;
       gap:10px;
       flex-wrap:wrap;
+      align-items:center;
     }
 
     .nav a{
@@ -170,46 +171,46 @@
       background:rgba(96,40,14,.28);
     }
 
-     .more-menu{
-  position:relative;
-}
+    .more-menu{
+      position:relative;
+    }
 
-.more-dropdown{
-  position:absolute;
-  top:115%;
-  right:0;
-  min-width:170px;
-  background:rgba(255,250,242,.98);
-  border:1px solid rgba(208,154,54,.25);
-  border-radius:18px;
-  box-shadow:0 18px 28px rgba(0,0,0,.10);
-  padding:8px;
-  display:none;
-  z-index:50;
-}
+    .more-dropdown{
+      position:absolute;
+      top:115%;
+      right:0;
+      min-width:170px;
+      background:rgba(255,250,242,.98);
+      border:1px solid rgba(208,154,54,.25);
+      border-radius:18px;
+      box-shadow:0 18px 28px rgba(0,0,0,.10);
+      padding:8px;
+      display:none;
+      z-index:50;
+    }
 
-.more-dropdown a{
-  display:block;
-  text-decoration:none;
-  color:#6d2418;
-  padding:10px 12px;
-  border-radius:12px;
-  font-size:.88rem;
-  font-family:"Poppins",sans-serif;
-  background:transparent;
-  border:none;
-}
+    .more-dropdown a{
+      display:block;
+      text-decoration:none;
+      color:#6d2418;
+      padding:10px 12px;
+      border-radius:12px;
+      font-size:.88rem;
+      font-family:"Poppins",sans-serif;
+      background:transparent;
+      border:none;
+    }
 
-.more-dropdown a:hover{
-  background:rgba(208,154,54,.10);
-  color:#8b2c1f;
-  transform:none;
-}
+    .more-dropdown a:hover{
+      background:rgba(208,154,54,.10);
+      color:#8b2c1f;
+      transform:none;
+    }
 
-.more-menu:hover .more-dropdown{
-  display:block;
-}
-    
+    .more-menu:hover .more-dropdown{
+      display:block;
+    }
+
     .title-wrap{
       text-align:center;
       margin:4px 0 10px;
@@ -548,6 +549,23 @@
       line-height:1.7;
     }
 
+    .forgot-link-wrap{
+      margin-top:-4px;
+      margin-bottom:14px;
+      text-align:right;
+    }
+
+    .forgot-link{
+      color:#8b2c1f;
+      text-decoration:none;
+      font-weight:600;
+      font-size:13px;
+    }
+
+    .forgot-link:hover{
+      text-decoration:underline;
+    }
+
     @media (max-width: 900px){
       .auth-wrap{
         grid-template-columns:1fr;
@@ -644,23 +662,23 @@
 
   <div class="page">
     <div class="nav">
-  <div class="nav-group">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-  </div>
-
-  <div class="nav-group">
-    <a href="login.html" class="active">Login</a>
-
-    <div class="more-menu">
-      <a href="#" class="more-btn">More</a>
-      <div class="more-dropdown">
-        <a href="profile.html">Profile</a>
-        <a href="#">Settings</a>
-        <a href="#">Logout</a>
+      <div class="nav-group">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
       </div>
-    </div>
-  </div>
+
+      <div class="nav-group">
+        <a href="login.html" class="active">Login</a>
+
+        <div class="more-menu">
+          <a href="#" class="more-btn">More</a>
+          <div class="more-dropdown">
+            <a href="profile.html">Profile</a>
+            <a href="#">Settings</a>
+            <a href="#" id="navLogoutBtn">Logout</a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="title-wrap">
@@ -674,12 +692,13 @@
         <div class="orn-line"></div>
       </div>
 
-            <section class="sign in/up-section">
+      <section class="sign in/up-section">
         <h2 class="sign in/up-heading">Sign in/up</h2>
 
-      <div class="hero-note">
-        Ek safe, beautiful aur premium jagah jahan dil ki baat, secret memories, shayari aur personal thoughts sambhal kar rakhe ja sakein.
-      </div>
+        <div class="hero-note">
+          Ek safe, beautiful aur premium jagah jahan dil ki baat, secret memories, shayari aur personal thoughts sambhal kar rakhe ja sakein.
+        </div>
+      </section>
     </div>
 
     <div class="auth-wrap">
@@ -703,7 +722,7 @@
         </div>
 
         <div class="note-box">
-          Note: Ye page abhi frontend design + form preview hai. Real signup, login, image upload, save data, bad-word filter, public/private posts aur comments ke liye backend + database connect karna hoga.
+          Note: Ye page abhi frontend design + form + local storage logic ke saath kaam karega. Real OTP, email verification, cloud sync aur database ke liye backend connect karna hoga.
         </div>
       </section>
 
@@ -717,7 +736,7 @@
           <h3 class="form-title">Welcome Back</h3>
           <p class="form-sub">Apni secret duniya me wapas aayein aur apne saved thoughts ko continue karein.</p>
 
-          <form>
+          <form id="signinForm">
             <div class="field">
               <label for="signin-email">Email or My Secret ID</label>
               <input type="text" id="signin-email" placeholder="Enter your email or ID">
@@ -726,6 +745,10 @@
             <div class="field">
               <label for="signin-password">Password</label>
               <input type="password" id="signin-password" placeholder="Enter your password">
+            </div>
+
+            <div class="forgot-link-wrap">
+              <a href="#" id="forgotPasswordLink" class="forgot-link">Forgot Password?</a>
             </div>
 
             <button class="submit-btn" type="submit">Sign In</button>
@@ -740,7 +763,7 @@
           <h3 class="form-title">Create Your Secret Account</h3>
           <p class="form-sub">Real first name aur middle name se ID preview banega. Is page me nickname field nahi diya gaya hai.</p>
 
-          <form>
+          <form id="signupForm">
             <div class="row">
               <div class="field">
                 <label for="firstName">First Name</label>
@@ -756,6 +779,11 @@
             <div class="field">
               <label for="signup-email">Email Address</label>
               <input type="email" id="signup-email" placeholder="Enter your email">
+            </div>
+
+            <div class="field">
+              <label for="signup-phone">Mobile Number</label>
+              <input type="tel" id="signup-phone" placeholder="Enter mobile number">
             </div>
 
             <div class="row">
@@ -783,7 +811,7 @@
             </div>
 
             <div class="note-box">
-              Preview rule: first name + middle name se ID generate hota dikhaya gaya hai. Real save aur validation backend me hoga.
+              Preview rule: first name + middle name se ID generate hota dikhaya gaya hai. Real save aur validation local storage me hoga.
             </div>
 
             <button class="submit-btn" type="submit">Create Account</button>
@@ -791,6 +819,39 @@
 
           <div class="footer-line">
             Sign up ke baad profile, secret writing page aur future social features connect kiye ja sakte hain.
+          </div>
+        </div>
+
+        <div class="form-panel" id="forgotPanel">
+          <h3 class="form-title">Reset Your Password</h3>
+          <p class="form-sub">Registered email aur mobile number verify karke new password set karein.</p>
+
+          <form id="forgotForm">
+            <div class="field">
+              <label for="forgot-email">Registered Email</label>
+              <input type="email" id="forgot-email" placeholder="Enter registered email">
+            </div>
+
+            <div class="field">
+              <label for="forgot-phone">Registered Mobile Number</label>
+              <input type="tel" id="forgot-phone" placeholder="Enter mobile number">
+            </div>
+
+            <div class="field">
+              <label for="forgot-new-password">New Password</label>
+              <input type="password" id="forgot-new-password" placeholder="Enter new password">
+            </div>
+
+            <div class="field">
+              <label for="forgot-confirm-password">Confirm New Password</label>
+              <input type="password" id="forgot-confirm-password" placeholder="Confirm new password">
+            </div>
+
+            <button class="submit-btn" type="submit">Reset Password</button>
+          </form>
+
+          <div class="footer-line">
+            <a href="#" id="backToLoginLink" class="forgot-link">Back to Sign In</a>
           </div>
         </div>
       </section>
@@ -802,24 +863,64 @@
     const signupTab = document.getElementById("signupTab");
     const signinPanel = document.getElementById("signinPanel");
     const signupPanel = document.getElementById("signupPanel");
+    const forgotPanel = document.getElementById("forgotPanel");
 
-    signinTab.addEventListener("click", () => {
-      signinTab.classList.add("active");
-      signupTab.classList.remove("active");
-      signinPanel.classList.add("active");
-      signupPanel.classList.remove("active");
-    });
+    const signinForm = document.getElementById("signinForm");
+    const signupForm = document.getElementById("signupForm");
+    const forgotForm = document.getElementById("forgotForm");
 
-    signupTab.addEventListener("click", () => {
-      signupTab.classList.add("active");
-      signinTab.classList.remove("active");
-      signupPanel.classList.add("active");
-      signinPanel.classList.remove("active");
-    });
+    const forgotPasswordLink = document.getElementById("forgotPasswordLink");
+    const backToLoginLink = document.getElementById("backToLoginLink");
+    const navLogoutBtn = document.getElementById("navLogoutBtn");
 
     const firstName = document.getElementById("firstName");
     const middleName = document.getElementById("middleName");
     const idPreview = document.getElementById("idPreview");
+
+    function showSigninPanel() {
+      signinTab.classList.add("active");
+      signupTab.classList.remove("active");
+      signinPanel.classList.add("active");
+      signupPanel.classList.remove("active");
+      forgotPanel.classList.remove("active");
+    }
+
+    function showSignupPanel() {
+      signupTab.classList.add("active");
+      signinTab.classList.remove("active");
+      signupPanel.classList.add("active");
+      signinPanel.classList.remove("active");
+      forgotPanel.classList.remove("active");
+    }
+
+    function showForgotPanel() {
+      signinTab.classList.remove("active");
+      signupTab.classList.remove("active");
+      signinPanel.classList.remove("active");
+      signupPanel.classList.remove("active");
+      forgotPanel.classList.add("active");
+    }
+
+    signinTab.addEventListener("click", showSigninPanel);
+    signupTab.addEventListener("click", showSignupPanel);
+
+    forgotPasswordLink.addEventListener("click", function(e) {
+      e.preventDefault();
+      showForgotPanel();
+    });
+
+    backToLoginLink.addEventListener("click", function(e) {
+      e.preventDefault();
+      showSigninPanel();
+    });
+
+    if (navLogoutBtn) {
+      navLogoutBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        localStorage.removeItem("loggedInUser");
+        window.location.href = "login.html";
+      });
+    }
 
     function cleanName(value) {
       return value
@@ -828,7 +929,7 @@
         .split(/\s+/)
         .join("");
     }
-         
+
     function updatePreview() {
       const first = cleanName(firstName.value);
       const middle = cleanName(middleName.value);
@@ -847,7 +948,151 @@
 
     firstName.addEventListener("input", updatePreview);
     middleName.addEventListener("input", updatePreview);
+
+    signinForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const loginValue = document.getElementById("signin-email").value.trim().toLowerCase();
+      const password = document.getElementById("signin-password").value;
+
+      if (!loginValue || !password) {
+        alert("Please fill email/ID and password.");
+        return;
+      }
+
+      const users = JSON.parse(localStorage.getItem("msb_users") || "[]");
+
+      const matchedUser = users.find(user =>
+        (user.email === loginValue || user.secretId.toLowerCase() === loginValue) &&
+        user.password === password
+      );
+
+      if (!matchedUser) {
+        alert("Wrong login details.");
+        return;
+      }
+
+      localStorage.setItem("loggedInUser", matchedUser.email);
+      window.location.href = "profile.html";
+    });
+
+    signupForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const first = cleanName(document.getElementById("firstName").value);
+      const middle = cleanName(document.getElementById("middleName").value);
+      const email = document.getElementById("signup-email").value.trim().toLowerCase();
+      const phone = document.getElementById("signup-phone").value.trim();
+      const password = document.getElementById("signup-password").value;
+      const confirmPassword = document.getElementById("confirm-password").value;
+      const privacyValue = document.getElementById("privacy").value;
+
+      if (!first || !email || !phone || !password || !confirmPassword) {
+        alert("Please fill all required fields.");
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return;
+      }
+
+      if (phone.length < 10) {
+        alert("Enter valid mobile number.");
+        return;
+      }
+
+      const users = JSON.parse(localStorage.getItem("msb_users") || "[]");
+      const secretId = `${first}${middle || ""}@mysecretbook`;
+
+      const emailExists = users.some(user => user.email === email);
+      if (emailExists) {
+        alert("This email is already registered.");
+        return;
+      }
+
+      const phoneExists = users.some(user => user.phone === phone);
+      if (phoneExists) {
+        alert("This mobile number is already registered.");
+        return;
+      }
+
+      const idExists = users.some(user => user.secretId.toLowerCase() === secretId.toLowerCase());
+      if (idExists) {
+        alert("This Secret ID already exists. Try changing your name.");
+        return;
+      }
+
+      users.push({
+        firstName: first,
+        middleName: middle,
+        email: email,
+        phone: phone,
+        password: password,
+        privacy: privacyValue,
+        secretId: secretId
+      });
+
+      localStorage.setItem("msb_users", JSON.stringify(users));
+      localStorage.setItem("loggedInUser", email);
+
+      const profileData = {
+        name: `${first} ${middle}`.trim(),
+        profileId: secretId,
+        about: "Dil ki baatein, secret thoughts, shayari aur personal emotions ko ek beautiful jagah par sambhal kar rakhne wala user profile.",
+        privacy: privacyValue.toLowerCase().includes("public") ? "public" : "private",
+        petals: "on",
+        defaultTab: "word"
+      };
+
+      localStorage.setItem("msb_profile_data", JSON.stringify(profileData));
+
+      alert("Account created successfully.");
+      window.location.href = "profile.html";
+    });
+
+    forgotForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const email = document.getElementById("forgot-email").value.trim().toLowerCase();
+      const phone = document.getElementById("forgot-phone").value.trim();
+      const newPassword = document.getElementById("forgot-new-password").value;
+      const confirmNewPassword = document.getElementById("forgot-confirm-password").value;
+
+      if (!email || !phone || !newPassword || !confirmNewPassword) {
+        alert("Please fill all fields.");
+        return;
+      }
+
+      if (newPassword !== confirmNewPassword) {
+        alert("New passwords do not match.");
+        return;
+      }
+
+      const users = JSON.parse(localStorage.getItem("msb_users") || "[]");
+      const userIndex = users.findIndex(user => user.email === email && user.phone === phone);
+
+      if (userIndex === -1) {
+        alert("Email or mobile number does not match our records.");
+        return;
+      }
+
+      users[userIndex].password = newPassword;
+      localStorage.setItem("msb_users", JSON.stringify(users));
+
+      alert("Password changed successfully. Now sign in with new password.");
+
+      document.getElementById("forgot-email").value = "";
+      document.getElementById("forgot-phone").value = "";
+      document.getElementById("forgot-new-password").value = "";
+      document.getElementById("forgot-confirm-password").value = "";
+
+      showSigninPanel();
+    });
+
+    showSigninPanel();
+    updatePreview();
   </script>
 </body>
 </html>
-  
+
