@@ -403,6 +403,40 @@
         font-size:.92rem;
       }
     }
+    /* 🔥 MORE MENU DROPDOWN FIX */
+
+.more-menu{
+  position:relative;
+}
+
+.more-dropdown{
+  position:absolute;
+  top:120%;
+  right:0;
+  min-width:160px;
+  background:#fff8f0;
+  border:1px solid rgba(208,154,54,.3);
+  border-radius:12px;
+  box-shadow:0 10px 20px rgba(0,0,0,.15);
+  display:none;
+  flex-direction:column;
+  z-index:999;
+}
+
+.more-dropdown a{
+  padding:10px;
+  text-decoration:none;
+  color:#5a3a0c;
+  display:block;
+}
+
+.more-dropdown a:hover{
+  background:#f3e2c2;
+}
+
+.more-dropdown.show{
+  display:block;
+}
   </style>
 </head>
 <body>
