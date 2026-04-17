@@ -47,22 +47,3 @@ document.addEventListener("DOMContentLoaded", async function () {
     console.error("Navbar load error:", error);
   }
 });
-fetch("navbar.html")
-.then(res => res.text())
-.then(data => {
-  document.getElementById("navbar-container").innerHTML = data;
-
-  const moreBtn = document.getElementById("moreBtn");
-  const dropdown = document.getElementById("moreDropdown");
-
-  if(moreBtn){
-    moreBtn.onclick = function(e){
-      e.stopPropagation();
-      dropdown.classList.toggle("show");
-    }
-
-    document.onclick = function(){
-      dropdown.classList.remove("show");
-    }
-  }
-});
