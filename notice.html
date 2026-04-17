@@ -144,6 +144,35 @@
       color:#fff2ca;
       background:rgba(96,40,14,.28);
     }
+    
+    .more-menu{
+  position:relative;
+}
+
+.more-dropdown{
+  position:absolute;
+  top:110%;
+  right:0;
+  min-width:180px;
+  background:#fff8ef;
+  border:1px solid rgba(208,154,54,.3);
+  border-radius:14px;
+  box-shadow:0 10px 20px rgba(0,0,0,.1);
+  display:none;
+  z-index:100;
+}
+
+.more-dropdown a{
+  display:block;
+  padding:10px 14px;
+  text-decoration:none;
+  color:#6d2418;
+  font-size:.85rem;
+}
+
+.more-dropdown a:hover{
+  background:rgba(208,154,54,.15);
+}
 
     .title-wrap{
       width:min(1180px,96vw);
@@ -432,17 +461,29 @@
   </div>
 
   <div class="page">
-    <div class="nav">
-      <div class="nav-group">
-        <a href="index.html">Home</a>
-        <a href="public.html">Public Wall</a>
-        <a href="notice.html" class="active">Notice Board</a>
-      </div>
+      <div class="nav">
+  <div class="nav-group">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+  </div>
 
-      <div class="nav-group">
+  <div class="nav-group">
+
+    <!-- 🔥 MORE MENU START -->
+    <div class="more-menu">
+      <button class="nav-btn" id="moreBtn">More</button>
+
+      <div class="more-dropdown" id="moreDropdown">
         <a href="profile.html">Profile</a>
+        <a href="public.html">Public Wall</a>
+        <a href="notice.html">Notice Board</a>
+        <a href="#" id="logoutBtn">Logout</a>
       </div>
     </div>
+    <!-- 🔥 MORE MENU END -->
+
+  </div>
+      </div>
 
     <div class="title-wrap">
       <div class="title">My Secret Book</div>
@@ -624,6 +665,32 @@
 
     renderNoticeBoard();
     showWords();
+
+    const moreBtn = document.getElementById("moreBtn");
+const moreDropdown = document.getElementById("moreDropdown");
+
+if(moreBtn){
+  moreBtn.onclick = () => {
+    moreDropdown.style.display =
+      moreDropdown.style.display === "block" ? "none" : "block";
+  };
+
+  document.addEventListener("click", (e)=>{
+    if(!moreBtn.contains(e.target) && !moreDropdown.contains(e.target)){
+      moreDropdown.style.display = "none";
+    }
+  });
+}
+
+/* LOGOUT */
+const logoutBtn = document.getElementById("logoutBtn");
+if(logoutBtn){
+  logoutBtn.onclick = ()=>{
+    localStorage.removeItem("loggedInUser");
+    localStorage.removeItem("token");
+    window.location.href = "login.html";
+  };
+}
   </script>
 </body>
 </html>
