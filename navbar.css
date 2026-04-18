@@ -86,10 +86,10 @@
 }
 
 @media (max-width:600px){
-  .ribbon-tassel-img{
-    width:28px;
-    bottom:-56px;
+    .ribbon-tassel-img{
+    transform:translateY(10px) scale(1.2);
   }
+}
 
   .ribbon-tassel-img.left{
     left:22px;
