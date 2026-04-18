@@ -53,7 +53,7 @@
 
 .ribbon-tassel-img{
   position:absolute;
-  bottom:-52px;
+  bottom:-62px;
   width:90px;
   height:auto;
   z-index:3;
@@ -89,8 +89,8 @@
 
 @media (max-width:600px){
   .ribbon-tassel-img{
-    width:30px;
-    bottom:-46px;
+    width:28px;
+    bottom:-56px;
   }
 
   .ribbon-tassel-img.left{
