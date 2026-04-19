@@ -930,6 +930,14 @@
     updateModeUI();
     renderFeed();
     previewText();
+
+    function getCurrentUserUID(){
+  const email = localStorage.getItem("loggedInUser");
+  const users = JSON.parse(localStorage.getItem("msb_users") || "[]");
+
+  const user = users.find(u => u.email === email);
+  return user ? user.uid : "GUEST";
+    }
   </script>
   <script src="navbar.js"></script>
 </body>
