@@ -688,31 +688,35 @@
       textPreview.textContent = "Filtered text preview yahan dikhega.";
       imagePreview.textContent = "Image preview yahan dikhega.";
     }
-
+    
     clearPublicBtn.addEventListener("click", clearComposer);
+    
+function buildPostObject(forceTemporary = false) {
+  const user = getLoggedInUser();
+  const rawText = publicText.value.trim();
+  const cleanedText = sanitizeText(rawText);
+  const name = publicName.value.trim() || (user ? user.split("@")[0] : "Guest Writer");
 
-    function buildPostObject(forceTemporary = false) {
-      const user = getLoggedInUser();
-      const rawText = publicText.value.trim();
-      const cleanedText = sanitizeText(rawText);
-      const name = publicName.value.trim() || (user ? user.split("@")[0] : "Guest Writer");
+  if (!cleanedText && !currentImageData) {
+    alert("Pehle text likho ya image choose karo.");
+    return null;
+  }
 
-      if (!cleanedText && !currentImageData) {
-        alert("Pehle text likho ya image choose karo.");
-        return null;
-      }
+  if (rawText && rawText !== cleanedText) {
+    alert("Auto filter active tha. Kuch words ko safe loving words me change kar diya gaya.");
+  }
 
-      return {
-        id: "post_" + Date.now() + "_" + Math.random().toString(36).slice(2, 8),
-        name: name,
-        ownerEmail: user || "",
-        text: cleanedText,
-        image: currentImageData || "",
-        createdAt: Date.now(),
-        likes: 0,
-        isTemporary: forceTemporary || !user
-      };
-    }
+  return {
+    id: "post_" + Date.now() + "_" + Math.random().toString(36).slice(2, 8),
+    name: name,
+    ownerEmail: user || "",
+    text: cleanedText,
+    image: currentImageData || "",
+    createdAt: Date.now(),
+    likes: 0,
+    isTemporary: forceTemporary || !user
+  };
+     }
 
     function renderFeed() {
       cleanupExpiredPosts();
@@ -806,26 +810,29 @@
 
       const words = JSON.parse(localStorage.getItem("msb_words") || "[]");
       const images = JSON.parse(localStorage.getItem("msb_images") || "[]");
+const uid = getCurrentUserUID();
 
-      drafts.forEach(draft => {
-        if (draft.text) {
-          words.unshift({
-            text: draft.text,
-            date: getFormattedDate(draft.createdAt),
-            likes: 0,
-            comments: []
-          });
-        }
+drafts.forEach(draft => {
+  if (draft.text) {
+    words.unshift({
+      text: draft.text + " ~~" + uid + "~~",
+      watermark: uid,
+      date: getFormattedDate(draft.createdAt),
+      likes: 0,
+      comments: []
+    });
+  }
 
-        if (draft.image) {
-          images.unshift({
-            src: draft.image,
-            date: getFormattedDate(draft.createdAt),
-            likes: 0,
-            comments: []
-          });
-        }
-      });
+  if (draft.image) {
+    images.unshift({
+      src: draft.image,
+      watermark: uid,
+      date: getFormattedDate(draft.createdAt),
+      likes: 0,
+      comments: []
+    });
+  }
+});
 
       localStorage.setItem("msb_words", JSON.stringify(words));
       localStorage.setItem("msb_images", JSON.stringify(images));
@@ -884,24 +891,27 @@
 
       const words = JSON.parse(localStorage.getItem("msb_words") || "[]");
       const images = JSON.parse(localStorage.getItem("msb_images") || "[]");
+const uid = getCurrentUserUID();
 
-      if (post.text) {
-        words.unshift({
-          text: post.text,
-          date: getFormattedDate(post.createdAt),
-          likes: 0,
-          comments: []
-        });
-      }
+if (post.text) {
+  words.unshift({
+    text: post.text + " ~~" + uid + "~~",
+    watermark: uid,
+    date: getFormattedDate(post.createdAt),
+    likes: 0,
+    comments: []
+  });
+}
 
-      if (post.image) {
-        images.unshift({
-          src: post.image,
-          date: getFormattedDate(post.createdAt),
-          likes: 0,
-          comments: []
-        });
-      }
+if (post.image) {
+  images.unshift({
+    src: post.image,
+    watermark: uid,
+    date: getFormattedDate(post.createdAt),
+    likes: 0,
+    comments: []
+  });
+} 
 
       localStorage.setItem("msb_words", JSON.stringify(words));
       localStorage.setItem("msb_images", JSON.stringify(images));
@@ -948,27 +958,6 @@
   e.clipboardData.setData("text/plain", watermarkText);
   e.preventDefault();
 });
-    const badWords = [
-  "madarchod","bhenchod","chutiya","gandu","lund","gaand",
-  "sex","porn","xxx","fuck","bitch","nude","boobs","dick","all bad words"
-];
-    function cleanText(text){
-
-  let clean = text;
-
-  badWords.forEach(word => {
-    const regex = new RegExp(word, "gi");
-
-    clean = clean.replace(regex, function(){
-      const goodWords = [
-        "pyar","mohabbat","respect","sweet","cute","dil","khushi"
-      ];
-      return goodWords[Math.floor(Math.random()*goodWords.length)];
-    });
-  });
-
-  return clean;
-    }
   </script>
   <script src="navbar.js"></script>
 </body>
