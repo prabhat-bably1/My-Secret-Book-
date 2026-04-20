@@ -12,7 +12,6 @@
 
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
-
     :root{
       --cream:#eadbc4;
       --cream-soft:#f4ecdf;
@@ -444,7 +443,7 @@
 
     .book-page textarea{
       width:100%;
-      min-height:280px;
+      min-height:220px;
       resize:vertical;
       border-radius:18px;
       border:1px solid rgba(208,154,54,.25);
@@ -714,7 +713,6 @@
 
         <div class="profile-box" id="editProfilePanel" style="display:none;">
           <h4>Edit Profile Details</h4>
-
           <label class="field-label">Name</label>
           <input class="profile-input" id="editNameInput" type="text" placeholder="Enter your name">
 
@@ -788,7 +786,19 @@
               <textarea id="secretText" placeholder="Yahan apni dil ki baat, dard bhari shayari, personal note ya secret likho..."></textarea>
 
               <div class="word-preview" id="wordPreview">Yahan typed text ka quick preview dikhega.</div>
-                
+
+              <div class="book-actions">
+                <button class="action-btn" id="saveTextBtn" type="button">Save Secret</button>
+                <button class="action-btn" id="clearTextBtn" type="button">Clear Text</button>
+              </div>
+            </div>
+
+            <div class="book-page right">
+              <h4>Add Image / Memory</h4>
+              <input class="file-input" id="imageInput" type="file" accept="image/*">
+
+              <div class="image-preview" id="imagePreview">Image preview yahan dikhega.</div>
+
               <div class="book-actions">
                 <button class="action-btn" id="saveImageBtn" type="button">Save Image</button>
                 <button class="action-btn" id="clearImageBtn" type="button">Clear Image</button>
@@ -1136,6 +1146,7 @@
       localStorage.setItem("msb_words", JSON.stringify(words));
       loadWords();
     }
+    window.likeWord = likeWord;
 
     function likeImage(index) {
       const images = JSON.parse(localStorage.getItem("msb_images") || "[]");
@@ -1143,6 +1154,7 @@
       localStorage.setItem("msb_images", JSON.stringify(images));
       loadImages();
     }
+    window.likeImage = likeImage;
 
     function addWordComment(index) {
       const input = document.getElementById(`wordCommentInput${index}`);
@@ -1155,6 +1167,7 @@
       localStorage.setItem("msb_words", JSON.stringify(words));
       loadWords();
     }
+    window.addWordComment = addWordComment;
 
     function addImageComment(index) {
       const input = document.getElementById(`imageCommentInput${index}`);
@@ -1167,6 +1180,7 @@
       localStorage.setItem("msb_images", JSON.stringify(images));
       loadImages();
     }
+    window.addImageComment = addImageComment;
 
     function shareWord(index) {
       const words = JSON.parse(localStorage.getItem("msb_words") || "[]");
@@ -1174,12 +1188,14 @@
       navigator.clipboard.writeText(text);
       alert("Word copied for sharing.");
     }
+    window.shareWord = shareWord;
 
     function shareImage(index) {
       const images = JSON.parse(localStorage.getItem("msb_images") || "[]");
       navigator.clipboard.writeText(images[index].src || "");
       alert("Image link copied for sharing.");
     }
+    window.shareImage = shareImage;
 
     function showWords() {
       wordTab.classList.add("active");
@@ -1223,21 +1239,17 @@
 
     saveProfileBtn.addEventListener("click", () => {
       const data = getProfileData();
-
       data.name = editNameInput.value.trim() || "Prabhat";
       data.profileId = editIdInput.value.trim() || "Prabhat@mysecretbook";
       data.about = editAboutInput.value.trim() || "No about text added yet.";
       data.privacy = privacySelect.value;
       data.petals = petalsSetting.value;
       data.defaultTab = defaultTabSetting.value;
-
       saveProfileData(data);
       applyProfileUI();
-
       editProfilePanel.style.display = "none";
       privacyPanel.style.display = "none";
       settingsPanel.style.display = "none";
-
       alert("Profile updated successfully.");
     });
 
@@ -1267,7 +1279,6 @@
       const uid = getCurrentUserUID();
       const text = window.getSelection().toString();
       if (!text) return;
-
       const watermarkText = text + "\n\n— MySecretBook (" + uid + ")";
       e.clipboardData.setData("text/plain", watermarkText);
       e.preventDefault();
