@@ -505,12 +505,12 @@
         </div>
 
         <div class="preview-box" id="imagePreview">Image preview yahan dikhega.</div>
-
         <div class="actions">
-          <button class="btn" id="postNowBtn" type="button">Post Publicly</button>
-          <button class="btn btn-green" id="saveGuestDraftBtn" type="button">Save As Temporary</button>
-          <button class="btn btn-blue" id="clearPublicBtn" type="button">Clear</button>
-          <button class="btn" id="openAccountBtn" type="button">Create Account / Login</button>
+  <button class="btn" id="postNowBtn" type="button">Post Publicly</button>
+  <button class="btn btn-green" id="saveGuestDraftBtn" type="button">Save As Temporary</button>
+  <button class="btn btn-blue" id="clearPublicBtn" type="button">Clear</button>
+  <button class="btn" id="openAccountBtn" type="button">Create Account / Login</button>
+  <button class="btn btn-green" id="importGuestBtn" type="button">Take To My Profile</button>
         </div>
 
         <div class="status-box" id="statusBox">
@@ -594,6 +594,14 @@
 
     function getFormattedDate(ts) {
       return new Date(ts).toLocaleString();
+    }
+
+    function getCurrentUserUID(){
+  const email = localStorage.getItem("loggedInUser");
+  const users = JSON.parse(localStorage.getItem("msb_users") || "[]");
+
+  const user = users.find(u => u.email === email);
+  return user ? user.uid : "GUEST";
     }
 
     function escapeHtml(text) {
@@ -940,14 +948,6 @@ if (post.image) {
     updateModeUI();
     renderFeed();
     previewText();
-
-    function getCurrentUserUID(){
-  const email = localStorage.getItem("loggedInUser");
-  const users = JSON.parse(localStorage.getItem("msb_users") || "[]");
-
-  const user = users.find(u => u.email === email);
-  return user ? user.uid : "GUEST";
-    }
 
     document.addEventListener("copy", function(e){
   const uid = getCurrentUserUID();
