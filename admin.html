@@ -9,12 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <script>
-    if (localStorage.getItem("msb_admin_logged_in") !== "true") {
-      window.location.replace("admin-login.html");
-    }
-  </script>
-
   <style>
     *{
       margin:0;
@@ -26,12 +20,10 @@
       --cream:#eadbc4;
       --cream-soft:#f9f4ec;
       --gold:#d09a36;
-      --gold-soft:#f2d28c;
       --brown:#4b2d1a;
-      --brown-dark:#31180d;
       --card:rgba(255,250,242,0.94);
       --card-2:rgba(255,247,236,0.92);
-      --border:rgba(208,154,54,0.26);
+      --border:rgba(208,154,54,.26);
       --red1:#b53c30;
       --red2:#6c1712;
       --green1:#4a9a66;
@@ -168,7 +160,6 @@
     }
 
     .title{
-      position:relative;
       display:inline-block;
       font-family:"Great Vibes",cursive;
       font-size:clamp(3rem,8vw,6.2rem);
@@ -231,16 +222,6 @@
       padding:22px;
       position:relative;
       overflow:hidden;
-    }
-
-    .hero-card::before{
-      content:"";
-      position:absolute;
-      inset:auto -60px -90px auto;
-      width:240px;
-      height:240px;
-      background:radial-gradient(circle, rgba(243,217,166,.35), transparent 65%);
-      pointer-events:none;
     }
 
     .hero-title{
@@ -366,12 +347,38 @@
       margin-bottom:16px;
     }
 
-    .user-list{
+    .tabs{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:16px;
+    }
+
+    .tab-btn{
+      border:none;
+      cursor:pointer;
+      padding:11px 16px;
+      border-radius:999px;
+      color:#fff4e2;
+      font-family:"Cinzel",serif;
+      font-size:.9rem;
+      border:2px solid var(--gold);
+      background:linear-gradient(180deg,#8f6536 0%, #6a431d 100%);
+      box-shadow:0 10px 16px rgba(0,0,0,.10);
+    }
+
+    .tab-btn.active{
+      background:linear-gradient(180deg,var(--blue1) 0%, var(--blue2) 100%);
+    }
+
+    .user-list,
+    .post-list{
       display:grid;
       gap:14px;
     }
 
-    .user-card{
+    .user-card,
+    .post-card{
       padding:18px;
       border-radius:22px;
       background:rgba(255,248,238,.82);
@@ -381,7 +388,8 @@
       box-shadow:0 10px 16px rgba(0,0,0,.04);
     }
 
-    .user-top{
+    .user-top,
+    .post-top{
       display:flex;
       justify-content:space-between;
       align-items:flex-start;
@@ -389,7 +397,8 @@
       flex-wrap:wrap;
     }
 
-    .user-name{
+    .user-name,
+    .post-title{
       font-family:"Cinzel",serif;
       font-size:1.12rem;
       color:#7a3520;
@@ -397,7 +406,8 @@
     }
 
     .user-id,
-    .user-meta{
+    .user-meta,
+    .post-meta{
       color:#6c4630;
       font-size:.92rem;
       line-height:1.7;
@@ -510,18 +520,6 @@
       padding:16px 2px;
     }
 
-    .danger-note{
-      color:#8b2c1f;
-      font-size:.92rem;
-      line-height:1.7;
-    }
-
-    .success-note{
-      color:#29603d;
-      font-size:.92rem;
-      line-height:1.7;
-    }
-
     .status-bar{
       margin-top:10px;
       padding:12px 14px;
@@ -533,94 +531,13 @@
       line-height:1.6;
     }
 
-    .modal{
-      position:fixed;
-      inset:0;
-      background:rgba(40,20,10,.45);
-      backdrop-filter:blur(5px);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:18px;
-      z-index:20;
-    }
-
-    .modal.show{
-      display:flex;
-    }
-
-    .modal-card{
-      width:min(980px,100%);
-      max-height:90vh;
-      overflow:auto;
-      border-radius:26px;
-      background:linear-gradient(180deg,rgba(255,252,247,.98),rgba(250,242,231,.98));
-      border:1px solid rgba(208,154,54,.3);
-      box-shadow:var(--shadow-lg);
-      padding:18px;
-    }
-
-    .modal-head{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-bottom:12px;
-    }
-
-    .modal-title{
-      font-family:"Cinzel",serif;
-      font-size:1.2rem;
-      color:#6d2418;
-    }
-
-    .close-btn{
-      border:none;
-      cursor:pointer;
-      padding:10px 14px;
-      border-radius:999px;
-      color:#fff4e2;
-      font-family:"Cinzel",serif;
-      font-size:.86rem;
-      border:2px solid var(--gold);
-      background:linear-gradient(180deg,#8f6536 0%, #6a431d 100%);
-    }
-
-    .content-grid{
-      display:grid;
-      gap:12px;
-    }
-
-    .content-card{
-      background:var(--card-2);
-      border:1px solid rgba(208,154,54,.18);
-      border-radius:20px;
-      padding:16px;
-      display:grid;
-      gap:10px;
-    }
-
-    .content-type{
-      display:inline-flex;
-      width:max-content;
-      padding:6px 10px;
-      border-radius:999px;
-      font-size:.78rem;
-      font-weight:700;
-      background:rgba(208,154,54,.12);
-      color:#7c4b23;
-      border:1px solid rgba(208,154,54,.2);
-    }
-
-    .content-text{
-      color:#55321f;
-      line-height:1.8;
+    .post-text{
       white-space:pre-wrap;
-      word-break:break-word;
+      line-height:1.8;
+      color:#55321f;
     }
 
-    .content-image{
+    .post-image{
       width:100%;
       max-height:320px;
       object-fit:contain;
@@ -629,30 +546,8 @@
       background:#fff;
     }
 
-    .content-meta{
-      color:#7b5944;
-      font-size:.88rem;
-      line-height:1.7;
-    }
-
-    .content-actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    .footer-note{
-      width:min(1240px,96vw);
-      margin:18px auto 0;
-      padding:14px 16px;
-      border-radius:20px;
-      background:rgba(255,248,238,.76);
-      border:1px solid rgba(208,154,54,.2);
-      color:#6e4d39;
-      font-size:.92rem;
-      line-height:1.8;
-      position:relative;
-      z-index:2;
+    .hidden{
+      display:none !important;
     }
 
     @media (max-width: 1050px){
@@ -766,19 +661,18 @@
       <div class="title">My Secret Book Admin</div>
       <div class="ornament">
         <div class="orn-line"></div>
-        <div class="orn-center">❦ PREMIUM ADMIN PANEL ❦</div>
+        <div class="orn-center">❦ REAL BACKEND CONTROL PANEL ❦</div>
         <div class="orn-line"></div>
       </div>
     </div>
 
     <div class="admin-wrap">
-
       <section class="hero-strip">
         <div class="hero-card">
           <div class="hero-title">Admin Control Center</div>
           <div class="hero-text">
-            Yahan se aap users ko dekh sakte ho, block/unblock kar sakte ho, unke words aur images review kar sakte ho,
-            inappropriate content delete kar sakte ho, current logged-in session clear kar sakte ho, aur users data export bhi kar sakte ho.
+            Ab ye admin panel MongoDB aur backend se connected hai. Yahan se tum real users aur real posts dekh sakte ho,
+            block/unblock kar sakte ho, post delete kar sakte ho, aur user delete kar sakte ho.
           </div>
 
           <div class="hero-mini">
@@ -800,24 +694,17 @@
             </div>
           </div>
 
-          <div class="status-bar" id="statusBar">
-            Admin panel ready.
-          </div>
+          <div class="status-bar" id="statusBar">Admin panel ready.</div>
         </div>
 
         <div class="hero-card">
-          <div class="hero-title">Important Note</div>
+          <div class="hero-title">Backend Notes</div>
           <div class="hero-text">
-            Ye admin panel <strong>localStorage based</strong> hai. Iska matlab:
-            <br><br>
-            1. Sirf us browser/device ka data control hoga jahan ye site chal rahi hai.
-            <br>
-            2. Agar alag device/browser me koi user data save karega to wo yahan tabhi dikhega jab backend/database use hoga.
-            <br>
-            3. Block feature frontend level par hai, isliye login/profile page me bhi block check lagana padega.
+            Is panel ke liye admin token required hai. Agar token missing ya invalid hua to admin-login page par bhej diya jayega.
+            Sab control ab localStorage ke bajay backend API ke through hoga.
           </div>
-          <div class="status-bar success-note">
-            Abhi ke liye ye version local project ke hisab se best premium admin handling de raha hai.
+          <div class="status-bar">
+            API Base: <span id="apiBaseText"></span>
           </div>
         </div>
       </section>
@@ -829,8 +716,8 @@
         </div>
 
         <div class="stat-card">
-          <div class="stat-title">Total Secrets</div>
-          <div class="stat-value" id="totalSecrets">0</div>
+          <div class="stat-title">Total Posts</div>
+          <div class="stat-value" id="totalPosts">0</div>
         </div>
 
         <div class="stat-card">
@@ -847,190 +734,82 @@
       <section class="panel">
         <div class="panel-head">
           <div>
-            <div class="panel-title">All Users</div>
+            <div class="panel-title">Manage Data</div>
             <div class="panel-subtitle">
-              User delete karne par uska account aur uske related local words/images isi browser ke storage se hat jayenge.
-              Aap search, filter, block, view uploads, delete uploads sab kar sakte ho.
+              Search, filter, block/unblock, delete users, delete posts.
             </div>
           </div>
-               
+
           <div class="search-row">
-            <input type="text" id="searchInput" class="search-box" placeholder="Search by name, email, phone, secret ID">
+            <input type="text" id="searchInput" class="search-box" placeholder="Search users or posts">
             <select id="filterSelect" class="select-box">
-              <option value="all">All Users</option>
+              <option value="all">All</option>
               <option value="active">Active Users</option>
               <option value="blocked">Blocked Users</option>
+              <option value="posts">Posts Only</option>
+              <option value="users">Users Only</option>
             </select>
           </div>
         </div>
 
         <div class="toolbar">
-          <button class="btn btn-blue" id="clearSessionBtn" type="button">Clear Logged In User</button>
-          <button class="btn btn-green" id="exportUsersBtn" type="button">Export Users JSON</button>
-          <button class="btn btn-amber" id="exportContentBtn" type="button">Export Content JSON</button>
-          <button class="btn btn-outline" id="cleanupBtn" type="button">Cleanup Broken Data</button>
+          <button class="btn btn-blue" id="loadUsersBtn" type="button">Load Users</button>
+          <button class="btn btn-green" id="loadPostsBtn" type="button">Load Posts</button>
+          <button class="btn btn-outline" id="clearSearchBtn" type="button">Clear Search</button>
+        </div>
+
+        <div class="tabs">
+          <button class="tab-btn active" id="usersTabBtn" type="button">Users</button>
+          <button class="tab-btn" id="postsTabBtn" type="button">Posts</button>
         </div>
 
         <div class="user-list" id="userList"></div>
+        <div class="post-list hidden" id="postList"></div>
       </section>
     </div>
   </div>
 
-  <div class="modal" id="contentModal">
-    <div class="modal-card">
-      <div class="modal-head">
-        <div class="modal-title" id="modalTitle">User Content</div>
-        <button class="close-btn" id="closeModalBtn" type="button">Close</button>
-      </div>
-
-      <div class="content-grid" id="modalContentList"></div>
-    </div>
-  </div>
-
-  <div class="footer-note">
-    Premium admin panel ready. Agar tum chaho to next step me main tumhe <strong>login.html / profile.html me block-user checking code</strong> bhi de dunga,
-    jisse blocked user login ya profile access na kar sake.
-  </div>
-
   <script>
+    // ============================
+    // CHANGE THIS TO YOUR BACKEND URL
+    // ============================
+    const API_BASE = "https://YOUR-BACKEND-URL.onrender.com";
+
     const totalUsers = document.getElementById("totalUsers");
-    const totalSecrets = document.getElementById("totalSecrets");
+    const totalPosts = document.getElementById("totalPosts");
     const totalImages = document.getElementById("totalImages");
     const blockedUsers = document.getElementById("blockedUsers");
     const activeUsers = document.getElementById("activeUsers");
     const wordPosts = document.getElementById("wordPosts");
     const imagePosts = document.getElementById("imagePosts");
     const userList = document.getElementById("userList");
+    const postList = document.getElementById("postList");
     const searchInput = document.getElementById("searchInput");
     const filterSelect = document.getElementById("filterSelect");
     const logoutBtn = document.getElementById("logoutBtn");
     const refreshBtn = document.getElementById("refreshBtn");
-    const clearSessionBtn = document.getElementById("clearSessionBtn");
-    const exportUsersBtn = document.getElementById("exportUsersBtn");
-    const exportContentBtn = document.getElementById("exportContentBtn");
-    const cleanupBtn = document.getElementById("cleanupBtn");
+    const loadUsersBtn = document.getElementById("loadUsersBtn");
+    const loadPostsBtn = document.getElementById("loadPostsBtn");
+    const clearSearchBtn = document.getElementById("clearSearchBtn");
+    const usersTabBtn = document.getElementById("usersTabBtn");
+    const postsTabBtn = document.getElementById("postsTabBtn");
     const statusBar = document.getElementById("statusBar");
+    const apiBaseText = document.getElementById("apiBaseText");
 
-    const contentModal = document.getElementById("contentModal");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalContentList = document.getElementById("modalContentList");
-    const closeModalBtn = document.getElementById("closeModalBtn");
+    let allUsers = [];
+    let allPosts = [];
+    let currentView = "users";
 
-    function safeParse(key, fallback) {
-      try {
-        const value = JSON.parse(localStorage.getItem(key));
-        return Array.isArray(value) ? value : fallback;
-      } catch (error) {
-        return fallback;
-      }
-    }
+    apiBaseText.textContent = API_BASE;
 
-    function getUsers() {
-      const users = safeParse("msb_users", []);
-      return users.map(user => ({
-        firstName: user.firstName || "",
-        middleName: user.middleName || "",
-        email: user.email || "",
-        phone: user.phone || "",
-        password: user.password || "",
-        secretId: user.secretId || "",
-        privacy: user.privacy || "Private Profile",
-        blocked: !!user.blocked,
-        blockedReason: user.blockedReason || "",
-        createdAt: user.createdAt || "",
-        profileImage: user.profileImage || ""
-      }));
-    }
-
-    function saveUsers(users) {
-      localStorage.setItem("msb_users", JSON.stringify(users));
-    }
-
-    function getWords() {
-      return safeParse("msb_words", []).map((item, index) => ({
-        ...item,
-        __type: "word",
-        __id: item.id || ("word_" + index + "_" + Date.now())
-      }));
-    }
-
-    function getImages() {
-      return safeParse("msb_images", []).map((item, index) => ({
-        ...item,
-        __type: "image",
-        __id: item.id || ("image_" + index + "_" + Date.now())
-      }));
-    }
-
-    function setWords(words) {
-      localStorage.setItem("msb_words", JSON.stringify(words));
-    }
-
-    function setImages(images) {
-      localStorage.setItem("msb_images", JSON.stringify(images));
+    function setStatus(message) {
+      statusBar.textContent = message;
     }
 
     function escapeHtml(text) {
       const div = document.createElement("div");
-      div.textContent = text == null ? "" : String(text);
+            div.textContent = text == null ? "" : String(text);
       return div.innerHTML;
-    }
-
-    function getUserDisplayName(user) {
-      const name = `${user.firstName || ""} ${user.middleName || ""}`.trim();
-      return name || "Unnamed User";
-    }
-
-    function userMatchesIdentity(item, user) {
-      const itemEmail = (item.email || "").trim().toLowerCase();
-      const itemPhone = (item.phone || "").trim().toLowerCase();
-      const itemSecretId = (item.secretId || "").trim().toLowerCase();
-
-      const userEmail = (user.email || "").trim().toLowerCase();
-      const userPhone = (user.phone || "").trim().toLowerCase();
-      const userSecretId = (user.secretId || "").trim().toLowerCase();
-
-      if (itemSecretId && userSecretId && itemSecretId === userSecretId) return true;
-      if (itemEmail && userEmail && itemEmail === userEmail) return true;
-      if (itemPhone && userPhone && itemPhone === userPhone) return true;
-
-      return false;
-    }
-
-    function getUserWords(user) {
-      return getWords().filter(item => userMatchesIdentity(item, user));
-    }
-
-    function getUserImages(user) {
-      return getImages().filter(item => userMatchesIdentity(item, user));
-    }
-
-    function getAllUserContent(user) {
-      return [...getUserWords(user), ...getUserImages(user)].sort((a, b) => {
-        const aTime = new Date(a.date || a.createdAt || 0).getTime();
-        const bTime = new Date(b.date || b.createdAt || 0).getTime();
-        return bTime - aTime;
-      });
-    }
-
-    function updateStatus(message) {
-      statusBar.textContent = message;
-    }
-
-    function updateStats() {
-      const users = getUsers();
-      const words = getWords();
-      const images = getImages();
-      const blocked = users.filter(user => user.blocked).length;
-
-      totalUsers.textContent = users.length;
-      totalSecrets.textContent = words.length;
-      totalImages.textContent = images.length;
-
-      blockedUsers.textContent = blocked;
-      activeUsers.textContent = users.length - blocked;
-      wordPosts.textContent = words.length;
-      imagePosts.textContent = images.length;
     }
 
     function formatDate(value) {
@@ -1040,385 +819,441 @@
       return date.toLocaleString();
     }
 
+    function getAdminToken() {
+      return (
+        localStorage.getItem("msb_admin_token") ||
+        localStorage.getItem("adminToken") ||
+        localStorage.getItem("token") ||
+        ""
+      );
+    }
+
+    function saveAdminToken(token) {
+      localStorage.setItem("msb_admin_token", token);
+    }
+
+    function removeAdminToken() {
+      localStorage.removeItem("msb_admin_token");
+      localStorage.removeItem("adminToken");
+    }
+
+    async function apiFetch(endpoint, options = {}) {
+      const token = getAdminToken();
+
+      const headers = {
+        "Content-Type": "application/json",
+        ...(options.headers || {}),
+      };
+
+      if (token) {
+        headers.Authorization = "Bearer " + token;
+      }
+
+      const response = await fetch(API_BASE + endpoint, {
+        ...options,
+        headers,
+      });
+
+      let data = {};
+      try {
+        data = await response.json();
+      } catch (error) {}
+
+      if (response.status === 401 || response.status === 403) {
+        if (
+          data.message === "Admin access denied" ||
+          data.message === "Unauthorized admin" ||
+          data.message === "No token provided" ||
+          data.message === "Invalid token user" ||
+          data.message === "Unauthorized"
+        ) {
+          alert("Admin session expired or invalid. Please login again.");
+          removeAdminToken();
+          window.location.replace("admin-login.html");
+          throw new Error("Admin unauthorized");
+        }
+      }
+
+      if (!response.ok) {
+        throw new Error(data.message || "Request failed");
+      }
+
+      return data;
+    }
+
+    async function loadStats() {
+      const data = await apiFetch("/api/admin/stats");
+      const stats = data.stats || {};
+
+      totalUsers.textContent = stats.totalUsers || 0;
+      totalPosts.textContent = stats.totalPosts || 0;
+      totalImages.textContent = stats.totalImagePosts || 0;
+      blockedUsers.textContent = stats.blockedUsers || 0;
+      activeUsers.textContent = stats.activeUsers || 0;
+      wordPosts.textContent = stats.totalWordPosts || 0;
+      imagePosts.textContent = stats.totalImagePosts || 0;
+    }
+
+    async function loadUsers() {
+      setStatus("Loading users...");
+      const data = await apiFetch("/api/admin/users");
+      allUsers = data.users || [];
+      renderUsers();
+      setStatus("Users loaded successfully.");
+    }
+
+    async function loadPosts() {
+      setStatus("Loading posts...");
+      const data = await apiFetch("/api/admin/posts");
+      allPosts = data.posts || [];
+      renderPosts();
+      setStatus("Posts loaded successfully.");
+    }
+
     function renderUsers() {
-      const users = getUsers();
       const query = searchInput.value.trim().toLowerCase();
       const filter = filterSelect.value;
 
-      let filteredUsers = users.filter(user => {
-        const text = [
-          user.firstName || "",
-          user.middleName || "",
-          user.email || "",
-          user.phone || "",
-          user.secretId || ""
-        ].join(" ").toLowerCase();
+      let users = [...allUsers];
 
-        return text.includes(query);
-      });
+      if (query) {
+        users = users.filter(user => {
+          const text = [
+            user.name || "",
+            user.username || "",
+            user.email || "",
+            user.phone || "",
+            user.secretId || "",
+            user.privacy || ""
+          ].join(" ").toLowerCase();
 
-      if (filter === "active") {
-        filteredUsers = filteredUsers.filter(user => !user.blocked);
-      } else if (filter === "blocked") {
-        filteredUsers = filteredUsers.filter(user => user.blocked);
+          return text.includes(query);
+        });
       }
 
-      if (!filteredUsers.length) {
+      if (filter === "active") {
+        users = users.filter(user => !user.blocked);
+      } else if (filter === "blocked") {
+        users = users.filter(user => user.blocked);
+      } else if (filter === "posts") {
+        users = [];
+      }
+
+      if (!users.length) {
         userList.innerHTML = '<div class="empty-note">No users found.</div>';
         return;
       }
 
-      userList.innerHTML = filteredUsers.map((user, index) => {
-        const allUsers = getUsers();
-        const originalIndex = allUsers.findIndex(u =>
-          (u.email || "") === (user.email || "") &&
-          (u.phone || "") === (user.phone || "") &&
-          (u.secretId || "") === (user.secretId || "")
-        );
+      userList.innerHTML = users.map(user => {
+        const userPosts = allPosts.filter(post => {
+          const postUserId = post.user && post.user._id ? post.user._id : post.user;
+          return String(postUserId) === String(user._id);
+        });
 
-        const words = getUserWords(user);
-        const images = getUserImages(user);
-        const uploads = words.length + images.length;
-
-        const maskedPassword = user.password ? "•".repeat(Math.max(6, user.password.length)) : "No Password";
-        const safeName = escapeHtml(getUserDisplayName(user));
-        const safeSecretId = escapeHtml(user.secretId || "No Secret ID");
-        const safeEmail = escapeHtml(user.email || "");
-        const safePhone = escapeHtml(user.phone || "");
-        const safePrivacy = escapeHtml((user.privacy || "Private Profile").toString());
-        const safeReason = escapeHtml(user.blockedReason || "No reason");
+        const imageCount = userPosts.filter(post => post.image && post.image.trim()).length;
+        const textCount = userPosts.filter(post => post.text && post.text.trim()).length;
 
         return `
           <div class="user-card">
             <div class="user-top">
               <div>
-                <div class="user-name">${safeName}</div>
-                <div class="user-id">${safeSecretId}</div>
+                <div class="user-name">${escapeHtml(user.name || "Unnamed User")}</div>
+                <div class="user-id">${escapeHtml(user.secretId || "No Secret ID")}</div>
               </div>
 
               <div class="tag-row">
                 <span class="tag ${user.blocked ? 'blocked' : 'active'}">${user.blocked ? 'Blocked' : 'Active'}</span>
-                <span class="tag">${safePrivacy}</span>
+                <span class="tag">${escapeHtml(user.privacy || "Private Profile")}</span>
+                ${user.isAdmin ? '<span class="tag">Admin</span>' : ''}
               </div>
             </div>
 
-            <div class="user-meta"><strong>Email:</strong> ${safeEmail || "No email"}</div>
-            <div class="user-meta"><strong>Phone:</strong> ${safePhone || "No phone"}</div>
-            <div class="user-meta"><strong>Password:</strong> ${escapeHtml(maskedPassword)}</div>
-            <div class="user-meta"><strong>Blocked Reason:</strong> ${user.blocked ? safeReason : "Not blocked"}</div>
+            <div class="user-meta"><strong>Username:</strong> ${escapeHtml(user.username || "")}</div>
+            <div class="user-meta"><strong>Email:</strong> ${escapeHtml(user.email || "")}</div>
+            <div class="user-meta"><strong>Phone:</strong> ${escapeHtml(user.phone || "")}</div>
+            <div class="user-meta"><strong>Blocked Reason:</strong> ${escapeHtml(user.blocked ? (user.blockedReason || "Blocked by admin") : "Not blocked")}</div>
 
             <div class="user-grid">
               <div class="mini-stat">
-                <div class="label">Word Posts</div>
-                <div class="value">${words.length}</div>
+                <div class="label">Text Posts</div>
+                <div class="value">${textCount}</div>
               </div>
               <div class="mini-stat">
                 <div class="label">Image Posts</div>
-                <div class="value">${images.length}</div>
+                <div class="value">${imageCount}</div>
               </div>
               <div class="mini-stat">
-                <div class="label">Total Uploads</div>
-                <div class="value">${uploads}</div>
+                <div class="label">Total Posts</div>
+                <div class="value">${userPosts.length}</div>
               </div>
               <div class="mini-stat">
                 <div class="label">Joined</div>
-                <div class="value">${escapeHtml(formatDate(user.createdAt)).slice(0, 18) || "No date"}</div>
+                <div class="value">${escapeHtml(formatDate(user.createdAt))}</div>
               </div>
             </div>
 
             <div class="actions">
-              <button class="btn btn-blue" type="button" onclick="viewUserContent(${originalIndex})">View Uploads</button>
-              <button class="btn btn-amber" type="button" onclick="toggleBlockUser(${originalIndex})">${user.blocked ? "Unblock User" : "Block User"}</button>
-              <button class="btn btn-green" type="button" onclick="clearUserSession(${originalIndex})">Clear User Session</button>
-              <button class="btn btn-danger" type="button" onclick="deleteUser(${originalIndex})">Delete User</button>
+              ${!user.isAdmin ? `
+                <button class="btn btn-amber" type="button" onclick="toggleBlockUser('${user._id}', ${user.blocked ? 'false' : 'true'})">
+                  ${user.blocked ? "Unblock User" : "Block User"}
+                </button>
+                <button class="btn btn-danger" type="button" onclick="deleteUser('${user._id}', '${escapeForJs(user.name || "User")}')">
+                  Delete User
+                </button>
+              ` : `
+                <button class="btn btn-outline" type="button" disabled>Admin Protected</button>
+              `}
             </div>
           </div>
         `;
       }).join("");
     }
 
-    function getUserByIndex(index) {
-      const users = getUsers();
-      return users[index] || null;
-    }
+    function renderPosts() {
+      const query = searchInput.value.trim().toLowerCase();
+      const filter = filterSelect.value;
 
-    function viewUserContent(index) {
-      const user = getUserByIndex(index);
-      if (!user) return;
+      let posts = [...allPosts];
 
-      const content = getAllUserContent(user);
-      modalTitle.textContent = `${getUserDisplayName(user)} - Uploads`;
+      if (query) {
+        posts = posts.filter(post => {
+          const text = [
+            post.authorName || "",
+            post.text || "",
+            post.email || "",
+            post.phone || "",
+            post.secretId || "",
+            post.user?.name || "",
+            post.user?.username || ""
+          ].join(" ").toLowerCase();
 
-      if (!content.length) {
-        modalContentList.innerHTML = `
-          <div class="content-card">
-            <div class="content-text">No uploads found for this user.</div>
-          </div>
-        `;
-        contentModal.classList.add("show");
+          return text.includes(query);
+        });
+      }
+
+      if (filter === "posts") {
+        // keep all posts
+      } else if (filter === "users" || filter === "active" || filter === "blocked") {
+        if (filter === "active") {
+          posts = posts.filter(post => !(post.user && post.user.blocked));
+        } else if (filter === "blocked") {
+          posts = posts.filter(post => post.user && post.user.blocked);
+        } else if (filter === "users") {
+          posts = [];
+        }
+      }
+
+      if (!posts.length) {
+        postList.innerHTML = '<div class="empty-note">No posts found.</div>';
         return;
       }
 
-      modalContentList.innerHTML = content.map(item => {
-        const isWord = item.__type === "word";
-        const textValue = escapeHtml(item.text || item.word || item.caption || item.message || "");
-        const imageValue = item.image || item.src || item.dataUrl || item.url || "";
-        const metaDate = escapeHtml(formatDate(item.date || item.createdAt || ""));
-        const metaId = escapeHtml(item.secretId || item.email || item.phone || "Unknown User");
+      postList.innerHTML = posts.map(post => {
+        const hasText = post.text && post.text.trim();
+        const hasImage = post.image && post.image.trim();
 
         return `
-          <div class="content-card">
-            <div class="content-type">${isWord ? "WORD POST" : "IMAGE POST"}</div>
+          <div class="post-card">
+            <div class="post-top">
+              <div>
+                <div class="post-title">${escapeHtml(post.authorName || post.user?.name || "Unknown User")}</div>
+                <div class="post-meta">
+                  <strong>Username:</strong> ${escapeHtml(post.user?.username || "No username")}
+                </div>
+                <div class="post-meta">
+                  <strong>Secret ID:</strong> ${escapeHtml(post.secretId || post.user?.secretId || "No secret ID")}
+                </div>
+              </div>
 
-            ${isWord ? `
-              <div class="content-text">${textValue || "No text found."}</div>
-            ` : `
-              ${imageValue ? `<img class="content-image" src="${imageValue}" alt="User Upload">` : `<div class="content-text">Image data not found.</div>`}
-              ${textValue ? `<div class="content-text">${textValue}</div>` : ``}
-            `}
+              <div class="tag-row">
+                <span class="tag">${hasImage ? 'Image Post' : 'Word Post'}</span>
+                <span class="tag ${post.user && post.user.blocked ? 'blocked' : 'active'}">
+                  ${post.user && post.user.blocked ? 'Blocked User' : 'Active User'}
+                </span>
+              </div>
+            </div>
 
-            <div class="content-meta"><strong>Date:</strong> ${metaDate}</div>
-            <div class="content-meta"><strong>User Ref:</strong> ${metaId}</div>
+            <div class="post-meta"><strong>Date:</strong> ${escapeHtml(formatDate(post.createdAt))}</div>
+            <div class="post-meta"><strong>Likes:</strong> ${(post.likes || []).length} &nbsp; <strong>Comments:</strong> ${(post.comments || []).length} &nbsp; <strong>Shares:</strong> ${post.shares || 0}</div>
 
-            <div class="content-actions">
-              <button class="btn btn-danger" type="button" onclick="deleteSingleContent('${item.__type}','${escapeJs(item.__id)}', ${index})">Delete This ${isWord ? "Word" : "Image"}</button>
+            ${hasText ? `<div class="post-text">${escapeHtml(post.text)}</div>` : ""}
+            ${hasImage ? `<img class="post-image" src="${post.image}" alt="Post Image">` : ""}
+
+            <div class="actions">
+              <button class="btn btn-danger" type="button" onclick="deletePost('${post._id}')">Delete Post</button>
             </div>
           </div>
         `;
       }).join("");
-
-      contentModal.classList.add("show");
     }
 
-    function escapeJs(value) {
-      return String(value).replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+    function escapeForJs(text) {
+      return String(text).replace(/\\/g, "\\\\").replace(/'/g, "\\'");
     }
 
-    function toggleBlockUser(index) {
-      const users = getUsers();
-      const user = users[index];
-      if (!user) return;
+    async function toggleBlockUser(userId, shouldBlock) {
+      try {
+        let blockedReason = "";
 
-      if (user.blocked) {
-        user.blocked = false;
-        user.blockedReason = "";
-        saveUsers(users);
-
-        const loggedInUser = getLoggedInUser();
-        if (loggedInUser && isSameUser(loggedInUser, user)) {
-          localStorage.setItem("loggedInUser", JSON.stringify(user));
+        if (shouldBlock) {
+          blockedReason = prompt("Enter block reason:", "Blocked by admin");
+          if (blockedReason === null) return;
         }
 
-        updateStats();
-        renderUsers();
-        updateStatus(`${getUserDisplayName(user)} unblocked successfully.`);
-        return;
-      }
+        const data = await apiFetch("/api/admin/users/" + userId + "/block", {
+          method: "PUT",
+          body: JSON.stringify({
+            blocked: shouldBlock,
+            blockedReason: blockedReason || "Blocked by admin"
+          })
+        });
 
-      const reason = prompt("Enter block reason:", "Violation / Inappropriate content");
-      if (reason === null) return;
-
-      user.blocked = true;
-      user.blockedReason = reason.trim() || "Violation / Inappropriate content";
-      saveUsers(users);
-
-      const loggedInUser = getLoggedInUser();
-      if (loggedInUser && isSameUser(loggedInUser, user)) {
-        localStorage.removeItem("loggedInUser");
-      }
-
-      updateStats();
-      renderUsers();
-      updateStatus(`${getUserDisplayName(user)} blocked successfully.`);
-    }
-
-    function getLoggedInUser() {
-      try {
-        return JSON.parse(localStorage.getItem("loggedInUser") || "null");
+        alert(data.message || "User updated");
+        await refreshAll();
       } catch (error) {
-        return null;
+        alert(error.message);
       }
     }
 
-    function isSameUser(a, b) {
-      if (!a || !b) return false;
+    async function deleteUser(userId, userName) {
+      try {
+        const ok = confirm("Delete " + userName + "?\n\nUser and related posts will be deleted.");
+        if (!ok) return;
 
-      const emailA = (a.email || "").trim().toLowerCase();
-      const phoneA = (a.phone || "").trim().toLowerCase();
-      const secretA = (a.secretId || "").trim().toLowerCase();
+        const data = await apiFetch("/api/admin/users/" + userId, {
+          method: "DELETE"
+        });
 
-      const emailB = (b.email || "").trim().toLowerCase();
-      const phoneB = (b.phone || "").trim().toLowerCase();
-      const secretB = (b.secretId || "").trim().toLowerCase();
-
-      return (
-        (secretA && secretB && secretA === secretB) ||
-        (emailA && emailB && emailA === emailB) ||
-        (phoneA && phoneB && phoneA === phoneB)
-      );
+        alert(data.message || "User deleted");
+        await refreshAll();
+      } catch (error) {
+        alert(error.message);
+      }
     }
 
-    function clearUserSession(index) {
-      const user = getUserByIndex(index);
-      if (!user) return;
+    async function deletePost(postId) {
+      try {
+        const ok = confirm("Delete this post?");
+        if (!ok) return;
 
-      const loggedInUser = getLoggedInUser();
-      if (loggedInUser && isSameUser(loggedInUser, user)) {
-        localStorage.removeItem("loggedInUser");
-        alert("This user's current local session has been cleared.");
-        updateStatus(`${getUserDisplayName(user)} session cleared.`);
+        const data = await apiFetch("/api/admin/posts/" + postId, {
+          method: "DELETE"
+        });
+
+        alert(data.message || "Post deleted");
+        await refreshAll();
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+
+    async function refreshAll() {
+      try {
+        setStatus("Refreshing data...");
+        await Promise.all([loadStats(), loadUsers(), loadPosts()]);
+        setStatus("All data refreshed.");
+      } catch (error) {
+        setStatus(error.message);
+      }
+    }
+
+    function showUsersTab() {
+      currentView = "users";
+      usersTabBtn.classList.add("active");
+      postsTabBtn.classList.remove("active");
+      userList.classList.remove("hidden");
+      postList.classList.add("hidden");
+      renderUsers();
+    }
+
+    function showPostsTab() {
+      currentView = "posts";
+      postsTabBtn.classList.add("active");
+      usersTabBtn.classList.remove("active");
+      postList.classList.remove("hidden");
+      userList.classList.add("hidden");
+      renderPosts();
+    }
+
+    searchInput.addEventListener("input", function() {
+      if (currentView === "users") {
+        renderUsers();
       } else {
-        alert("This user is not the current logged-in local user on this browser.");
+        renderPosts();
       }
-    }
+    });
 
-    function deleteUser(index) {
-      const users = getUsers();
-      const user = users[index];
-      if (!user) return;
-
-      const ok = confirm(`Delete ${getUserDisplayName(user)}?\n\nUser account + related local words/images will be removed from this browser storage.`);
-      if (!ok) return;
-
-      const remainingUsers = users.filter((_, i) => i !== index);
-      saveUsers(remainingUsers);
-
-      const words = getWords().filter(item => !userMatchesIdentity(item, user)).map(cleanContentForStorage);
-      const images = getImages().filter(item => !userMatchesIdentity(item, user)).map(cleanContentForStorage);
-
-      setWords(words);
-      setImages(images);
-
-      const loggedInUser = getLoggedInUser();
-      if (loggedInUser && isSameUser(loggedInUser, user)) {
-        localStorage.removeItem("loggedInUser");
-      }
-
-      updateStats();
-      renderUsers();
-      closeModal();
-      alert("User and related local content deleted.");
-      updateStatus(`${getUserDisplayName(user)} deleted successfully.`);
-    }
-
-    function cleanContentForStorage(item) {
-      const cleaned = {...item};
-      delete cleaned.__type;
-      delete cleaned.__id;
-      return cleaned;
-    }
-
-    function deleteSingleContent(type, id, userIndex) {
-      const user = getUserByIndex(userIndex);
-      if (!user) return;
-
-      const ok = confirm(`Delete this ${type} post?`);
-      if (!ok) return;
-
-      if (type === "word") {
-        const words = getWords().filter(item => item.__id !== id).map(cleanContentForStorage);
-        setWords(words);
+    filterSelect.addEventListener("change", function() {
+      if (currentView === "users") {
+        renderUsers();
       } else {
-        const images = getImages().filter(item => item.__id !== id).map(cleanContentForStorage);
-        setImages(images);
+        renderPosts();
       }
+    });
 
-      updateStats();
-      renderUsers();
-      viewUserContent(userIndex);
-      updateStatus(`${type === "word" ? "Word" : "Image"} post deleted.`);
-    }
+    clearSearchBtn.addEventListener("click", function() {
+      searchInput.value = "";
+      filterSelect.value = "all";
+      if (currentView === "users") {
+        renderUsers();
+      } else {
+        renderPosts();
+      }
+    });
 
-    function exportJSON(filename, data) {
-      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
+    loadUsersBtn.addEventListener("click", async function() {
+      try {
+        await loadUsers();
+        showUsersTab();
+      } catch (error) {
+        alert(error.message);
+      }
+    });
 
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
+    loadPostsBtn.addEventListener("click", async function() {
+      try {
+        await loadPosts();
+        showPostsTab();
+      } catch (error) {
+        alert(error.message);
+      }
+    });
 
-      URL.revokeObjectURL(url);
-    }
+    usersTabBtn.addEventListener("click", showUsersTab);
+    postsTabBtn.addEventListener("click", showPostsTab);
 
-    function cleanupBrokenData() {
-      const ok = confirm("Cleanup invalid/broken local data?");
-      if (!ok) return;
-
-      const users = getUsers();
-      saveUsers(users);
-
-      const cleanWords = getWords().map(cleanContentForStorage).filter(item => item && typeof item === "object");
-      const cleanImages = getImages().map(cleanContentForStorage).filter(item => item && typeof item === "object");
-
-      setWords(cleanWords);
-      setImages(cleanImages);
-
-      updateStats();
-      renderUsers();
-      alert("Broken data cleanup complete.");
-      updateStatus("Broken local data cleaned.");
-    }
-
-    function closeModal() {
-      contentModal.classList.remove("show");
-    }
-
-    searchInput.addEventListener("input", renderUsers);
-    filterSelect.addEventListener("change", renderUsers);
+    refreshBtn.addEventListener("click", refreshAll);
 
     logoutBtn.addEventListener("click", function() {
+      removeAdminToken();
       localStorage.removeItem("msb_admin_logged_in");
       window.location.replace("admin-login.html");
     });
 
-    refreshBtn.addEventListener("click", function() {
-      updateStats();
-      renderUsers();
-      updateStatus("Admin data refreshed.");
-    });
-
-    clearSessionBtn.addEventListener("click", function() {
-      localStorage.removeItem("loggedInUser");
-      alert("Current logged in user session cleared.");
-      updateStatus("Current local logged-in user session cleared.");
-    });
-
-    exportUsersBtn.addEventListener("click", function() {
-      exportJSON("my-secret-book-users.json", getUsers());
-      updateStatus("Users JSON exported.");
-    });
-
-    exportContentBtn.addEventListener("click", function() {
-      exportJSON("my-secret-book-content.json", {
-        words: getWords().map(cleanContentForStorage),
-        images: getImages().map(cleanContentForStorage)
-      });
-      updateStatus("Content JSON exported.");
-    });
-
-    cleanupBtn.addEventListener("click", cleanupBrokenData);
-    closeModalBtn.addEventListener("click", closeModal);
-
-    contentModal.addEventListener("click", function(e) {
-      if (e.target === contentModal) closeModal();
-    });
-    
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "Escape") closeModal();
-    });
-
-    window.viewUserContent = viewUserContent;
     window.toggleBlockUser = toggleBlockUser;
-    window.clearUserSession = clearUserSession;
     window.deleteUser = deleteUser;
-    window.deleteSingleContent = deleteSingleContent;
+    window.deletePost = deletePost;
 
-    updateStats();
-    renderUsers();
+    async function initAdminPanel() {
+      try {
+        const token = getAdminToken();
+
+        if (!token) {
+          alert("Admin token not found. Please login again.");
+          window.location.replace("admin-login.html");
+          return;
+        }
+
+        saveAdminToken(token);
+        await refreshAll();
+        showUsersTab();
+      } catch (error) {
+        alert(error.message);
+        window.location.replace("admin-login.html");
+      }
+    }
+
+    initAdminPanel();
   </script>
 </body>
 </html>
-
