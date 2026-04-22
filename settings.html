@@ -506,17 +506,17 @@
     });
 
     document.getElementById("saveLanguageSettingsBtn").addEventListener("click", function () {
-      const settings = getSettings();
+  const settings = getSettings();
 
-      const activeTab = document.querySelector(".lang-tab-btn.active").dataset.tab;
-      settings.languageType = activeTab === "indianLangs" ? "indian" : "global";
-      settings.indianLanguage = document.getElementById("settingIndianLanguage").value;
-      settings.globalLanguage = document.getElementById("settingGlobalLanguage").value;
+  const activeTab = document.querySelector(".lang-tab-btn.active").dataset.tab;
+  settings.languageType = activeTab === "indianLangs" ? "indian" : "global";
+  settings.indianLanguage = document.getElementById("settingIndianLanguage").value;
+  settings.globalLanguage = document.getElementById("settingGlobalLanguage").value;
 
-      saveSettings(settings);
+  saveSettings(settings);
 
-      document.getElementById("settingsMessage").textContent = "Language settings saved successfully.";
-    });
+  document.getElementById("settingsMessage").textContent = "Language settings saved successfully. Refresh or reopen pages to see full language change.";
+});
 
     document.getElementById("saveNotificationSettingsBtn").addEventListener("click", function () {
       const settings = getSettings();
