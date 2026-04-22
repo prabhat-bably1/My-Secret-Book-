@@ -67,3 +67,14 @@ document.addEventListener("click", function(e){
   }
 
 });
+document.getElementById("settingsBtn").onclick = () => {
+  window.location.href = "profile.html#settings";
+};
+
+document.getElementById("helpBtn").onclick = () => {
+  alert("Help section coming soon 💛");
+};
+
+document.getElementById("contactBtn").onclick = () => {
+  alert("📩 Contact: prabhatr.seth4@gmail.com");
+};
