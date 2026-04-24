@@ -1229,30 +1229,26 @@ function loadHomeLiveLine(){
 
   if(!box || !textBox) return;
 
-  const latest = getLatestHomeLine();
+  const latest = localStorage.getItem("msb_latest_line") || "";
 
-  if(!latest){
+  if(!latest.trim()){
     box.style.display = "none";
     textBox.textContent = "";
     return;
   }
 
   box.style.display = "flex";
-  textBox.textContent = "❦ " + latest + " ❦";
+
+  if(textBox.textContent !== "❦ " + latest + " ❦"){
+    textBox.style.animation = "none";
+    textBox.offsetHeight;
+    textBox.textContent = "❦ " + latest + " ❦";
+    textBox.style.animation = "homeTrainMove 16s linear infinite";
+  }
 }
 
 loadHomeLiveLine();
-setInterval(loadHomeLiveLine, 3000);
-    function updateHomeLiveLine() {
-  const homeLiveText = document.getElementById("homeLiveText");
-
-  let words = JSON.parse(localStorage.getItem("msb_words") || "[]");
-
-  if (!words.length) {
-    homeLiveText.textContent = "";
-    return;
-  }
-
+setInterval(loadHomeLiveLine, 1000);
   // ALWAYS latest (first item)
   let latest = words[0].text;
 
