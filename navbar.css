@@ -320,16 +320,16 @@
   }
 }
   .nav-logo{
-  width:110px;
-  height:110px;
+  width:120px;
+  height:120px;
   object-fit:contain;
   border-radius:50%;
   margin-right:10px;
   }
 @media(max-width:600px){
   .nav-logo{
-    width:95px !important;
-    height:95px !important;
+    width:110px !important;
+    height:110px !important;
     left:34px !important;
   }
 }
