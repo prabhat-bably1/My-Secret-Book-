@@ -1296,6 +1296,14 @@
     }
 
     updateWordPreview();
+    saveTextBtn.addEventListener("click", () => {
+  ...
+  loadWords();
+  showWords();
+
+  // 🔥 IMPORTANT
+  updateHomeLiveLine();
+});
   </script>
 <script src="translations.js"></script>
 <script src="language.js"></script>
