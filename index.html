@@ -1075,6 +1075,67 @@
     margin-top:70px !important;
   }
 }
+    /* FINAL FIX: white flip page hide + book title ke niche */
+.flip-page,
+.flip-page-face,
+.flip-page-back{
+  display:none !important;
+}
+
+/* navbar hamesha upar rahe */
+#navbar-container,
+.nav,
+.ribbon-nav{
+  position:relative !important;
+  z-index:99999 !important;
+}
+
+/* open book ko absolute se hatao */
+.open-view{
+  position:relative !important;
+  inset:auto !important;
+  left:auto !important;
+  top:auto !important;
+  transform:none !important;
+  width:100% !important;
+  max-width:760px !important;
+  margin:30px auto 0 !important;
+  z-index:5 !important;
+}
+
+/* default hidden same rakho */
+.open-view{
+  opacity:0;
+  pointer-events:none;
+}
+
+/* show hone par title ke niche dikhe */
+.open-view.show{
+  opacity:1 !important;
+  pointer-events:auto !important;
+}
+
+/* book thoda aur niche */
+.open-shell{
+  margin-top:26px !important;
+}
+
+/* closed book hide hone ke baad open book upar na chadhe */
+.closed-view.hide + .open-view,
+.open-view.show{
+  display:block !important;
+}
+
+/* mobile */
+@media(max-width:600px){
+  .open-view{
+    margin-top:48px !important;
+  }
+
+  .open-shell{
+    margin-top:34px !important;
+  }
+}
   </style>
 </head>
 <body>
