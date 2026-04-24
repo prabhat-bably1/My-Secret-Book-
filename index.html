@@ -1067,6 +1067,40 @@
     margin-top:30px !important;
   }
 }
+  /* FINAL OPEN BOOK POSITION FIX */
+#navbar-container{
+  position:relative !important;
+  z-index:99999 !important;
+}
+
+.ribbon-nav{
+  position:relative !important;
+  z-index:99999 !important;
+}
+
+.scene{
+  position:relative !important;
+}
+
+.open-view{
+  position:absolute !important;
+  left:50% !important;
+  top:95px !important;
+  transform:translateX(-50%) !important;
+  width:min(900px,94vw) !important;
+  z-index:20 !important;
+}
+
+.open-view.show{
+  display:block !important;
+}
+
+@media(max-width:600px){
+  .open-view{
+    top:115px !important;
+    width:94vw !important;
+  }
+}
     
   </style>
 </head>
