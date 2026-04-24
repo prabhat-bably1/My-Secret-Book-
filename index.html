@@ -1243,6 +1243,24 @@ function loadHomeLiveLine(){
 
 loadHomeLiveLine();
 setInterval(loadHomeLiveLine, 3000);
+    function updateHomeLiveLine() {
+  const homeLiveText = document.getElementById("homeLiveText");
+
+  let words = JSON.parse(localStorage.getItem("msb_words") || "[]");
+
+  if (!words.length) {
+    homeLiveText.textContent = "";
+    return;
+  }
+
+  // ALWAYS latest (first item)
+  let latest = words[0].text;
+
+  // watermark remove
+  latest = latest.replace(/~~.*~~/, "");
+
+  homeLiveText.textContent = latest;
+    }
   </script>
   <script src="translations.js"></script>
   <script src="language.js"></script>
