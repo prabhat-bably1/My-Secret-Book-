@@ -375,3 +375,37 @@
     gap:7px !important;
   }
 }
+.navbar{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+/* 🔥 LOGO FIX LEFT */
+.logo-box{
+    position: absolute;
+    left: 10px;   /* LEFT EDGE FIX */
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.logo-box img{
+    width: 65px;   /* size adjust kar sakte ho */
+    height: 65px;
+    object-fit: contain;
+}
+
+/* MENU ko thoda right shift karo */
+.menu{
+    margin-left: 90px;   /* logo ke liye space */
+    display: flex;
+    gap: 20px;
+}
+
+/* MORE button right side */
+.menu .more{
+    margin-left: auto;
+}
