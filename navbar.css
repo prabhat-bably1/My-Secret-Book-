@@ -409,3 +409,105 @@
 .menu .more{
     margin-left: auto;
 }
+/* FINAL LOGO + TASSEL NAVBAR STYLE */
+.ribbon-nav{
+  width:96vw !important;
+  max-width:1180px !important;
+  height:70px !important;
+  min-height:70px !important;
+  margin:12px auto 18px !important;
+  padding:0 28px 0 250px !important;
+  position:relative !important;
+  overflow:visible !important;
+}
+
+.ribbon-nav .nav-logo{
+  width:190px !important;
+  height:190px !important;
+  object-fit:contain !important;
+  position:absolute !important;
+  left:18px !important;
+  top:50% !important;
+  transform:translateY(-50%) !important;
+  z-index:20 !important;
+  border-radius:50% !important;
+  filter:drop-shadow(0 8px 14px rgba(0,0,0,.16));
+}
+
+.ribbon-nav .nav-left{
+  display:flex !important;
+  align-items:center !important;
+  gap:58px !important;
+  margin-left:0 !important;
+}
+
+.ribbon-nav .nav-right{
+  margin-left:auto !important;
+}
+
+.ribbon-nav .nav-btn{
+  font-size:1.05rem !important;
+  padding:10px 18px !important;
+}
+
+/* tassel logo aur HOME ke beech */
+.ribbon-tassel.left,
+.ribbon-tassel-img.left{
+  left:245px !important;
+  width:36px !important;
+  height:86px !important;
+  bottom:-74px !important;
+  z-index:15 !important;
+}
+
+.ribbon-tassel.right,
+.ribbon-tassel-img.right{
+  right:28px !important;
+  width:34px !important;
+  height:82px !important;
+  bottom:-70px !important;
+}
+
+/* left ribbon extra shape hide */
+.ribbon-tail.left{
+  display:none !important;
+}
+
+@media(max-width:600px){
+  .ribbon-nav{
+    height:56px !important;
+    min-height:56px !important;
+    padding:0 12px 0 118px !important;
+  }
+
+  .ribbon-nav .nav-logo{
+    width:105px !important;
+    height:105px !important;
+    left:8px !important;
+  }
+
+  .ribbon-nav .nav-left{
+    gap:18px !important;
+  }
+
+  .ribbon-nav .nav-btn{
+    font-size:.68rem !important;
+    padding:7px 7px !important;
+  }
+
+  .ribbon-tassel.left,
+  .ribbon-tassel-img.left{
+    left:122px !important;
+    width:22px !important;
+    height:54px !important;
+    bottom:-46px !important;
+  }
+
+  .ribbon-tassel.right,
+  .ribbon-tassel-img.right{
+    right:10px !important;
+    width:18px !important;
+    height:44px !important;
+    bottom:-38px !important;
+  }
+}
