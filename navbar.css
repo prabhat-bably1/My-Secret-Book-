@@ -582,7 +582,7 @@
     100% { transform: translateX(-50%) rotate(3deg); }
 }
 .hanging-book{
-    background: transparent;   /* remove white box */
+        mix-blend-mode: multiply;   /* white hata deta hai */
 }
 
 .hanging-book img{
