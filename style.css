@@ -1,11 +1,14 @@
 body {
-  margin: 0;
-  font-family: 'Georgia', serif;
-  background: #f5f0e6;
-}
+    margin: 0;
+    padding: 0;
+    font-family: 'Cinzel', serif;
 
+    background: url("theme.png") no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
 .navbar {
-  display: flex;
+  display: none;
   justify-content: space-between;
   align-items: center;
   background: linear-gradient(90deg, #5a2d0c, #8b4513);
@@ -44,4 +47,22 @@ body {
   background: rgba(120,40,20,0.4);
   border-color: gold;
   box-shadow: 0 0 10px rgba(255,215,0,0.4);
+}
+.main-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin-top: 180px;
+}
+.book-img {
+    width: 260px;
+}
+
+.next-btn {
+    margin-top: 20px;
+    padding: 12px 30px;
+    background: #7b1f1f;
+    color: white;
+    border-radius: 25px;
+    border: none;
 }
